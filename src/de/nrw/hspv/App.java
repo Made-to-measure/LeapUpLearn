@@ -11,7 +11,7 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		Mainframe mainframe = new Mainframe(); //erzeuge den Hauptscreen quasi Appstart
-		
+		System.out.println("Test \t 123");
 
 	}
 
