@@ -2,7 +2,9 @@ package de.nrw.hspv;
 
 public class User {
 	String Name;
-
+	Statistiken stats;
+	
+	
 	//Konstruktor 
 	User(String name) {
 		this.Name = name; //
