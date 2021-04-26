@@ -20,18 +20,18 @@ public class InfoAbout extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			InfoAbout dialog = new InfoAbout();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setResizable(false);
-			dialog.setVisible(true);
-			dialog.setTitle("Über...");
-			dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			InfoAbout dialog = new InfoAbout();
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setResizable(false);
+//			dialog.setVisible(true);
+//			dialog.setTitle("Über...");
+//			dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Create the dialog.
@@ -41,7 +41,12 @@ public class InfoAbout extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
+		//Füge Methoden aus der "Main" ein
+		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Über...");
+		setResizable(false);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JTextPane Info = new JTextPane();
@@ -60,7 +65,7 @@ public class InfoAbout extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						System.exit(EXIT_ON_CLOSE);
+						dispose();
 					}
 				});
 				okButton.setActionCommand("OK");
