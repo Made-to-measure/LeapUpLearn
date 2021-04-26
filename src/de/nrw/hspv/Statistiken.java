@@ -6,11 +6,22 @@ import java.util.Date;
 public class Statistiken {
 	public User User;
 	public Date Datum;
-	public ArrayList<Aufgabe> Aufgaben = new ArrayList<Aufgabe>();
+	public ArrayList<StatistikEintrag> Aufgaben = new ArrayList<StatistikEintrag>();
 										// Sollte die ArrayList hier den selben Namen haben??
 										// vielleicht eher "geloesteAufgaben"?
 										// 
-
+	/**
+	 * vielleicht kann man auch soetwas wie overallStats schon direkt als Attribut abspeichern, sobald ein Neuer Eintrag hinzukommt
+	 * Ist vielleicht sinnvoller bzw. ressourcenschonender als bei bestimmten Berechnungen jedesmal den gesamten Datensatz durch zugehen
+	 * Beispiel:
+	 * long geloesteAufgaben;
+	 * long gesamteAufgaben;
+	 * wieder optional: long bearbeitungszeit; (in Minuten so als Bonus um mittzuteilen wie viel man schon gelernt hat)
+	 *  -(Jannik)
+	 */
+	
+	
+	
 	// Konstruktor
 	Statistiken(User User, Date Datum) { //Nutzer und Datum werden initial gesetzt 
 		this.User = User;			   //eine spätere Änderung ist nicht vorgesehen

@@ -13,9 +13,9 @@ import javax.swing.JMenuItem;
 
 public class Mainframe extends JFrame {
 /**
- * 	
- * @author Jannik: Christian hat sich die Grundstruktur für das Menü ausgedacht und die hauptsächliche gedankliche Arbeit hereingesteckt.
- *
+ * @author Jannik:
+ * Christian hat sich die Grundstruktur für das Menü ausgedacht und die gedankliche Arbeit hereingesteckt.
+ * Mein Anteil war lediglich das Auslagern in eine eigne Klasse und die ein oder andere Kleinigkeit.
  */
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
