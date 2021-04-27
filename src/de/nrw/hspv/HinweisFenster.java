@@ -11,29 +11,29 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class HinweisFenster extends JFrame {
+public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen an Nutzer
 	
-	HinweisFenster(String text) {
+	HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung übergeben
 		super("Achtung");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
 		setLayout(new BorderLayout());
 		
-		JPanel panelOben = new JPanel();
+		JPanel panelOben = new JPanel();						//panelOben für Inhalt der Meldung
 		panelOben.setBorder(new EmptyBorder(10,10,10,10));
 		
-		JLabel hinweis = new JLabel(text);
+		JLabel hinweis = new JLabel(text);						//Label enthält Inhalt der Meldung
 		panelOben.add(hinweis);
 		add(panelOben, BorderLayout.CENTER);
 		
-		JPanel panelUnten = new JPanel();
+		JPanel panelUnten = new JPanel();						//panelUnten für Button
 		JButton ok = new JButton("OK");
 		ok.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				HinweisFenster.super.dispose();
+				HinweisFenster.super.dispose();					//Button schließt Hinweisfenster
 			}
 			
 		});
@@ -43,10 +43,7 @@ public class HinweisFenster extends JFrame {
 		setVisible(true);
 		pack();
 		setLocation(((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()-this.getWidth())/2, ((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-this.getHeight())/2);
-	}
-	
-	public static void main(String[] args) {
-		new HinweisFenster("Es ist ein Fehler aufgetreten!");
+		//Fenster wird in der Mitte des Bildschirms dargestellt
 	}
 
 }
