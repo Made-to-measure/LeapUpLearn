@@ -1,4 +1,4 @@
-package de.nrw.hspv;
+package de.nrw.hspv.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -26,7 +26,7 @@ public class UINeuerNutzer extends JDialog {
 
 	public static void main(String[] args) {
 		try {
-			NeuerNutzer dialog = new NeuerNutzer();
+			UINeuerNutzer dialog = new UINeuerNutzer();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 			dialog.setResizable(false);
@@ -35,8 +35,8 @@ public class UINeuerNutzer extends JDialog {
 		}
 	}
 
-	public NeuerNutzer() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(NeuerNutzer.class.getResource("/de/nrw/hspv/LUL.jpg")));
+	public UINeuerNutzer() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UINeuerNutzer.class.getResource("/de/nrw/hspv/LUL.jpg")));
 		setTitle("Neuer Nutzer...");
 		setBounds(100, 100, 200, 150);
 		getContentPane().setLayout(new BorderLayout());

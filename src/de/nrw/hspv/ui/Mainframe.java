@@ -1,4 +1,4 @@
-package de.nrw.hspv;
+package de.nrw.hspv.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,15 +19,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import net.miginfocom.swing.MigLayout;
-
 
 public class Mainframe extends JFrame {
-/**
- * @author Jannik:
- * Christian hat sich die Grundstruktur für das Menü ausgedacht und die gedankliche Arbeit hereingesteckt.
- * Mein Anteil war lediglich das Auslagern in eine eigne Klasse und die ein oder andere Kleinigkeit.
- */
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel = new MainPanel();

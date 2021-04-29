@@ -1,7 +1,9 @@
-package de.nrw.hspv;
+package de.nrw.hspv.statistics;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import de.nrw.hspv.exercises.Aufgabentyp;
 
 public class StatistikEintrag {
 	/*
