@@ -40,8 +40,8 @@ public class Mainframe extends JFrame {
 		setJMenuBar(menueBar);
 		setContentPane(MainPanel);
 
-		setPreferredSize(new Dimension(800,600));
-		setMinimumSize(new Dimension(750,400));
+		setPreferredSize(new Dimension(1100,600));
+		setMinimumSize(new Dimension(1000,550));
 		setSize(getPreferredSize());
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);

@@ -173,7 +173,7 @@ public class IPExercise {
 			case 4: return this.lastAddress.getValues();
 			case 5: return this.broadcastAddress.getValues();
 			case 6: return new int[] {this.networkAddress.getCidr()};
-			case 7: return toIntIpFormat(cidrToStringIpFormat(String.valueOf(this.networkAddress.getCidr())),2);
+			case 7: return toIntIpFormat(cidrToStringIpFormat(String.valueOf(this.networkAddress.getCidr())),10);
 			default: return null;
 		}
 	}
