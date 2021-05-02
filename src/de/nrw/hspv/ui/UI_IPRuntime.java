@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import de.nrw.hspv.exercises.IPExercise;
 
@@ -24,9 +30,11 @@ public class UI_IPRuntime extends JPanel {
 	JTextField[] fieldArr;
 	JPanel startPanel;
 	JPanel runtimePanel;
-	private int page = 0;
+	private int page = 1;
 	Color lightRed = new Color(255,102,102);
 	Color lightGreen = new Color(102,255,102);
+	boolean[] results;
+	JButton btnRightCorner;
 	
 	UI_IPRuntime(){
 	
@@ -52,39 +60,44 @@ public class UI_IPRuntime extends JPanel {
 	labelFormatAdvice.setHorizontalAlignment(SwingConstants.LEFT);
 	panel_3.add(labelFormatAdvice);
 	
-	JButton btnNewButton_1 = new JButton("Abbruch");
-	btnNewButton_1.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		}
-	});
-	panel_2.add(btnNewButton_1);
+//	JButton btnNewButton_1 = new JButton("Abbruch");
+//	btnNewButton_1.addActionListener(new ActionListener() {
+//		public void actionPerformed(ActionEvent e) {
+//		}
+//	});
+//	panel_2.add(btnNewButton_1);
 	
-	JButton btnRightCorner = new JButton("Überprüfen");
+	btnRightCorner = new JButton("Überprüfen");
+	btnRightCorner.setEnabled(false);
 	btnRightCorner.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			if(page == 0) {
+			if(page == 1) {
 				showInputs();
 				btnRightCorner.setText("Zeige Lösung");
 				labelFormatAdvice.setText("Nun siehst du, ob deine Lösung richtig war!");
 				page++;
 				
 			}
-			else if(page ==1) {
+			else if(page ==2) {
 				showResults();
+				btnRightCorner.setText("Nächste Aufgabe");
 				labelFormatAdvice.setText("Hier siehts du die richtigen Ergebnisse!");
 				page++;
 			}
+			else if(page == 3) {
+				loadNewExercise();
+				btnRightCorner.setText("Überprüfen");
+				labelFormatAdvice.setText("Fülle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
+				page=1;
+			}
 		}
 	});
+	
+	
 	panel_2.add(btnRightCorner);
 	
-	
-	
-			
-	
-	
 	add(new PanelIpZeilen(), BorderLayout.CENTER);
-	loadExercise(this.currentExercise.getExerciseType());
+	loadFirstExercise();
 	}
 
 
@@ -228,20 +241,56 @@ public class UI_IPRuntime extends JPanel {
 		}
 
 
-		public void loadExercise(boolean[] boolArr) {
-	
+		public void loadFirstExercise() {
+			boolean[] boolArr = this.currentExercise.getExerciseType();
 			for(int i=0; i<8; i++) {
 				if(boolArr[i]) {
 					this.addressPanels[i].add(fieldArr[i] =new JTextField());
 					fieldArr[i].setText(currentExercise.getStringFormatByNumber(i));
 					fieldArr[i].setEditable(false);
+					fieldArr[i].setFocusable(false);
 					fieldArr[i].setBackground(Color.LIGHT_GRAY);
 					fieldArr[i].setFont(new Font("Tahoma", Font.BOLD, 11));
 				}
 				else {
 					this.addressPanels[i].add(fieldArr[i] = new JTextField());	
 				}
-			}		
+				fieldArr[i].getDocument().addDocumentListener(new DocumentListener() {
+					  public void changedUpdate(DocumentEvent e) {
+						  	System.out.println("1");
+						  	btnRightCorner.setEnabled(checkFields());
+						  }
+						  public void removeUpdate(DocumentEvent e) {
+							  System.out.println("2");
+							  btnRightCorner.setEnabled(checkFields());
+						  }
+						  public void insertUpdate(DocumentEvent e) {
+							  System.out.println("3");
+							  btnRightCorner.setEnabled(checkFields());
+						  }
+
+				});
+			}
+		}
+		
+		public void loadNewExercise() {
+			this.currentExercise = new IPExercise();
+			boolean[] boolArr = this.currentExercise.getExerciseType();
+			for(int i=0; i<8; i++) {
+				fieldArr[i].setBackground(Color.WHITE);
+				fieldArr[i].setEditable(true);
+				fieldArr[i].setFocusable(true);
+				if(boolArr[i]) {
+					fieldArr[i].setText(currentExercise.getStringFormatByNumber(i));
+					fieldArr[i].setEditable(false);
+					fieldArr[i].setFocusable(false);
+					fieldArr[i].setBackground(Color.LIGHT_GRAY);
+					fieldArr[i].setFont(new Font("Tahoma", Font.BOLD, 11));
+				}
+				else {
+					fieldArr[i].setText("");
+				}
+				}
 			
 		}
 		
@@ -263,7 +312,7 @@ public class UI_IPRuntime extends JPanel {
 		}
 		
 		public void showInputs() {
-			boolean[] results = this.currentExercise.validateInputs(getInputs());
+			this.results = this.currentExercise.validateInputs(getInputs());
 			for(int i = 0; i < results.length; i++) {
 				if(!this.currentExercise.getExerciseType()[i]) {
 					fieldArr[i].setEditable(false);
@@ -287,8 +336,18 @@ public class UI_IPRuntime extends JPanel {
 					else{
 						fieldArr[i].setText(currentExercise.getStringFormatByNumber(i));
 					}
-				}	
+				}	 
+				
 			}
+		}
+		
+		public boolean checkFields() {
+			for(int i = 0; i<fieldArr.length; i++) {
+				if(fieldArr[i].getText().length() <= 0) {
+					return false;
+				}
+			}
+			return true;
 		}
 }
 
