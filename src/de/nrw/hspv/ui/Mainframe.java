@@ -3,12 +3,15 @@ package de.nrw.hspv.ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -19,12 +22,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.nrw.hspv.exercises.IPExercise;
+
 
 public class Mainframe extends JFrame {
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel = new MainPanel();
-	
+	ButtonGroup sideMenuButtons;
 	
 	Mainframe(){
 		//Rufe den Konstruktor von JFrame auf
@@ -33,9 +38,10 @@ public class Mainframe extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
 		setLayout(new BorderLayout());
 		setJMenuBar(menueBar);
-		setContentPane(MainPanel); 
+		setContentPane(MainPanel);
 
 		setPreferredSize(new Dimension(800,600));
+		setMinimumSize(new Dimension(750,400));
 		setSize(getPreferredSize());
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
@@ -56,7 +62,8 @@ public class Mainframe extends JFrame {
 		 * 
 		 */
 		public MainPanel() {
-			setLayout(new BorderLayout(5, 5));
+			BorderLayout mainPanelLayout = new BorderLayout(5, 5);
+			setLayout(mainPanelLayout);
 
 			// Panel mit Zeitinformationen oben rechts
 			// Nachdem Start einer Aufgabe zeigt der Timer die benötigte Zeit
@@ -88,15 +95,48 @@ public class Mainframe extends JFrame {
 			add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
 			ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
 																// haben) horizontal anordnen
-			// Buttons anlegen und hinzufügen
+			// Buttons anlegen und hinzufügen	
 			JButton btnGrdlIT = new JButton("Grundlagen IT");
-			ThemenPanel.add(btnGrdlIT);
 			JButton btnMathe = new JButton("Mathe");
-			ThemenPanel.add(btnMathe);
-			btnMathe.setEnabled(false); //nicht implemtiert --> deaktiviert
 			JButton btnStatistik = new JButton("Statistik");
+			ThemenPanel.add(btnGrdlIT);
+			btnGrdlIT.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					btnStatistik.setEnabled(true);
+					btnGrdlIT.setEnabled(false);
+					if(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null) {
+						remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+					}
+					add(new UI_IPExercise(), BorderLayout.CENTER);
+				}
+			});
+			
+			ThemenPanel.add(btnMathe);
+			btnMathe.addActionListener(new ActionListener() {
+				public void actionPerformed (ActionEvent e) {
+					mainPanelLayout.removeLayoutComponent(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+				}
+			});
+			btnMathe.setEnabled(false); //nicht implemtiert --> deaktiviert
+			
+			
 			ThemenPanel.add(btnStatistik);
+			btnStatistik.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 
+					btnGrdlIT.setEnabled(true);
+					btnStatistik.setEnabled(false);
+			        if (mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null) {
+			        	remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+			        	add(new JPanel(), BorderLayout.CENTER);
+			        }   
+			    }
+			});
+			
+//			ButtonGroup group = new ButtonGroup();
+//			group.add(btnStatistik);
+//			group.add(btnGrdlIT);
+			
 		}
 
 	}
