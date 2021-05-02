@@ -26,7 +26,7 @@ public class Mainframe extends JFrame {
 	MainPanel MainPanel = new MainPanel();
 	
 	
-	Mainframe(){
+	public Mainframe(){
 		//Rufe den Konstruktor von JFrame auf
 		super("LeapUpLearn - Made-to-Measure LernApp für Verwaltungsinformatik - HSPV NRW");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
