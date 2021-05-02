@@ -1,4 +1,4 @@
-package de.nrw.hspv;
+package de.nrw.hspv.login;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,6 +7,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
+
+import de.nrw.hspv.ui.App;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
@@ -20,7 +22,7 @@ public class LoginGUI extends JFrame{
 	JTextField eingabeName;														//Felder für Benutzername und Passwort verwaltbar machen
 	JPasswordField eingabePasswort;
 	
-	LoginGUI() {
+	public LoginGUI() {
 		super("Login");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));

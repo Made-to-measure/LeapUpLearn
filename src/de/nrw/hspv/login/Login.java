@@ -1,6 +1,10 @@
-package de.nrw.hspv;
+package de.nrw.hspv.login;
 
 import java.util.HashMap;
+
+import de.nrw.hspv.ui.HinweisFenster;
+import de.nrw.hspv.ui.Mainframe;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

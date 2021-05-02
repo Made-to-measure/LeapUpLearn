@@ -1,4 +1,4 @@
-package de.nrw.hspv;
+package de.nrw.hspv.ui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 
 public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen an Nutzer
 	
-	HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung übergeben
+	public HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung übergeben
 		super("Achtung");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
