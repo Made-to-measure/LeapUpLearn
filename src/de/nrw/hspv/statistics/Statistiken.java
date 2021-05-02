@@ -1,7 +1,10 @@
-package de.nrw.hspv;
+package de.nrw.hspv.statistics;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import de.nrw.hspv.exercises.Exercise;
+import de.nrw.hspv.ui.User;
 
 public class Statistiken {
 	public User User;
@@ -43,12 +46,12 @@ public class Statistiken {
 		return Datum;
 	}
 
-	public void setAufgabe(Aufgabe aufgabe) { //Methode könnte besser addAufgabe heißen?
+	public void setAufgabe(Exercise aufgabe) { //Methode könnte besser addAufgabe heißen?
 		/**
 		 * Diese Methode könnte vielleicht auch sowas wie addEintrag() heißen.
 		 * -(Jannik)
 		 */
-		Aufgaben.add(aufgabe);
+		//Exercise.add(aufgabe);
 	}
 
 }

@@ -1,4 +1,6 @@
-package de.nrw.hspv;
+package de.nrw.hspv.exercises;
+
+import de.nrw.hspv.statistics.StatistikEintrag;
 
 //import java.util.Date;
 
