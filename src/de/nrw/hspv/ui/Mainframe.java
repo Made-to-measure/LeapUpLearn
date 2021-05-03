@@ -28,6 +28,7 @@ public class Mainframe extends JFrame {
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel = new MainPanel();
+
 	
 	
 	public Mainframe(){
@@ -60,7 +61,7 @@ public class Mainframe extends JFrame {
 		 * 
 		 */
 		public MainPanel() {
-			setLayout(new BorderLayout(5, 5));
+			setLayout(new BorderLayout(5,5));
 
 			// Panel mit Zeitinformationen oben rechts
 			// Nachdem Start einer Aufgabe zeigt der Timer die benötigte Zeit

@@ -257,15 +257,12 @@ public class UI_IPRuntime extends JPanel {
 				}
 				fieldArr[i].getDocument().addDocumentListener(new DocumentListener() {
 					  public void changedUpdate(DocumentEvent e) {
-						  	System.out.println("1");
 						  	btnRightCorner.setEnabled(checkFields());
 						  }
 						  public void removeUpdate(DocumentEvent e) {
-							  System.out.println("2");
 							  btnRightCorner.setEnabled(checkFields());
 						  }
 						  public void insertUpdate(DocumentEvent e) {
-							  System.out.println("3");
 							  btnRightCorner.setEnabled(checkFields());
 						  }
 
