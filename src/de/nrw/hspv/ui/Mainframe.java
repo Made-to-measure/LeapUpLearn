@@ -140,6 +140,15 @@ public class Mainframe extends JFrame {
 			// Buttons anlegen und hinzufügen
 			JButton btnIPAdressen = new JButton("IP Adressen");
 			ExPanel.add(btnIPAdressen);
+			btnIPAdressen.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					MainPanel.add(new UI_IPExercise(),BorderLayout.CENTER);
+					
+				}
+				
+			});
 			JButton btnZahlensystme = new JButton("Zahlensysteme");
 			ExPanel.add(btnZahlensystme);
 		}
