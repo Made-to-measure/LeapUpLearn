@@ -19,17 +19,16 @@ public class IPExercise {
 		this.broadcastAddress = networkAddress.createBroadcastAddress();
 		this.subnetmask = networkAddress.createSubnetMask();
 		this.exerciseType = generateExerciseType();
-		testPrint();
 	}
 	
-	public void play() {
+	public void play() { //Klasse zum Test der Aufgabe in der Konsole
 		System.out.println("Geben Sie eine Hostadresse ein:");
 		String input = new java.util.Scanner(System.in).nextLine();
 		//inputHostAddress = toIntIpFormat(input, 10);
 		//System.out.println(validateHostAddress());
 	}
 	
-	public void testPrint() {
+	public void testPrint() {	//Klasse fürs Debugging
 		System.out.println(	"\nNetwerkadresse: \t" + networkAddress.toStringIpFormat() + "/" + networkAddress.getCidr() +
 							"\nNetzwerkmaske: \t \t" + subnetmask.toStringIpFormat() +
 							"\nerste Adresse: \t \t" + firstAddress.toStringIpFormat() +
