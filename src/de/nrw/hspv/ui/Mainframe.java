@@ -19,6 +19,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+//import de.nrw.hspv.Aufgabentyp;
+
+//import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
+
 
 public class Mainframe extends JFrame {
 	//lege Objekte an um sie verwaltbar zu machen
@@ -40,7 +44,7 @@ public class Mainframe extends JFrame {
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
 		setVisible(true);
-		
+		themenpanel(); //Menü mit Aufgaben und Statistik anzeigen
 	}
 
 	class MainPanel extends JPanel {
@@ -83,22 +87,80 @@ public class Mainframe extends JFrame {
 			});
 			timer.start();
 
-			// Panel mit Grundlegenden Programmfunktionen (Menu) auf der linken Seite:
-			JPanel ThemenPanel = new JPanel();
-			add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
-			ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
-																// haben) horizontal anordnen
-			// Buttons anlegen und hinzufügen
-			JButton btnGrdlIT = new JButton("Grundlagen IT");
-			ThemenPanel.add(btnGrdlIT);
-			JButton btnMathe = new JButton("Mathe");
-			ThemenPanel.add(btnMathe);
-			btnMathe.setEnabled(false); //nicht implemtiert --> deaktiviert
-			JButton btnStatistik = new JButton("Statistik");
-			ThemenPanel.add(btnStatistik);
-
+			
 		}
 
+	}
+
+	public void themenpanel() {
+		// Panel mit Grundlegenden Programmfunktionen (Menu) auf der linken Seite:
+		JPanel ThemenPanel = new JPanel();
+		add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
+		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
+															// haben) horizontal anordnen
+		// Buttons anlegen und hinzufügen
+		JButton btnGrdlIT = new JButton("Grundlagen IT");
+		ThemenPanel.add(btnGrdlIT);
+		btnGrdlIT.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showEx("GrdlIT"); //Aufruf der einzelnen Aufgaben zum Kurs Grundlagen IT
+				ThemenPanel.setVisible(false);
+
+			}
+		});
+		JButton btnMathe = new JButton("Mathe");
+		ThemenPanel.add(btnMathe);
+		btnMathe.setEnabled(true); // nicht implemtiert --> deaktiviert
+		btnMathe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showEx("Mathe"); //Aufruf der einzelnen Aufgaben zum Kurs Mathe
+				ThemenPanel.setVisible(false);
+			}
+		});
+		
+		JButton btnStatistik = new JButton("Statistik");
+		ThemenPanel.add(btnStatistik);
+		btnStatistik.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Persönliche Statistik aufrufen
+			}
+		});
+
+	}
+	public void showEx(String Aufgabe){ //Zeigt die Aufgaben des Kurses an
+		JPanel ExPanel = new JPanel();
+		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
+		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Größe
+		ExPanel.setVisible(true);						// haben) horizontal anordnen
+		
+		if (Aufgabe == "GrdlIT") {
+			// Buttons anlegen und hinzufügen
+			JButton btnIPAdressen = new JButton("IP Adressen");
+			ExPanel.add(btnIPAdressen);
+			JButton btnZahlensystme = new JButton("Zahlensysteme");
+			ExPanel.add(btnZahlensystme);
+		}
+		else if (Aufgabe == "Mathe") {
+			JButton btnLogik = new JButton("Logik");
+			ExPanel.add(btnLogik);
+		}
+		
+		//Schaltfläche optisch mit JLabel absetzen
+		JLabel lblPlatzhalter = new  JLabel();
+		ExPanel.add(lblPlatzhalter);
+		
+		JButton btnZurueck = new JButton("Zurück");
+		ExPanel.add(btnZurueck);
+		btnZurueck.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ExPanel.setVisible(false);
+				themenpanel();
+				}
+		});
 	}
 	class MenueBar extends JMenuBar{
 		//Klassenvariablen
