@@ -25,6 +25,13 @@ import javax.swing.JPanel;
 
 
 public class Mainframe extends JFrame {
+	/**
+	 * Klasse für die grafische Benutzeroberfläche 
+	 * 
+	 * 
+	 * 
+	 */
+	
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel = new MainPanel();
@@ -48,7 +55,7 @@ public class Mainframe extends JFrame {
 	}
 
 	class MainPanel extends JPanel {
-		/**
+		/*
 		 * MainPanel: Grundlegendes Panel in dem die Aufgaben/Infos/Menu angezeigt
 		 * werden
 		 * 
