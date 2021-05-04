@@ -10,7 +10,7 @@ public class App {
 	 */
 	public static void main(String[] args) {
 		LoginGUI loginGUI = new LoginGUI();		//erzeuge LoginGUI als Start
-//		Mainframe mainframe = new Mainframe(); //erzeuge den Hauptscreen quasi Appstart
+		//Mainframe mainframe = new Mainframe(); //erzeuge den Hauptscreen quasi Appstart
 	}
 
 }

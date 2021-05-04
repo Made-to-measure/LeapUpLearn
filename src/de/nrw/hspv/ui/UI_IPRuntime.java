@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -257,17 +255,21 @@ public class UI_IPRuntime extends JPanel {
 				}
 				fieldArr[i].getDocument().addDocumentListener(new DocumentListener() {
 					  public void changedUpdate(DocumentEvent e) {
-						  	btnRightCorner.setEnabled(checkFields());
+						  	statusRightButton();
 						  }
 						  public void removeUpdate(DocumentEvent e) {
-							  btnRightCorner.setEnabled(checkFields());
+							  statusRightButton();
 						  }
 						  public void insertUpdate(DocumentEvent e) {
-							  btnRightCorner.setEnabled(checkFields());
+							  statusRightButton();
 						  }
 
 				});
 			}
+		}
+		
+		private void statusRightButton() {
+			btnRightCorner.setEnabled(checkFields());
 		}
 		
 		public void loadNewExercise() {
@@ -341,6 +343,14 @@ public class UI_IPRuntime extends JPanel {
 		public boolean checkFields() {
 			for(int i = 0; i<fieldArr.length; i++) {
 				if(fieldArr[i].getText().length() <= 0) {
+					return false;
+				}
+				try {
+					String tempString = fieldArr[i].getText().replaceAll("\\.", "");
+					System.out.println(tempString);
+					Long.parseLong(tempString);
+				}
+				catch (Exception e) {
 					return false;
 				}
 			}

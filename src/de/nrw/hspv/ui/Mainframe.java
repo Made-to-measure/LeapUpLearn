@@ -28,6 +28,7 @@ public class Mainframe extends JFrame {
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel = new MainPanel();
+	BorderLayout mainPanelLayout;
 
 	
 	
@@ -61,7 +62,7 @@ public class Mainframe extends JFrame {
 		 * 
 		 */
 		public MainPanel() {
-			setLayout(new BorderLayout(5,5));
+			setLayout(mainPanelLayout = new BorderLayout(5,5));
 
 			// Panel mit Zeitinformationen oben rechts
 			// Nachdem Start einer Aufgabe zeigt der Timer die benötigte Zeit
@@ -118,6 +119,7 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				showEx("Mathe"); //Aufruf der einzelnen Aufgaben zum Kurs Mathe
 				ThemenPanel.setVisible(false);
+				removeCenter();
 			}
 		});
 		
@@ -126,7 +128,7 @@ public class Mainframe extends JFrame {
 		btnStatistik.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Persönliche Statistik aufrufen
+				removeCenter();
 			}
 		});
 
@@ -145,6 +147,7 @@ public class Mainframe extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					removeCenter();
 					MainPanel.add(new UI_IPExercise(),BorderLayout.CENTER);
 					
 				}
@@ -168,9 +171,19 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ExPanel.setVisible(false);
-				themenpanel();
-				}
+					themenpanel();
+					//removeCenter();
+			}
 		});
+	}
+	
+	public void removeCenter() {
+		if(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null){
+		MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+		MainPanel.revalidate();
+		MainPanel.repaint();
+		}
+		
 	}
 	class MenueBar extends JMenuBar{
 		//Klassenvariablen
