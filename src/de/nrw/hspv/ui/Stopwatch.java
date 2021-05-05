@@ -1,4 +1,4 @@
-package de.nrw.hspv.ui;
+
 
 public class Stopwatch {
 
@@ -15,8 +15,8 @@ public class Stopwatch {
 		stoptime = System.currentTimeMillis();
 	}
 	
-	public double getElapsedTime() {
-		elapsedTime = (stoptime - starttime)/1000*60;
+	public double getElapsedMin() {
+		elapsedTime = (stoptime - starttime)/1000/60;
 		System.out.println(elapsedTime);
 		Zeit = String.valueOf(elapsedTime);
 		TimePanel.setLblZeit(Zeit);
