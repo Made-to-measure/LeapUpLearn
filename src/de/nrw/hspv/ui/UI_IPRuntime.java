@@ -265,6 +265,7 @@ public class UI_IPRuntime extends JPanel {
 						  }
 
 				});
+				this.currentExercise.testPrint();
 			}
 		}
 		
@@ -277,6 +278,7 @@ public class UI_IPRuntime extends JPanel {
 			boolean[] boolArr = this.currentExercise.getExerciseType();
 			for(int i=0; i<8; i++) {
 				fieldArr[i].setBackground(Color.WHITE);
+				fieldArr[i].setFont(null);
 				fieldArr[i].setEditable(true);
 				fieldArr[i].setFocusable(true);
 				if(boolArr[i]) {
@@ -341,17 +343,28 @@ public class UI_IPRuntime extends JPanel {
 		}
 		
 		public boolean checkFields() {
-			for(int i = 0; i<fieldArr.length; i++) {
-				if(fieldArr[i].getText().length() <= 0) {
-					return false;
-				}
-				try {
-					String tempString = fieldArr[i].getText().replaceAll("\\.", "");
-					System.out.println(tempString);
-					Long.parseLong(tempString);
-				}
-				catch (Exception e) {
-					return false;
+			String[] inputArr = getInputs();
+			if(page != 2) {
+				for(int i = 0; i<inputArr.length; i++) {
+					if(inputArr[i].length() <= 0) {
+						return false;
+					}
+					try {
+						String tempString = inputArr[i].replaceAll("\\.", "");
+						System.out.println(tempString);
+						if(i ==7) {
+							for(int j = 0; j < tempString.length(); j++) {
+								Integer.valueOf(tempString.charAt(j));
+							}
+						}
+						else {
+							Long.parseLong(tempString);
+						}
+					}
+					catch (NumberFormatException e) {
+						e.printStackTrace();
+						return false;	
+					}
 				}
 			}
 			return true;
