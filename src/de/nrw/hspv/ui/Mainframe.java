@@ -34,7 +34,7 @@ public class Mainframe extends JFrame {
 	
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
-	MainPanel MainPanel = new MainPanel();
+	MainPanel MainPanel;
 	BorderLayout mainPanelLayout;
 
 	
@@ -46,14 +46,17 @@ public class Mainframe extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
 		setLayout(new BorderLayout());
 		setJMenuBar(menueBar);
-		setContentPane(MainPanel); 
+		setContentPane(MainPanel = new MainPanel()); 
 
-		setPreferredSize(new Dimension(800,600));
+		setMinimumSize(new Dimension(800,600));
 		setSize(getPreferredSize());
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
-		setVisible(true);
+		
 		themenpanel(); //Menü mit Aufgaben und Statistik anzeigen
+		//pack();
+		setVisible(true);
+		
 	}
 
 	class MainPanel extends JPanel {
@@ -70,32 +73,6 @@ public class Mainframe extends JFrame {
 		 */
 		public MainPanel() {
 			setLayout(mainPanelLayout = new BorderLayout(5,5));
-
-			// Panel mit Zeitinformationen oben rechts
-			// Nachdem Start einer Aufgabe zeigt der Timer die benötigte Zeit
-			JPanel TimePanel = new JPanel();
-			add(TimePanel, BorderLayout.NORTH);
-			TimePanel.setLayout(new BorderLayout(5, 5));
-			JLabel lblZeit = new JLabel("Zeit");
-			TimePanel.add(lblZeit, BorderLayout.EAST);
-
-			// Timer erstmal zur Demo (ggf. auslagern?)
-			final long start = System.currentTimeMillis();
-			final long end = start * 60 * 1000;
-			final javax.swing.Timer timer = new javax.swing.Timer(100, null);
-			timer.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					long now = System.currentTimeMillis();
-					if (now >= end) {
-						lblZeit.setText("");
-						timer.stop();
-					}
-					lblZeit.setText("Bearbeitungszeit: " + (end - now) / 1000 + " Sekunden  ");
-				}
-			});
-			timer.start();
-
 			
 		}
 
@@ -104,7 +81,7 @@ public class Mainframe extends JFrame {
 	public void themenpanel() {
 		// Panel mit Grundlegenden Programmfunktionen (Menu) auf der linken Seite:
 		JPanel ThemenPanel = new JPanel();
-		add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
+		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
 		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
 															// haben) horizontal anordnen
 		// Buttons anlegen und hinzufügen
@@ -126,7 +103,7 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				showEx("Mathe"); //Aufruf der einzelnen Aufgaben zum Kurs Mathe
 				ThemenPanel.setVisible(false);
-				removeCenter();
+				
 			}
 		});
 		
@@ -149,17 +126,20 @@ public class Mainframe extends JFrame {
 		if (Aufgabe == "GrdlIT") {
 			// Buttons anlegen und hinzufügen
 			JButton btnIPAdressen = new JButton("IP Adressen");
-			ExPanel.add(btnIPAdressen);
+			
 			btnIPAdressen.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					removeCenter();
 					MainPanel.add(new UI_IPExercise(),BorderLayout.CENTER);
+					MainPanel.revalidate();
+					MainPanel.repaint();
 					
 				}
 				
 			});
+			ExPanel.add(btnIPAdressen);
 			JButton btnZahlensystme = new JButton("Zahlensysteme");
 			ExPanel.add(btnZahlensystme);
 		}
