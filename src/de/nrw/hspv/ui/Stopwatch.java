@@ -1,7 +1,12 @@
-
+package de.nrw.hspv.ui;
 
 public class Stopwatch {
-
+/**
+ * Klasse zur Messung und Anzeige der ben \u00d6 tigten Zeit
+ * 
+ * @version 1.0
+ * @author Christian
+ */
 	private long starttime;
 	private long stoptime;
 	double elapsedTime;

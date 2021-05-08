@@ -18,6 +18,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame{
+	/**
+	 * UI Klasse zur Anmeldung und Registrierung von Nutzern
+	 * 
+	 * @author Janis
+	 * @version 1.0
+	 */
 	
 	JTextField eingabeName;														//Felder für Benutzername und Passwort verwaltbar machen
 	JPasswordField eingabePasswort;

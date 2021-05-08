@@ -23,6 +23,13 @@ import javax.swing.event.DocumentListener;
 import de.nrw.hspv.exercises.IPExercise;
 
 public class UI_IPRuntime extends JPanel {
+	/**
+	 * Panel zur Anzeige von IP-Adressaufgaben an
+	 * 
+	 * @param
+	 * @author Jannik
+	 * @version 1.0
+	 */
 	JPanel[] addressPanels = new JPanel[8];
 	IPExercise currentExercise;
 	JTextField[] fieldArr;

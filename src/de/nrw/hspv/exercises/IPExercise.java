@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class IPExercise {
+	/**
+	 * Erstellt eine Aufgabe zur IP-Adressberechnung/Subnetting
+	 * 
+	 * @author Jannik
+	 * @version 1.0
+	 */
 	//Autor: Jannik
 	private Random rand = new Random();
 	private IPNetworkAddress networkAddress;

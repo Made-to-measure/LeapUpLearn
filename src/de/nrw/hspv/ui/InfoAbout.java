@@ -15,6 +15,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class InfoAbout extends JDialog {
+	/**
+	 * JDialog: Zeigt die Credits des Projekts an im LUL Design
+	 * 
+	 * @author Christian
+	 */
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -37,7 +42,7 @@ public class InfoAbout extends JDialog {
 					+ "Version 0.0.x \n"		//Über den Konstruktor/setText-Methode von JTextPane 
 					+ "\n"						//können keine Formatierungen gesetzt werden
 					+ "Team: \n"
-					+ "Janis Bulmahn, Jannik Harmeling, Christian Koch ";
+					+ "Janis Bulmahn, Jannik Harmeling, Christian Koch";
 			Info.setText(InfoText); //String in TextPane übernehmen
 			contentPanel.add(Info); //TextPane Info hinzufügen
 			JPanel buttonPane = new JPanel();

@@ -2,6 +2,12 @@ package de.nrw.hspv.exercises;
 import java.util.Random;
 
 public class IPAddress {
+	/**
+	 *Klasse zur Erzeugung von IP Adressen
+	 * 
+	 * @author Jannik
+	 * @version 1.0
+	 */
 	//Author: Jannik
 	protected int[] values = new int[4];
 	

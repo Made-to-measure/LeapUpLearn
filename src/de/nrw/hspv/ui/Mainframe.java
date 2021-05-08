@@ -29,6 +29,8 @@ public class Mainframe extends JFrame {
 	 * Klasse für die grafische Benutzeroberfläche 
 	 * 
 	 * 
+	 * @author Christian
+	 * @version 1.0
 	 * 
 	 */
 	
@@ -60,15 +62,20 @@ public class Mainframe extends JFrame {
 	}
 
 	class MainPanel extends JPanel {
-		/*
-		 * MainPanel: Grundlegendes Panel in dem die Aufgaben/Infos/Menu angezeigt
-		 * werden
+		/**
+		 * Grundlegendes Panel in dem die Aufgaben/Infos/Menu angezeigt
+		 * werden <br><br>
 		 * 
-		 * Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz für
-		 * die Panels der Aufgaben
+		 * - Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz für
+		 * die Panels der Aufgaben<br>
 		 * 
-		 * Links (WEST) Menu mit grundlegenden Programmfunktionen Unten (SOUTH) die
-		 * Schaltflächen "Abbrechen" und "Überprüfen"
+		 * - Links (WEST) Menu mit grundlegenden Programmfunktionen <br>
+		 * - Unten (SOUTH) die
+		 * Schaltflächen "Abbrechen" und "Überprüfen"<br>
+		 * 
+		 * @author Christian
+		 * @version 1.0
+		 * 
 		 * 
 		 */
 		public MainPanel() {
@@ -79,7 +86,12 @@ public class Mainframe extends JFrame {
 	}
 
 	public void themenpanel() {
-		// Panel mit Grundlegenden Programmfunktionen (Menu) auf der linken Seite:
+		/**
+		 * Methode legt ein Panel mit grundlegenden Programmfunktionen (Menu) 
+		 * auf der linken Seite:
+		 * 
+		 */
+		
 		JPanel ThemenPanel = new JPanel();
 		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
 		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
@@ -92,7 +104,8 @@ public class Mainframe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				showEx("GrdlIT"); //Aufruf der einzelnen Aufgaben zum Kurs Grundlagen IT
 				ThemenPanel.setVisible(false);
-
+				Stopwatch stopwatch = new Stopwatch();
+				
 			}
 		});
 		JButton btnMathe = new JButton("Mathe");
@@ -117,29 +130,31 @@ public class Mainframe extends JFrame {
 		});
 
 	}
-	public void showEx(String Aufgabe){ //Zeigt die Aufgaben des Kurses an
+	public void showEx(String Aufgabe){ 
+		/**
+		 * Zeigt die Aufgaben des Kurses an
+		 * 
+		 */ 
 		JPanel ExPanel = new JPanel();
 		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
 		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Größe
 		ExPanel.setVisible(true);						// haben) horizontal anordnen
 		
 		if (Aufgabe == "GrdlIT") {
-			// Buttons anlegen und hinzufügen
+			// Buttons für Kurs GrdlIT anlegen und hinzufügen
+			// IPAdressen Btn anlegen Aufgabe aufrufen
 			JButton btnIPAdressen = new JButton("IP Adressen");
-			
-			btnIPAdressen.addActionListener(new ActionListener() {
-
+			btnIPAdressen.addActionListener(new ActionListener() { // IPAdressen Aufgabe aufrufen
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					removeCenter();
+					removeCenter(); 
 					MainPanel.add(new UI_IPExercise(),BorderLayout.CENTER);
 					MainPanel.revalidate();
-					MainPanel.repaint();
-					
+					MainPanel.repaint();	
 				}
-				
 			});
 			ExPanel.add(btnIPAdressen);
+			
 			JButton btnZahlensystme = new JButton("Zahlensysteme");
 			ExPanel.add(btnZahlensystme);
 		}
@@ -152,6 +167,7 @@ public class Mainframe extends JFrame {
 		JLabel lblPlatzhalter = new  JLabel();
 		ExPanel.add(lblPlatzhalter);
 		
+		//Zurück-Button um zu den Kursen zurückzukehren
 		JButton btnZurueck = new JButton("Zurück");
 		ExPanel.add(btnZurueck);
 		btnZurueck.addActionListener(new ActionListener() {
@@ -165,6 +181,14 @@ public class Mainframe extends JFrame {
 	}
 	
 	public void removeCenter() {
+		/**
+		 * Methode entfernt den Inhalt aus dem "Center" 
+		 * des MainPanel
+		 * 
+		 * @author Jannik
+		 * @version 1.0
+		 * 
+		 */
 		if(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null){
 		MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
 		MainPanel.revalidate();
@@ -173,6 +197,12 @@ public class Mainframe extends JFrame {
 		
 	}
 	class MenueBar extends JMenuBar{
+		/**
+		 * Klasse für das Programmmenü, Untermenüs, MenuItem
+		 * 
+		 * @author Christian
+		 * @version 1.0
+		 */
 		//Klassenvariablen
 		//Einträge in der MenuBar
 		JMenu menuDatei, menuKurs, menuInfo;
@@ -203,8 +233,12 @@ public class Mainframe extends JFrame {
 				//Aufgaben zum Kurs Grundlagen IT anlegen:
 					mItmAufgIPAdress = new JMenuItem("IP v4 / Subnetting"); 
 					mItmAufgIPAdress.addActionListener(new ActionListener() {
+						@Override
 						public void actionPerformed(ActionEvent e) {
-							
+							removeCenter(); 		//
+							MainPanel.add(new UI_IPExercise(),BorderLayout.CENTER);
+							MainPanel.revalidate();  //Methoden damit die Aufgabe nach dem Laden
+							MainPanel.repaint();	 //auch angezeigt wird
 						}
 					});
 					mItmScheduling = new JMenuItem("Scheduling");
@@ -213,8 +247,8 @@ public class Mainframe extends JFrame {
 				//Aufgaben zum Kurs Mathe anlegen:
 					mItmLogik = new JMenuItem("Logik");
 			
-		
-			mItmInfo = new JMenuItem("Über...");
+				//Menüpunkt zu den Credits
+			mItmInfo = new JMenuItem("Über..."); 
 			mItmInfo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					InfoAbout info = new InfoAbout();

@@ -6,11 +6,15 @@ import java.util.Date;
 import de.nrw.hspv.exercises.Aufgabentyp;
 
 public class StatistikEintrag {
-	/*
-	 * Jannik:
-	 * Diese Klasse
+	/**
+	 * Klasse für einen Eintrag in die Statistik
+	 * 
+	 * @param Aufgabentyp aufgabentyp
+	 * @param geloest boolean
+	 * 
+	 * @author Janis, Jannik
+	 * @version 1.0
 	 */
-	
 	
 	Date datum;
 	Aufgabentyp aufgabentyp;
