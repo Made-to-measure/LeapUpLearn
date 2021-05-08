@@ -64,16 +64,17 @@ public class UI_IPExercise extends JPanel {
 		JButton fortButton = new JButton("Fortfahren");
 		fortButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		fortButton.setAlignmentX(RIGHT_ALIGNMENT);
-		fortfahren.add(new Beschreibung(), BorderLayout.CENTER);
 		fortButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				remove(fortfahren);
 				add(new UI_IPRuntime(), BorderLayout.CENTER);
+				revalidate();
+				repaint();
 			}
 		});
 		
 		buttonPanel.add(fortButton,BorderLayout.SOUTH);
-		
+		fortfahren.add(new Beschreibung(), BorderLayout.CENTER);
 		
 		setVisible(true);
 	}
