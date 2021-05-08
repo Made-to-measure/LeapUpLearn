@@ -1,6 +1,18 @@
 package de.nrw.hspv.exercises;
 
+import java.awt.Color;
+
+import de.nrw.hspv.ui.UIZahlensysteme;
+
 public class ZahlensystemExercise {
+	
+	/**
+	 * Inhalt und Methoden der Zahlensystemaufgabe
+	 * 
+	 * @author Janis
+	 * @version 1.0
+	 */
+	
 	public boolean geloest;
 	public long id;
 	public int zahl;												//Zahl, die der Aufgabe zugrunde liegt
