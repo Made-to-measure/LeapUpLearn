@@ -36,3 +36,8 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+.DS_Store
+log.txt
+src/.DS_Store
+src/de/.DS_Store
+src/de/nrw/.DS_Store
