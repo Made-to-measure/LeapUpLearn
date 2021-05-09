@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"de.nrw.hspv"},{"l":"de.nrw.hspv.exercises"},{"l":"de.nrw.hspv.login"},{"l":"de.nrw.hspv.statistics"},{"l":"de.nrw.hspv.ui"}];updateSearchResults();

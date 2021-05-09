@@ -37,7 +37,7 @@ public class IPExercise {
 		String input = new java.util.Scanner(System.in).nextLine(); 
 	}
 	/**
-	 * testKlasse um die einzelnen Werte in der Konsole auszugeben
+	 * Test-Klasse um die einzelnen Werte in der Konsole auszugeben
 	 */
 	public void testPrint() {	//Klasse f�rs Debugging
 		System.out.println(	"\nNetwerkadresse: \t" + networkAddress.toStringIpFormat() + "/" + networkAddress.getCidr() +
