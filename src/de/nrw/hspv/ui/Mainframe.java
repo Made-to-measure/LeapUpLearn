@@ -9,6 +9,7 @@ import java.awt.Taskbar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -72,6 +73,7 @@ public class Mainframe extends JFrame {
 		
 		themenpanel(); //Menï¿½ mit Aufgaben und Statistik anzeigen
 		//pack();
+		App.logger.log(Level.INFO, "Mainframe erzeugt");
 		setVisible(true);
 	}
 

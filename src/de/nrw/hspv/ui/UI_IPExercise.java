@@ -1,49 +1,27 @@
 package de.nrw.hspv.ui;
-import de.nrw.hspv.exercises.*;
-import de.nrw.hspv.ui.StartAufgabenbearbeitung.Beschreibung;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.TextArea;
 import java.awt.Toolkit;
-
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class UI_IPExercise extends JPanel {
 	/**
-	 * Panel zeigt ein Beispiel für eine IP-Adressaufgabe an
+	 * Panel zeigt ein Beispiel fï¿½r eine IP-Adressaufgabe an
 	 * 
 	 * @param
 	 * @author Jannik
