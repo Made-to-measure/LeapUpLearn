@@ -1,10 +1,20 @@
 package de.nrw.hspv.statistics;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
+import de.nrw.hspv.exercises.Aufgabentyp;
 import de.nrw.hspv.exercises.Exercise;
-import de.nrw.hspv.ui.User;
+import de.nrw.hspv.login.User;
 
 public class Statistiken {
 	/**
@@ -13,12 +23,78 @@ public class Statistiken {
 	 * @author Janis, Jannik
 	 * @version 1.0
 	 */
-	public User User;
-	public Date Datum;
-	public ArrayList<StatistikEintrag> Aufgaben = new ArrayList<StatistikEintrag>();
-										// Sollte die ArrayList hier den selben Namen haben??
-										// vielleicht eher "geloesteAufgaben"?
-										// 
+	
+	public static ArrayList<StatistikEintrag> Eintraege = new ArrayList<StatistikEintrag>();
+										
+	public static void ladeStatistik() {
+		try {
+			File statistikFile = new File("Statistiken.txt");									
+			if (statistikFile.length() != 0) {													//wenn Datei leer ist, soll nicht ausgelesen werden
+				FileInputStream dateiEingabeStrom = new FileInputStream(statistikFile);			
+				ObjectInputStream objektEingabeStrom = new ObjectInputStream(dateiEingabeStrom);
+				Eintraege = (ArrayList<StatistikEintrag>)objektEingabeStrom.readObject();		//Daten aus Datei werden ArrayList Eintraege zugewiesen
+				
+				objektEingabeStrom.close();
+				dateiEingabeStrom.close();
+			}
+		}
+		catch(FileNotFoundException e) {
+			
+		} 
+		catch(IOException e) {
+			
+		} 
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void speicherStatistik() {
+		try {
+			FileOutputStream dateiAusgabeStrom = new FileOutputStream(new File("Statistiken.txt"));
+			ObjectOutputStream objektAusgabeStrom = new ObjectOutputStream(dateiAusgabeStrom);
+			
+			objektAusgabeStrom.writeObject(Eintraege);										//ArrayList Eintraege wird in Datei geschrieben
+			objektAusgabeStrom.close();
+			dateiAusgabeStrom.close();
+		}
+		catch(NotSerializableException e) {
+			
+		}
+		catch(FileNotFoundException e) {
+			
+		}
+		catch(IOException e) {
+			
+		}
+	}
+	
+	public static void addEintrag(User user, Exercise aufgabe) {
+		Eintraege.add(new StatistikEintrag(user, aufgabe));
+		speicherStatistik();
+	}
+	
+	public static int getAnzahl(String username, Aufgabentyp typ, boolean geloest) {
+		int anzahl = 0;
+		for(StatistikEintrag eintrag : Eintraege) {
+			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ && eintrag.geloest == geloest) {
+				anzahl++;
+			}
+		}
+		return anzahl;
+	}
+	
+	public static int getAnzahl(String username, Aufgabentyp typ) {
+		int anzahl = 0;
+		for(StatistikEintrag eintrag : Eintraege) {
+			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ) {
+				anzahl++;
+			}
+		}
+		return anzahl;
+	}
+	
 	/**
 	 * vielleicht kann man auch soetwas wie overallStats schon direkt als Attribut abspeichern, sobald ein Neuer Eintrag hinzukommt
 	 * Ist vielleicht sinnvoller bzw. ressourcenschonender als bei bestimmten Berechnungen jedesmal den gesamten Datensatz durch zugehen
@@ -31,33 +107,6 @@ public class Statistiken {
 	
 	
 	
-	// Konstruktor
-	Statistiken(User User, Date Datum) { //Nutzer und Datum werden initial gesetzt 
-		this.User = User;			   //eine spätere Änderung ist nicht vorgesehen
-		this.Datum = Datum;			   //daher auch keine set-Methoden für User/Datum
-	}
-
 	
-	//Methoden
-	public void schreiben() {
-	//Methode um die Statistik in die Nutzer-Datei zu schreiben
-		
-	}
-	
-	public User getUser() { 
-		return User;
-	}
-
-	public Date getDatum() {
-		return Datum;
-	}
-
-	public void setAufgabe(Exercise aufgabe) { //Methode könnte besser addAufgabe heißen?
-		/**
-		 * Diese Methode könnte vielleicht auch sowas wie addEintrag() heißen.
-		 * -(Jannik)
-		 */
-		//Exercise.add(aufgabe);
-	}
 
 }

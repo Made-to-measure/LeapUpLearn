@@ -51,7 +51,7 @@ public class UIZahlensysteme extends JPanel {
 					String bin = UIZahlensysteme.this.tfEingabeBinaer.getText();
 					String okt = UIZahlensysteme.this.tfEingabeOktal.getText();
 					String hex = UIZahlensysteme.this.tfEingabeHexa.getText();
-					if(aufgabe.check(dez, bin, okt, hex)) {							//Überprüfung der Eingaben
+					if(aufgabe.ueberpruefe(dez, bin, okt, hex)) {							//Überprüfung der Eingaben
 						lblInfo.setText("Richtig!");
 					}
 					else {

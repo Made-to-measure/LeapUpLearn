@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import de.nrw.hspv.ui.HinweisFenster;
 import de.nrw.hspv.ui.Mainframe;
+import de.nrw.hspv.statistics.Statistiken;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,6 +23,7 @@ public class Login {
 	 */
 
 	private static HashMap<String, String> loginDaten = new HashMap<String, String>();		//HashMap soll Nutzernamen und Passwörter beinhalten
+	public static User aktiverUser = new User();
 	
 	public static void ladeDaten() {														//Daten aus Datei werden geladen
 		try {
@@ -72,6 +74,8 @@ public class Login {
 		else if(loginDaten.containsKey(benutzer)) {											//Benutzername ist in LoginDaten vorhanden
 			if(loginDaten.get(benutzer).compareTo(String.valueOf(passwort)) == 0) {			//Login erfolgreich
 				Mainframe mainframe = new Mainframe();										//Start des Hauptprogramms
+				aktiverUser.name = benutzer;
+				Statistiken.ladeStatistik();
 				return true;
 			}
 			else {																			//Passwort nicht richtig

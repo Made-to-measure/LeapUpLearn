@@ -19,6 +19,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.nrw.hspv.statistics.StatistikEintrag;
+import de.nrw.hspv.statistics.Statistiken;
+
 //import de.nrw.hspv.Aufgabentyp;
 
 //import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
@@ -126,6 +129,12 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				removeCenter();
+				MainPanel.add(new UIStatistics(), BorderLayout.CENTER);
+				MainPanel.revalidate();
+				MainPanel.repaint();
+//				for(StatistikEintrag eintrag : Statistiken.Eintraege) {
+//					System.out.println(eintrag.toString());
+//				}
 			}
 		});
 
