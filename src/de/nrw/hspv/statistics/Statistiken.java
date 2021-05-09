@@ -7,6 +7,12 @@ import de.nrw.hspv.exercises.Exercise;
 import de.nrw.hspv.ui.User;
 
 public class Statistiken {
+	/**
+	 * Klasse für die Bearbeitungsstatistiken 
+	 * 
+	 * @author Janis, Jannik
+	 * @version 1.0
+	 */
 	public User User;
 	public Date Datum;
 	public ArrayList<StatistikEintrag> Aufgaben = new ArrayList<StatistikEintrag>();

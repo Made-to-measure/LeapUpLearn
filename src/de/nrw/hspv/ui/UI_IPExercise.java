@@ -42,6 +42,13 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class UI_IPExercise extends JPanel {
+	/**
+	 * Panel zeigt ein Beispiel für eine IP-Adressaufgabe an
+	 * 
+	 * @param
+	 * @author Jannik
+	 * @version 1.0
+	 */
 	
 	
 	//Erzeuge Frame

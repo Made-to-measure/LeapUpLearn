@@ -14,6 +14,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Login {
+	/**
+	 * Klasse mit Funktionen zum Anlegen einer Nutzerdatei/zum Anlegen von Nutzern
+	 * 
+	 * @author Janis
+	 * @version 1.0
+	 */
 
 	private static HashMap<String, String> loginDaten = new HashMap<String, String>();		//HashMap soll Nutzernamen und Passwörter beinhalten
 	
