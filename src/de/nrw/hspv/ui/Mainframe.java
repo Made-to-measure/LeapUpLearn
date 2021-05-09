@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import de.nrw.hspv.logging.Log;
+
 
 //import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
@@ -52,9 +52,9 @@ public class Mainframe extends JFrame {
             //set icon for mac os (and other systems which do support this method)
             taskbar.setIconImage(icon);
         } catch (final UnsupportedOperationException e) {
-            System.out.println("The os does not support: 'taskbar.setIconImage'");
+//            System.out.println("The os does not support: 'taskbar.setIconImage'");
         } catch (final SecurityException e) {
-            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+//            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
         }
 		
 		setIconImage(icon);	//wirft anscheinend keine Fehler trotz MacOS
