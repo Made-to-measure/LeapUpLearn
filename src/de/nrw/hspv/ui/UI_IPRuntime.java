@@ -265,7 +265,6 @@ public class UI_IPRuntime extends JPanel {
 						  }
 
 				});
-				this.currentExercise.testPrint();
 			}
 		}
 		
@@ -331,7 +330,7 @@ public class UI_IPRuntime extends JPanel {
 			for(int i = 0; i< fieldArr.length; i++) {
 				if(!this.currentExercise.getExerciseType()[i]) {
 					if(i == 1 && fieldArr[i].getBackground() == lightRed) {
-						fieldArr[i].setText(fieldArr[i].getText() + " liegt au\u00DFerhalb des Adressbereichs");
+						fieldArr[i].setText(fieldArr[i].getText() + " liegt au\u00DFerhalb des Hostbereichs");
 						fieldArr[i].setBackground(new Color(255,102,102)); //light red
 					}
 					else{

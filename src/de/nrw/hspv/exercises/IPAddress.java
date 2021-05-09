@@ -13,7 +13,7 @@ public class IPAddress {
 		
 	}
 	
-	//konstruktor um direkt Werte zu übergeben
+	//konstruktor um direkt Werte zu ï¿½bergeben
 	public IPAddress(int[] values) {
 		for(int i = 0; i<4; i++) {
 			this.values[i] = values[i];
@@ -31,10 +31,7 @@ public class IPAddress {
 		
 		return tempSB.toString();
 	}
-	
-	//nicht sicher ob in der Form nötig
-	
-	
+
 	
 	//Getter und Setter Methoden
 	public int getValue(int position) {

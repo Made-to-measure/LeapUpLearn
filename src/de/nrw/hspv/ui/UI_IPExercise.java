@@ -82,19 +82,6 @@ public class UI_IPExercise extends JPanel {
 	class Beschreibung extends JPanel{
 		
 		Beschreibung(){
-//			setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-//			
-//			JLabel lblNewLabel = new JLabel("In diesem Teil k\u00F6nnen Sie f\u00FCr ihre Pr\u00FCfung im Teilmodul Grld-IT \u00FCben.");
-//			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel);
-//			
-//			JLabel lblNewLabel_1 = new JLabel("Bitte nutzen Sie f\u00FCr die Eingabe der IP-Adressen folgendes Format: xxx.xxx.xxx.xxx");
-//			lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel_1);
-//			
-//			JLabel lblNewLabel_2 = new JLabel("Beispiel:");
-//			lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel_2);
 			
 			GridBagLayout gridBagLayout = new GridBagLayout();
 			gridBagLayout.columnWidths = new int[]{409, 0};
