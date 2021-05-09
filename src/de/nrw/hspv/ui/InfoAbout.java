@@ -1,6 +1,7 @@
 package de.nrw.hspv.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
@@ -20,36 +21,37 @@ public class InfoAbout extends JDialog {
 
 	public InfoAbout() {
 		//Layout festlegen
-		setBounds(100, 100, 300, 200);
+		setBounds(100, 100, 320, 220);
+		setMinimumSize(new Dimension(320, 220));
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		//Füge Methoden aus der "Main" ein
+		//Fï¿½ge Methoden aus der "Main" ein
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"))); //Projektlogo setzen
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Fenster mit X schließen
-		setTitle("Über...");  //Titel setzen
-		setResizable(false);  //Größe des Fenster kann nicht geändert werden
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Fenster mit X schlieï¿½en
+		setTitle("\u00dcber...");  //Titel setzen
+		setResizable(true);  //Grï¿½ï¿½e des Fenster kann nicht geï¿½ndert werden
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JTextPane Info = new JTextPane(); 
 			String InfoText = "LeapUpLearn \n"  //Programminformationen als String speichern
-					+ "Version 0.0.x \n"		//Über den Konstruktor/setText-Methode von JTextPane 
-					+ "\n"						//können keine Formatierungen gesetzt werden
+					+ "Version 0.0.x \n"		//ï¿½ber den Konstruktor/setText-Methode von JTextPane 
+					+ "\n"						//kï¿½nnen keine Formatierungen gesetzt werden
 					+ "Team: \n"
 					+ "Janis Bulmahn, Jannik Harmeling, Christian Koch ";
-			Info.setText(InfoText); //String in TextPane übernehmen
-			contentPanel.add(Info); //TextPane Info hinzufügen
+			Info.setText(InfoText); //String in TextPane ï¿½bernehmen
+			contentPanel.add(Info); //TextPane Info hinzufï¿½gen
 			JPanel buttonPane = new JPanel();
-			//Layout für den Btn-Pane definieren
+			//Layout fï¿½r den Btn-Pane definieren
 			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			{	//OK-Btn mit Funktion versehen und hinzufügen
+			{	//OK-Btn mit Funktion versehen und hinzufï¿½gen
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dispose(); //Fenster mit OK-Btn schließen
+						dispose(); //Fenster mit OK-Btn schlieï¿½en
 					}
 				});
 				buttonPane.add(okButton);

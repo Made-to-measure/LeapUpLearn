@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Taskbar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,14 +21,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-//import de.nrw.hspv.Aufgabentyp;
+import de.nrw.hspv.logging.Log;
 
 //import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
 
 public class Mainframe extends JFrame {
 	/**
-	 * Klasse für die grafische Benutzeroberfläche 
+	 * Klasse fï¿½r die grafische Benutzeroberflï¿½che 
 	 * 
 	 * 
 	 * 
@@ -41,9 +43,22 @@ public class Mainframe extends JFrame {
 	
 	public Mainframe(){
 		//Rufe den Konstruktor von JFrame auf
-		super("LeapUpLearn - Made-to-Measure LernApp für Verwaltungsinformatik - HSPV NRW");
+		super("LeapUpLearn - Made-to-Measure LernApp f\u00FCr Verwaltungsinformatik - HSPV NRW");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
+		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));
+		final Taskbar taskbar = Taskbar.getTaskbar();
+	
+		try {
+            //set icon for mac os (and other systems which do support this method)
+            taskbar.setIconImage(icon);
+        } catch (final UnsupportedOperationException e) {
+            System.out.println("The os does not support: 'taskbar.setIconImage'");
+        } catch (final SecurityException e) {
+            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+        }
+		
+		setIconImage(icon);	//wirft anscheinend keine Fehler trotz MacOS
+
 		setLayout(new BorderLayout());
 		setJMenuBar(menueBar);
 		setContentPane(MainPanel = new MainPanel()); 
@@ -53,10 +68,9 @@ public class Mainframe extends JFrame {
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
 		
-		themenpanel(); //Menü mit Aufgaben und Statistik anzeigen
+		themenpanel(); //Menï¿½ mit Aufgaben und Statistik anzeigen
 		//pack();
 		setVisible(true);
-		
 	}
 
 	class MainPanel extends JPanel {
@@ -64,11 +78,11 @@ public class Mainframe extends JFrame {
 		 * MainPanel: Grundlegendes Panel in dem die Aufgaben/Infos/Menu angezeigt
 		 * werden
 		 * 
-		 * Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz für
+		 * Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz fï¿½r
 		 * die Panels der Aufgaben
 		 * 
 		 * Links (WEST) Menu mit grundlegenden Programmfunktionen Unten (SOUTH) die
-		 * Schaltflächen "Abbrechen" und "Überprüfen"
+		 * Schaltflï¿½chen "Abbrechen" und "ï¿½berprï¿½fen"
 		 * 
 		 */
 		public MainPanel() {
@@ -82,9 +96,9 @@ public class Mainframe extends JFrame {
 		// Panel mit Grundlegenden Programmfunktionen (Menu) auf der linken Seite:
 		JPanel ThemenPanel = new JPanel();
 		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
-		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Größe
+		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
 															// haben) horizontal anordnen
-		// Buttons anlegen und hinzufügen
+		// Buttons anlegen und hinzufï¿½gen
 		JButton btnGrdlIT = new JButton("Grundlagen IT");
 		ThemenPanel.add(btnGrdlIT);
 		btnGrdlIT.addActionListener(new ActionListener() {
@@ -120,11 +134,11 @@ public class Mainframe extends JFrame {
 	public void showEx(String Aufgabe){ //Zeigt die Aufgaben des Kurses an
 		JPanel ExPanel = new JPanel();
 		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
-		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Größe
+		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
 		ExPanel.setVisible(true);						// haben) horizontal anordnen
 		
 		if (Aufgabe == "GrdlIT") {
-			// Buttons anlegen und hinzufügen
+			// Buttons anlegen und hinzufï¿½gen
 			JButton btnIPAdressen = new JButton("IP Adressen");
 			
 			btnIPAdressen.addActionListener(new ActionListener() {
@@ -148,11 +162,11 @@ public class Mainframe extends JFrame {
 			ExPanel.add(btnLogik);
 		}
 		
-		//Schaltfläche optisch mit JLabel absetzen
+		//Schaltflï¿½che optisch mit JLabel absetzen
 		JLabel lblPlatzhalter = new  JLabel();
 		ExPanel.add(lblPlatzhalter);
 		
-		JButton btnZurueck = new JButton("Zurück");
+		JButton btnZurueck = new JButton("Zur\u00fcck");
 		ExPanel.add(btnZurueck);
 		btnZurueck.addActionListener(new ActionListener() {
 			@Override
@@ -166,21 +180,21 @@ public class Mainframe extends JFrame {
 	
 	public void removeCenter() {
 		if(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null){
-		MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
-		MainPanel.revalidate();
-		MainPanel.repaint();
+			MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+			MainPanel.revalidate();
+			MainPanel.repaint();
 		}
 		
 	}
 	class MenueBar extends JMenuBar{
 		//Klassenvariablen
-		//Einträge in der MenuBar
+		//Eintrï¿½ge in der MenuBar
 		JMenu menuDatei, menuKurs, menuInfo;
 		
-		//Untermenüs --> ebenfalls JMenus: subM = SubMenu
+		//Untermenï¿½s --> ebenfalls JMenus: subM = SubMenu
 		JMenu subMGrdlIT, subMMathe;
 		
-		//Elemente der Einträge
+		//Elemente der Eintrï¿½ge
 		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo;
 		
 	
@@ -189,16 +203,16 @@ public class Mainframe extends JFrame {
 			super();	//rufe den Konstrukter von JMenuBar auf
 			
 		//Steuerelemente anlegen und Funktionen implementieren
-			//Menüs / Reiter
+			//Menï¿½s / Reiter
 			menuDatei = new JMenu("Datei");
 			menuKurs = new JMenu("Kurs");
 			menuInfo = new JMenu("Info");
 			
-			//Menü-Einträge --- mItm = menuItem
+			//Menï¿½-Eintrï¿½ge --- mItm = menuItem
 			mItmLoad = new JMenuItem("Laden");
 			mItmSave = new JMenuItem("Speichern");
 			
-			//der Menü-Punkt Kurse enthält die Kurse als Untermenus "subM..."
+			//der Menï¿½-Punkt Kurse enthï¿½lt die Kurse als Untermenus "subM..."
 			subMGrdlIT = new JMenu("Grundlagen IT");
 				//Aufgaben zum Kurs Grundlagen IT anlegen:
 					mItmAufgIPAdress = new JMenuItem("IP v4 / Subnetting"); 
@@ -214,7 +228,7 @@ public class Mainframe extends JFrame {
 					mItmLogik = new JMenuItem("Logik");
 			
 		
-			mItmInfo = new JMenuItem("Über...");
+			mItmInfo = new JMenuItem("\u00dcber...");
 			mItmInfo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					InfoAbout info = new InfoAbout();
@@ -223,16 +237,16 @@ public class Mainframe extends JFrame {
 			});
 			
 		//Menu aufbauen
-			//Menüs der Menü-Leiste hinzufügen
+			//Menï¿½s der Menï¿½-Leiste hinzufï¿½gen
 			add(menuDatei);
 			add(menuKurs);
 			add(menuInfo);
 			
-			//Einträge zum Datei-Menü hinzufügen
+			//Eintrï¿½ge zum Datei-Menï¿½ hinzufï¿½gen
 			menuDatei.add(mItmLoad);
 			menuDatei.add(mItmSave);
 			
-			//Einträge zum Kurs-Menü hinzufügen
+			//Eintrï¿½ge zum Kurs-Menï¿½ hinzufï¿½gen
 			menuKurs.add(subMGrdlIT);
 				subMGrdlIT.add(mItmAufgIPAdress);
 				subMGrdlIT.add(mItmScheduling);

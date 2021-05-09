@@ -23,12 +23,10 @@ public class IPExercise {
 	
 	public void play() { //Klasse zum Test der Aufgabe in der Konsole
 		System.out.println("Geben Sie eine Hostadresse ein:");
-		String input = new java.util.Scanner(System.in).nextLine();
-		//inputHostAddress = toIntIpFormat(input, 10);
-		//System.out.println(validateHostAddress());
+		String input = new java.util.Scanner(System.in).nextLine(); 
 	}
 	
-	public void testPrint() {	//Klasse fürs Debugging
+	public void testPrint() {	//Klasse fï¿½rs Debugging
 		System.out.println(	"\nNetwerkadresse: \t" + networkAddress.toStringIpFormat() + "/" + networkAddress.getCidr() +
 							"\nNetzwerkmaske: \t \t" + subnetmask.toStringIpFormat() +
 							"\nerste Adresse: \t \t" + firstAddress.toStringIpFormat() +
@@ -38,7 +36,7 @@ public class IPExercise {
 				);
 	}
 	
-	//möglicherweise kann ich diese Methode auch in die Networkaddressclass packen
+	//mï¿½glicherweise kann ich diese Methode auch in die Networkaddressclass packen
 	private int generateCidr() {
 		int temp = rand.nextInt(24) + rand.nextInt(24);
 		if(16<temp && temp <31) {
@@ -48,16 +46,14 @@ public class IPExercise {
 	}
 	
 	
-	//Überprüfungsmethoden
+	//ï¿½berprï¿½fungsmethoden
 	public boolean validateHostAddress(int[] inputHostAddress) {
-
-		//die ersten beiden Zahlen müssen in jedem Falle gleich sein
+//		die ersten beiden Zahlen mÃ¼ssen in jedem Falle gleich sein
 		for(int i=0; i<2; i++) {
 			if(networkAddress.getValue(i) != inputHostAddress[i]) {
 				return false;
 			}
 		}
-			
 		//bei CIDR >= 24 gehe in diese Abfrage, ansonsten:
 		if(networkAddress.getCidr() >= 24) {
 			if(networkAddress.getValue(2) != inputHostAddress[2]) {return false;}
@@ -74,12 +70,12 @@ public class IPExercise {
 		else {
 			//stelle 3 ist bei der Hostadresse mit Stelle 3 der Netzwerkadresse gleich
 			if(inputHostAddress[2] == firstAddress.getValue(2)) {	//Stelle 3 der Hostadresse ist gleich der Stelle 3 der Netzwerkadresse
-				if(inputHostAddress[3] >= firstAddress.getValue(3) && inputHostAddress[3] <256) {	//Stelle 4 muss also größer oder gleich der 4. Stelle der ersten Adresse sein sein und kleiner als 256
+				if(inputHostAddress[3] >= firstAddress.getValue(3) && inputHostAddress[3] <256) {	//Stelle 4 muss also grÃ¶ÃŸer oder gleich der 4. Stelle der ersten Adresse sein sein und kleiner als 256
 					return true;
 				}
 			
 			}
-			else if	(inputHostAddress[2] == lastAddress.getValue(2)) {	//Stelle 3 der Hostadresse ist = Stelle 3 der letzmöglichen Adresse
+			else if	(inputHostAddress[2] == lastAddress.getValue(2)) {	//Stelle 3 der Hostadresse ist = Stelle 3 der letzmÃ¶glichen Adresse
 				if(inputHostAddress[3] <= lastAddress.getValue(3) && inputHostAddress[3] >= 0) {	//dementsprechend muss 0 <= Stelle 4 < 255
 					return true;
 				}
@@ -102,9 +98,9 @@ public class IPExercise {
 		 int[] intArr = new int[stringArr.length];				//Initialisiere Array 
 			 for(int i = 0; i < intArr.length; i++) {
 				 intArr[i] = Integer.parseInt(stringArr[i], randix);	//randix gibt an in welches Representation das Ausgangsformat ist
-				 /** Anmerkung: ParseInt gibt den primitiven Datentypen zurück
+				 /** Anmerkung: ParseInt gibt den primitiven Datentypen zurÃ¼ck
 				  * 			ValueOf ein Objekt von typ Integer()
-				  * 			An dieser Stelle können außerdem eine Vielzahl von Exceptions entstehen
+				  * 			An dieser Stelle kÃ¶nnen auÃŸerdem eine Vielzahl von Exceptions entstehen
 				  * 			die es abzufangen gilt
 				  */
 				 if(intArr[i] < 0 || intArr[i] > 255) {
@@ -116,7 +112,7 @@ public class IPExercise {
 	}
 	
 	private static String cidrToStringIpFormat(String s) {
-		int value = Integer.parseInt(s); // Hier können schon Exceptions entstehen
+		int value = Integer.parseInt(s); // Hier kï¿½nnen schon Exceptions entstehen
 		StringBuilder tempSB = new StringBuilder();
 		
 		for(int i = 1; i<= 32; i++) {
@@ -140,8 +136,8 @@ public class IPExercise {
 		for(int i = 0; i<8; i++) {
 			boolArr[i] = false;
 		}
-		int[] addressComponent = new int[] {1,2,4,5,6}; //diese Array stellt die Möglichkeiten des ersten Sichtbaren Teils der Aufgabe dar
-		int[] cidrComponent = new int[] {3,7,8}; //diese Array stellt die Möglichkeiten des ersten Sichtbaren Teils der Aufgabe dar
+		int[] addressComponent = new int[] {1,2,4,5,6}; //diese Array stellt die Mï¿½glichkeiten des ersten Sichtbaren Teils der Aufgabe dar
+		int[] cidrComponent = new int[] {3,7,8}; //diese Array stellt die Mï¿½glichkeiten des ersten Sichtbaren Teils der Aufgabe dar
 
 		boolArr[addressComponent[rand.nextInt(5)]-1] = true;
 		boolArr[cidrComponent[rand.nextInt(3)]-1] = true;
