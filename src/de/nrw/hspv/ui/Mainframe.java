@@ -2,6 +2,7 @@ package de.nrw.hspv.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -11,7 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -21,21 +24,22 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 
 
 //import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
-
+/**
+ * Klasse fï¿½r die grafische Benutzeroberflï¿½che 
+ * 
+ * 
+ * @author Christian
+ * @version 1.0
+ * 
+ */
 public class Mainframe extends JFrame {
-	/**
-	 * Klasse fï¿½r die grafische Benutzeroberflï¿½che 
-	 * 
-	 * 
-	 * @author Christian
-	 * @version 1.0
-	 * 
-	 */
+
 	
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
@@ -100,6 +104,37 @@ public class Mainframe extends JFrame {
 			
 		}
 
+	}
+	public void optionpanel() {
+		/**
+		 * Methode legt ein Panel mit Optionen zum Logging an
+		 * 
+		 */
+		JPanel optionpanel = new JPanel();
+		MainPanel.add(optionpanel, BorderLayout.CENTER); // Anzeige in der Mitte
+		
+		optionpanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		JLabel lblLoggingOptions = new JLabel("Logging Level ausw�hlen:");
+		add(lblLoggingOptions);
+		
+		ButtonGroup btnGrpLogging = new ButtonGroup();
+		
+		JRadioButton rdbtnLoggingLOff = new JRadioButton("Aus");
+		add(rdbtnLoggingLOff);
+		btnGrpLogging.add(rdbtnLoggingLOff);
+		
+		JRadioButton rdbtnLoggingLInfo = new JRadioButton("Info");
+		add(rdbtnLoggingLInfo);
+		btnGrpLogging.add(rdbtnLoggingLInfo);
+		
+		JRadioButton rdbtnLoggingLSevere = new JRadioButton("Severe");
+		add(rdbtnLoggingLSevere);
+		btnGrpLogging.add(rdbtnLoggingLSevere);
+		
+		JButton btnOptionOK = new JButton("OK");
+		add(btnOptionOK);
+		MainPanel.add(btnOptionOK, BorderLayout.WEST);
+		
 	}
 
 	public void themenpanel() {
@@ -197,6 +232,7 @@ public class Mainframe extends JFrame {
 					//removeCenter();
 			}
 		});
+
 	}
 	
 	public void removeCenter() {
@@ -230,7 +266,7 @@ public class Mainframe extends JFrame {
 		JMenu subMGrdlIT, subMMathe;
 		
 		//Elemente der Eintrï¿½ge
-		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo;
+		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo, mItmOptions;
 		
 	
 		//quasi Methode initialize() im originalcode
@@ -266,6 +302,18 @@ public class Mainframe extends JFrame {
 				//Aufgaben zum Kurs Mathe anlegen:
 			mItmLogik = new JMenuItem("Logik");
 		
+
+			mItmOptions = new JMenuItem("Optionen");
+			mItmOptions.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					OptionPanel Options = new OptionPanel();
+					MainPanel.add(Options, BorderLayout.CENTER);
+					Options.setVisible(true);
+			
+					MainPanel.revalidate();  //Methoden damit die Optionen
+					MainPanel.repaint();	 //auch angezeigt werden
+				}
+			});
 			mItmInfo = new JMenuItem("\u00dcber...");
 
 			mItmInfo.addActionListener(new ActionListener() {
@@ -274,7 +322,6 @@ public class Mainframe extends JFrame {
 					info.setVisible(true);
 				}
 			});
-			
 		//Menu aufbauen
 			//Menï¿½s der Menï¿½-Leiste hinzufï¿½gen
 			add(menuDatei);
@@ -293,7 +340,9 @@ public class Mainframe extends JFrame {
 			menuKurs.add(subMMathe);
 				subMMathe.add(mItmLogik);
 				mItmLogik.setEnabled(false); //nicht implementiert
+			menuInfo.add(mItmOptions);
 			menuInfo.add(mItmInfo);
+
 		}	
 	}
 }

@@ -31,7 +31,7 @@ public class App {
 	
 	
 	/**
-	 * generateLogFile generiert die LogFile mit einigen einzelheiten zum System
+	 * generateLogFile generiert die LogFile mit einigen Einzelheiten zum System
 	 * 
 	 * @autor Jannik
 	 * 

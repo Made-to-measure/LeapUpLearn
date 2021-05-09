@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class LoginGUI extends JFrame{
@@ -43,11 +45,33 @@ public class LoginGUI extends JFrame{
 		panelOben.add(labelName);
 		eingabeName = new JTextField();
 		panelOben.add(eingabeName);
+		eingabeName.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird übergeben
+						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
+					}	
+					
+				}
+			}
+		});
 				
 		JLabel labelPasswort = new JLabel("Passwort");
 		panelOben.add(labelPasswort);
 		eingabePasswort = new JPasswordField();
-		panelOben.add(eingabePasswort);		
+		panelOben.add(eingabePasswort);	
+		eingabePasswort.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird übergeben
+						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
+					}	
+					
+				}
+			}
+		});
 		
 		add(panelOben, BorderLayout.CENTER);
 		
