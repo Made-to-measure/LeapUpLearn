@@ -186,6 +186,8 @@ public class Mainframe extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					removeCenter();
 					MainPanel.add(new UIZahlensysteme(), BorderLayout.CENTER);
+					MainPanel.revalidate();
+					MainPanel.repaint();
 					
 				}
 				

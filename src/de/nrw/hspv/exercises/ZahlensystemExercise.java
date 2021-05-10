@@ -14,9 +14,6 @@ public class ZahlensystemExercise extends Exercise {
 	 * @version 1.0
 	 */
 	
-//	public boolean geloest;
-//	public long id;
-//	public Aufgabentyp aufgabentyp;
 	public int zahl;												//Zahl, die der Aufgabe zugrunde liegt
 	public int typ;
 	public String dezZahl;											//Zahlen als String für Umformung
@@ -29,20 +26,13 @@ public class ZahlensystemExercise extends Exercise {
 		id = System.currentTimeMillis();							//ID der Aufgabe ist die aktuelle Zeit in ms
 		aufgabentyp = Aufgabentyp.Zahlensysteme;
 		zahl = (int) (Math.random()*4095+1);						//zufällige Zahl zwischen 1 und 4095
-		typ = (int) (Math.random()*4);							//zufällige Zahl zwischen 0 und 3 für 4 Fälle
+		typ = (int) (Math.random()*4);							//zufällige Zahl zwischen 0 und 3 für 4 Fälle fuer vorgegebene Zahl
+															
+		dezZahl = Integer.toString(zahl);
+		binZahl = Integer.toBinaryString(zahl);
+		oktZahl = Integer.toOctalString(zahl);
+		hexZahl = Integer.toHexString(zahl);
 		
-		if(typ == 0) {												//Fall 1: Dezimalzahl gegeben
-			dezZahl = Integer.toString(zahl);
-		}
-		else if(typ == 1) {											//Fall 2: Binärzahl gegeben
-			binZahl = Integer.toBinaryString(zahl);
-		}
-		else if(typ == 2) {											//Fall 3: Oktalzahl gegeben
-			oktZahl = Integer.toOctalString(zahl);
-		}
-		else if(typ ==3) {											//Fall 4: Hexadezimahlzahl gegeben
-			hexZahl = Integer.toHexString(zahl);
-		}
 	}
 	
 	public boolean ueberpruefe(String dezZahl, String binZahl, String oktZahl, String hexZahl) {		//Methode zur Überprüfung von Eingaben
