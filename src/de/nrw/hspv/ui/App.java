@@ -57,7 +57,8 @@ public class App {
 	 */
 	public static void setLogLevel(Level level) {
 		logger.setLevel(level);
-		logger.log(Level.INFO, "Loglevel gesetzt auf: " + level);
+		logger.log(Level.SEVERE, "Loglevel gesetzt auf: " + level);
+//		System.out.println(level); debug
 	}
 	
 	

@@ -105,37 +105,6 @@ public class Mainframe extends JFrame {
 		}
 
 	}
-	public void optionpanel() {
-		/**
-		 * Methode legt ein Panel mit Optionen zum Logging an
-		 * 
-		 */
-		JPanel optionpanel = new JPanel();
-		MainPanel.add(optionpanel, BorderLayout.CENTER); // Anzeige in der Mitte
-		
-		optionpanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JLabel lblLoggingOptions = new JLabel("Logging Level ausw�hlen:");
-		add(lblLoggingOptions);
-		
-		ButtonGroup btnGrpLogging = new ButtonGroup();
-		
-		JRadioButton rdbtnLoggingLOff = new JRadioButton("Aus");
-		add(rdbtnLoggingLOff);
-		btnGrpLogging.add(rdbtnLoggingLOff);
-		
-		JRadioButton rdbtnLoggingLInfo = new JRadioButton("Info");
-		add(rdbtnLoggingLInfo);
-		btnGrpLogging.add(rdbtnLoggingLInfo);
-		
-		JRadioButton rdbtnLoggingLSevere = new JRadioButton("Severe");
-		add(rdbtnLoggingLSevere);
-		btnGrpLogging.add(rdbtnLoggingLSevere);
-		
-		JButton btnOptionOK = new JButton("OK");
-		add(btnOptionOK);
-		MainPanel.add(btnOptionOK, BorderLayout.WEST);
-		
-	}
 
 	public void themenpanel() {
 		/**
@@ -309,11 +278,12 @@ public class Mainframe extends JFrame {
 			mItmOptions = new JMenuItem("Optionen");
 			mItmOptions.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					JOptionPane Options = new JOptionPane();
-//					MainPanel.add(Options, BorderLayout.CENTER);
-//					Options.setVisible(true);
-					optionpanel();
-			
+					removeCenter();
+					OptionPanel Options = new OptionPanel();
+					MainPanel.add(Options, BorderLayout.CENTER);
+					Options.setVisible(true);
+					//optionpanel();
+					
 					MainPanel.revalidate();  //Methoden damit die Optionen
 					MainPanel.repaint();	 //auch angezeigt werden
 				}
