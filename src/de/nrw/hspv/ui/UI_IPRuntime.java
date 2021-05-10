@@ -40,6 +40,8 @@ public class UI_IPRuntime extends JPanel {
 	Color lightGreen = new Color(102,255,102);
 	boolean[] results;
 	JButton btnRightCorner;
+//	TimePanel timepanel;
+//	Stopwatch stopwatch;
 	
 	UI_IPRuntime(){
 	
@@ -64,13 +66,6 @@ public class UI_IPRuntime extends JPanel {
 	JLabel labelFormatAdvice = new JLabel("F\u00FClle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
 	labelFormatAdvice.setHorizontalAlignment(SwingConstants.LEFT);
 	panel_3.add(labelFormatAdvice);
-	
-//	JButton btnNewButton_1 = new JButton("Abbruch");
-//	btnNewButton_1.addActionListener(new ActionListener() {
-//		public void actionPerformed(ActionEvent e) {
-//		}
-//	});
-//	panel_2.add(btnNewButton_1);
 	
 	btnRightCorner = new JButton("\u00DCberpr\u00FCfen");
 	btnRightCorner.setEnabled(false);
@@ -100,6 +95,10 @@ public class UI_IPRuntime extends JPanel {
 	
 	
 	panel_2.add(btnRightCorner);
+//	panel_2.add(timepanel = new TimePanel());
+//	stopwatch = new Stopwatch();
+//	stopwatch.start();
+//	timepanel.setLblZeit(Double.toString(stopwatch.getElapsedMin()));
 	
 	add(new PanelIpZeilen(), BorderLayout.CENTER);
 	loadFirstExercise();
@@ -311,7 +310,7 @@ public class UI_IPRuntime extends JPanel {
 		}
 		
 		private int[] copyArray(int[] values) {
-			int[] copyArr = new int[values.length];	//erzeuge Tempor�res array um nicht "auf dem Objekt" zu arbeiten
+			int[] copyArr = new int[values.length];	//erzeuge Temporaeres array um nicht "auf dem Objekt" zu arbeiten
 			for (int i = 0; i<values.length; i++) {
 				copyArr[i] = values[i];	//kopiere
 			}
