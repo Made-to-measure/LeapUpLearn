@@ -129,7 +129,7 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				removeCenter();
-				MainPanel.add(new UIStatistics(), BorderLayout.CENTER);
+				MainPanel.add(new UIStatistics(), BorderLayout.CENTER);	//Erstelle Panel für Statistik
 				MainPanel.revalidate();
 				MainPanel.repaint();
 //				for(StatistikEintrag eintrag : Statistiken.Eintraege) {

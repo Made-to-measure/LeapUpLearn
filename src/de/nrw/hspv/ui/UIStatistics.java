@@ -10,12 +10,17 @@ import de.nrw.hspv.statistics.Statistiken;
 
 import javax.swing.JLabel;
 
+	/**
+	 * Erzeugt das Panel fuer die Statistik
+	 * 
+	 * @author Janis
+	 * @version 1.0
+	 */
 public class UIStatistics extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	public UIStatistics() {
+		
+		//Anzahl geloester Aufgaben und gesamter Aufgaben je Aufgabentyp für aktiven User
 		int anzahlIT = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse) + Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme);
 		int anzahlITRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse, true) + Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme, true);
 		int anzahlIP = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse);
@@ -27,6 +32,7 @@ public class UIStatistics extends JPanel {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		//JLabel fuer Kategorien
 		JLabel lblIT = new JLabel("Grundlagen IT");
 		springLayout.putConstraint(SpringLayout.NORTH, lblIT, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblIT, 10, SpringLayout.WEST, this);
@@ -52,6 +58,7 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblLogik, 0, SpringLayout.WEST, lblIP);
 		add(lblLogik);
 		
+		//JLabel fuer Anzahl geloester Aufgaben zu bearbeiteten Aufgaben
 		JLabel lblITWerte = new JLabel(Integer.toString(anzahlITRichtig) + "/" + Integer.toString(anzahlIT));
 		springLayout.putConstraint(SpringLayout.NORTH, lblITWerte, 0, SpringLayout.NORTH, lblIT);
 		springLayout.putConstraint(SpringLayout.WEST, lblITWerte, 72, SpringLayout.EAST, lblIT);

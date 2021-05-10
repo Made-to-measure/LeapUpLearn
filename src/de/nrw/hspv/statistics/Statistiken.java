@@ -16,16 +16,21 @@ import de.nrw.hspv.exercises.Aufgabentyp;
 import de.nrw.hspv.exercises.Exercise;
 import de.nrw.hspv.login.User;
 
+/**
+ * Klasse für die Aufgabenstatistiken 
+ * 
+ * @author Janis
+ * @version 1.0
+ */
+
 public class Statistiken {
-	/**
-	 * Klasse für die Bearbeitungsstatistiken 
-	 * 
-	 * @author Janis, Jannik
-	 * @version 1.0
-	 */
+	
 	
 	public static ArrayList<StatistikEintrag> Eintraege = new ArrayList<StatistikEintrag>();
-										
+	
+	/**
+	 * Liest die Statistikeintraege aus der Datei Statistiken aus und speichert sie in der ArrayList Eintraege
+	 */
 	public static void ladeStatistik() {
 		try {
 			File statistikFile = new File("Statistiken.txt");									
@@ -45,11 +50,14 @@ public class Statistiken {
 			
 		} 
 		catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
 		}
 		
 	}
 	
+	/**
+	 * Legt Statistikeintraege aus der ArrayList Eintraege in der Datei Statistiken ab
+	 */
 	public static void speicherStatistik() {
 		try {
 			FileOutputStream dateiAusgabeStrom = new FileOutputStream(new File("Statistiken.txt"));
@@ -70,25 +78,46 @@ public class Statistiken {
 		}
 	}
 	
+	/**
+	 * Fuegt der ArrayList Eintraege einen neuen Statistikeintrag hinzu
+	 * 
+	 * @param user
+	 * @param aufgabe
+	 */
 	public static void addEintrag(User user, Exercise aufgabe) {
 		Eintraege.add(new StatistikEintrag(user, aufgabe));
 		speicherStatistik();
 	}
 	
+	/**
+	 * Gibt die Anzahl an Aufgaben zurueck, bei denen User, Aufgabentyp und Loesungsstatus uebereinstimmen
+	 * 
+	 * @param username
+	 * @param typ
+	 * @param geloest
+	 * @return
+	 */
 	public static int getAnzahl(String username, Aufgabentyp typ, boolean geloest) {
 		int anzahl = 0;
-		for(StatistikEintrag eintrag : Eintraege) {
-			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ && eintrag.geloest == geloest) {
+		for(StatistikEintrag eintrag : Eintraege) {						//Durchlaufe ArrayList Eintraege
+			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ && eintrag.geloest == geloest) {	//Ueberpruefe einzelne Statistikeintraege
 				anzahl++;
 			}
 		}
 		return anzahl;
 	}
 	
+	/**
+	 * Gibt die Anzahl an Aufgaben zurueck, bei den User und Aufgabentyp uebereinstimmen
+	 * 
+	 * @param username
+	 * @param typ
+	 * @return
+	 */
 	public static int getAnzahl(String username, Aufgabentyp typ) {
 		int anzahl = 0;
-		for(StatistikEintrag eintrag : Eintraege) {
-			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ) {
+		for(StatistikEintrag eintrag : Eintraege) {						//Durchlaufe ArrayList Eintraege
+			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ) {		//Ueberpruefe einzelne Statistikeintraege
 				anzahl++;
 			}
 		}
