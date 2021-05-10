@@ -1,29 +1,39 @@
 package de.nrw.hspv.statistics;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import de.nrw.hspv.exercises.Aufgabentyp;
+import de.nrw.hspv.exercises.Exercise;
+import de.nrw.hspv.login.User;
 
-public class StatistikEintrag {
+public class StatistikEintrag implements Serializable{
 	/**
 	 * Klasse für einen Eintrag in die Statistik
-	 * 
-	 * @param Aufgabentyp aufgabentyp
-	 * @param geloest boolean
-	 * 
-	 * @author Janis, Jannik
+	 *  
+	 * @author Janis
 	 * @version 1.0
 	 */
 	
-	Date datum;
-	Aufgabentyp aufgabentyp;
+	User aktiverUser;				//Attribute eines Statistikeintrags
 	boolean geloest;
-	//long loesungszeit; //als optionales Feature
+	long id;
+	Aufgabentyp aufgabentyp;
 	
-	public StatistikEintrag(Aufgabentyp aufgabentyp, boolean geloest) {
-		this.aufgabentyp = aufgabentyp;
-		this.geloest = geloest;
-		this.datum = Calendar.getInstance().getTime(); //Jannik: Keine Ahnung ob das funktioniert einfach mal eine Idee
+	StatistikEintrag(User user, Exercise aufgabe) {		//Konstruktor
+		this.aktiverUser = user;
+		this.geloest = aufgabe.geloest;
+		this.id = aufgabe.id;
+		this.aufgabentyp = aufgabe.aufgabentyp;
 	}
+	
+	/**
+	 * Gibt den Statistikeintrag als String zurueck
+	 */
+	@Override
+	public String toString() {
+		return "Aufgabe " + id + " vom Typ " + aufgabentyp + ", geloest: " + geloest + " von " + aktiverUser.name;
+	}
+	
 }
