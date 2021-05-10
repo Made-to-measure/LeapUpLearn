@@ -178,6 +178,9 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				removeCenter();
+				MainPanel.add(new UIStatistics(), BorderLayout.CENTER);
+				MainPanel.revalidate();
+				MainPanel.repaint();
 			}
 		});
 
