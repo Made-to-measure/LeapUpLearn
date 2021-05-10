@@ -59,18 +59,22 @@ public class UIZahlensysteme extends JPanel {
 						if(aufgabe.zahl != Integer.parseInt(dez)) {
 							tfEingabeDezi.setBackground(Color.red);
 							tfEingabeDezi.setText(aufgabe.dezZahl);
+							tfEingabeDezi.setEnabled(false);
 						}
 						if(aufgabe.zahl != Integer.parseUnsignedInt(bin, 2)) {
 							tfEingabeBinaer.setBackground(Color.red);
 							tfEingabeBinaer.setText(aufgabe.binZahl);
+							tfEingabeBinaer.setEnabled(false);
 						}
 						if(aufgabe.zahl != Integer.parseUnsignedInt(okt, 8)) {
 							tfEingabeOktal.setBackground(Color.red);
 							tfEingabeOktal.setText(aufgabe.oktZahl);
+							tfEingabeOktal.setEnabled(false);
 						}
 						if(aufgabe.zahl != Integer.parseUnsignedInt(hex, 16)) {
 							tfEingabeHexa.setBackground(Color.red);
 							tfEingabeHexa.setText(aufgabe.hexZahl);
+							tfEingabeHexa.setEnabled(false);
 						}
 					}
 					btnPruefe.setText("Neue Aufgabe");
@@ -152,6 +156,8 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.WEST, lblInfo, 0, SpringLayout.WEST, lblDezimal_1_1);
 		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblInfo, -13, SpringLayout.NORTH, tfEingabeDezi);
 		panel_1.add(lblInfo);
+		
+		//Erzeuge Aufgabe Zahlensysteme
 		aktualisiereAufgabe();
 
 	}
@@ -168,23 +174,29 @@ public class UIZahlensysteme extends JPanel {
 		tfEingabeOktal.setBackground(Color.white);
 		tfEingabeHexa.setBackground(Color.white);
 		
-		aufgabe = new ZahlensystemExercise();				//neue Aufgabe wird zugewiesen
-		tfEingabeDezi.setText(aufgabe.dezZahl);			//Textfelder werden entsprechend zugewiesen
-		tfEingabeBinaer.setText(aufgabe.binZahl);
-		tfEingabeOktal.setText(aufgabe.oktZahl);
-		tfEingabeHexa.setText(aufgabe.hexZahl);
+		tfEingabeDezi.setText("");						//Inhalt aller Textfelder zuruecksetzen
+		tfEingabeBinaer.setText("");
+		tfEingabeOktal.setText("");
+		tfEingabeHexa.setText("");
 		
+		aufgabe = new ZahlensystemExercise();				//neue Aufgabe wird zugewiesen
+															
+		//Textfelder werden entsprechend zugewiesen
 		switch (aufgabe.typ) {								//Je nach Typ der Ausgangszahl wird jeweiliges Textfeld auf nicht editierbar gesetzt
 		case 0:
+			tfEingabeDezi.setText(aufgabe.dezZahl);
 			tfEingabeDezi.setEnabled(false);
 			break;
 		case 1:
+			tfEingabeBinaer.setText(aufgabe.binZahl);
 			tfEingabeBinaer.setEnabled(false);
 			break;
 		case 2:
+			tfEingabeOktal.setText(aufgabe.oktZahl);
 			tfEingabeOktal.setEnabled(false);
 			break;
 		case 3:
+			tfEingabeHexa.setText(aufgabe.hexZahl);
 			tfEingabeHexa.setEnabled(false);
 			break;
 		}

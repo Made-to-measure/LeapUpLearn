@@ -11,7 +11,7 @@ import de.nrw.hspv.statistics.Statistiken;
 import javax.swing.JLabel;
 
 	/**
-	 * Erzeugt das Panel fuer die Statistik
+	 * Erzeugt das Panel fuer die Darstellung der Statistik
 	 * 
 	 * @author Janis
 	 * @version 1.0
