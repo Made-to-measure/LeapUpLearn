@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import de.nrw.hspv.ui.App;
 
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Taskbar;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
@@ -27,18 +29,30 @@ public class LoginGUI extends JFrame{
 	 * @version 1.0
 	 */
 	
-	JTextField eingabeName;														//Felder für Benutzername und Passwort verwaltbar machen
+	JTextField eingabeName;														//Felder fï¿½r Benutzername und Passwort verwaltbar machen
 	JPasswordField eingabePasswort;
 	
 	public LoginGUI() {
 		super("Login");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
+		
+		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));
+		final Taskbar taskbar = Taskbar.getTaskbar();
+		try {
+            //set icon for mac os (and other systems which do support this method)
+            taskbar.setIconImage(icon);
+        } catch (final UnsupportedOperationException e) {
+//            System.out.println("The os does not support: 'taskbar.setIconImage'");
+        } catch (final SecurityException e) {
+//            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+        }
+		
+		setIconImage(icon);
 		setLayout(new BorderLayout());
 		
-		JPanel panelOben = new JPanel();										//PanelOben für Eingabe
+		JPanel panelOben = new JPanel();										//PanelOben fï¿½r Eingabe
 		panelOben.setBorder(new EmptyBorder(10,10,10,10));
-		panelOben.setLayout(new GridLayout(2,2,0,0));							//GridLayout für einzelne Elemente des Logins
+		panelOben.setLayout(new GridLayout(2,2,0,0));							//GridLayout fï¿½r einzelne Elemente des Logins
 		
 		
 		JLabel labelName = new JLabel("Nutzername");
@@ -49,7 +63,7 @@ public class LoginGUI extends JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird übergeben
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird ï¿½bergeben
 						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 					}	
 					
@@ -65,7 +79,7 @@ public class LoginGUI extends JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird übergeben
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird ï¿½bergeben
 						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 					}	
 					
@@ -75,28 +89,28 @@ public class LoginGUI extends JFrame{
 		
 		add(panelOben, BorderLayout.CENTER);
 		
-		JPanel panelUnten = new JPanel();										//panelUnten für Buttons
+		JPanel panelUnten = new JPanel();										//panelUnten fï¿½r Buttons
 		
-		JButton anmelden = new JButton("Login");								//Button für Login
+		JButton anmelden = new JButton("Login");								//Button fï¿½r Login
 		anmelden.addActionListener(new ActionListener() {						
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub								//löst Methode anmelden in Klasse Login aus
-				if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird übergeben
+				// TODO Auto-generated method stub								//lï¿½st Methode anmelden in Klasse Login aus
+				if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird ï¿½bergeben
 					LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 				}
 			}
 			
 		});
 		
-		JButton registrieren = new JButton("Registrieren");						//Button für Registrierung
+		JButton registrieren = new JButton("Registrieren");						//Button fï¿½r Registrierung
 		registrieren.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub								//löst Methode registrieren der Klasse Login aus
-				Login.registrieren(eingabeName.getText(), eingabePasswort.getPassword());	//Text aus Namens- und Passwortfeld wird übergeben
+				// TODO Auto-generated method stub								//lï¿½st Methode registrieren der Klasse Login aus
+				Login.registrieren(eingabeName.getText(), eingabePasswort.getPassword());	//Text aus Namens- und Passwortfeld wird ï¿½bergeben
 			}
 			
 		});

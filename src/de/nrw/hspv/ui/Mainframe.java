@@ -179,8 +179,18 @@ public class Mainframe extends JFrame {
 			});
 			ExPanel.add(btnIPAdressen);
 			
-			JButton btnZahlensystme = new JButton("Zahlensysteme");
-			ExPanel.add(btnZahlensystme);
+			JButton btnZahlensysteme = new JButton("Zahlensysteme");
+			btnZahlensysteme.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					removeCenter();
+					MainPanel.add(new UIZahlensysteme(), BorderLayout.CENTER);
+					
+				}
+				
+			});
+			ExPanel.add(btnZahlensysteme);
 		}
 		else if (Aufgabe == "Mathe") {
 			JButton btnLogik = new JButton("Logik");

@@ -17,7 +17,7 @@ import de.nrw.hspv.exercises.Exercise;
 import de.nrw.hspv.login.User;
 
 /**
- * Klasse für die Aufgabenstatistiken 
+ * Klasse fuer die Aufgabenstatistiken 
  * 
  * @author Janis
  * @version 1.0
