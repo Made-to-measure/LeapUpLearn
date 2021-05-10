@@ -114,7 +114,7 @@ public class Mainframe extends JFrame {
 		MainPanel.add(optionpanel, BorderLayout.CENTER); // Anzeige in der Mitte
 		
 		optionpanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JLabel lblLoggingOptions = new JLabel("Logging Level auswählen:");
+		JLabel lblLoggingOptions = new JLabel("Logging Level auswï¿½hlen:");
 		add(lblLoggingOptions);
 		
 		ButtonGroup btnGrpLogging = new ButtonGroup();
@@ -306,9 +306,10 @@ public class Mainframe extends JFrame {
 			mItmOptions = new JMenuItem("Optionen");
 			mItmOptions.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					OptionPanel Options = new OptionPanel();
-					MainPanel.add(Options, BorderLayout.CENTER);
-					Options.setVisible(true);
+//					JOptionPane Options = new JOptionPane();
+//					MainPanel.add(Options, BorderLayout.CENTER);
+//					Options.setVisible(true);
+					optionpanel();
 			
 					MainPanel.revalidate();  //Methoden damit die Optionen
 					MainPanel.repaint();	 //auch angezeigt werden
