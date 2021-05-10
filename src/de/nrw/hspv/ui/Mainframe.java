@@ -2,13 +2,19 @@ package de.nrw.hspv.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Taskbar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -18,24 +24,22 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
-import de.nrw.hspv.statistics.StatistikEintrag;
-import de.nrw.hspv.statistics.Statistiken;
 
-//import de.nrw.hspv.Aufgabentyp;
 
 //import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
-
+/**
+ * Klasse fï¿½r die grafische Benutzeroberflï¿½che 
+ * 
+ * 
+ * @author Christian
+ * @version 1.0
+ * 
+ */
 public class Mainframe extends JFrame {
-	/**
-	 * Klasse f�r die grafische Benutzeroberfl�che 
-	 * 
-	 * 
-	 * @author Christian
-	 * @version 1.0
-	 * 
-	 */
+
 	
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
@@ -46,9 +50,22 @@ public class Mainframe extends JFrame {
 	
 	public Mainframe(){
 		//Rufe den Konstruktor von JFrame auf
-		super("LeapUpLearn - Made-to-Measure LernApp f�r Verwaltungsinformatik - HSPV NRW");
+		super("LeapUpLearn - Made-to-Measure LernApp f\u00FCr Verwaltungsinformatik - HSPV NRW");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
+		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));
+		final Taskbar taskbar = Taskbar.getTaskbar();
+	
+		try {
+            //set icon for mac os (and other systems which do support this method)
+            taskbar.setIconImage(icon);
+        } catch (final UnsupportedOperationException e) {
+//            System.out.println("The os does not support: 'taskbar.setIconImage'");
+        } catch (final SecurityException e) {
+//            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+        }
+		
+		setIconImage(icon);	//wirft anscheinend keine Fehler trotz MacOS
+
 		setLayout(new BorderLayout());
 		setJMenuBar(menueBar);
 		setContentPane(MainPanel = new MainPanel()); 
@@ -58,10 +75,10 @@ public class Mainframe extends JFrame {
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
 		
-		themenpanel(); //Men� mit Aufgaben und Statistik anzeigen
+		themenpanel(); //Menï¿½ mit Aufgaben und Statistik anzeigen
 		//pack();
+		App.logger.log(Level.INFO, "Mainframe erzeugt");
 		setVisible(true);
-		
 	}
 
 	class MainPanel extends JPanel {
@@ -69,12 +86,13 @@ public class Mainframe extends JFrame {
 		 * Grundlegendes Panel in dem die Aufgaben/Infos/Menu angezeigt
 		 * werden <br><br>
 		 * 
-		 * - Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz f�r
+
+		 * - Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz für
 		 * die Panels der Aufgaben<br>
 		 * 
 		 * - Links (WEST) Menu mit grundlegenden Programmfunktionen <br>
 		 * - Unten (SOUTH) die
-		 * Schaltfl�chen "Abbrechen" und "�berpr�fen"<br>
+		 * Schaltflächen "Abbrechen" und "Überprüfen"<br>
 		 * 
 		 * @author Christian
 		 * @version 1.0
@@ -87,6 +105,37 @@ public class Mainframe extends JFrame {
 		}
 
 	}
+	public void optionpanel() {
+		/**
+		 * Methode legt ein Panel mit Optionen zum Logging an
+		 * 
+		 */
+		JPanel optionpanel = new JPanel();
+		MainPanel.add(optionpanel, BorderLayout.CENTER); // Anzeige in der Mitte
+		
+		optionpanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		JLabel lblLoggingOptions = new JLabel("Logging Level ausw�hlen:");
+		add(lblLoggingOptions);
+		
+		ButtonGroup btnGrpLogging = new ButtonGroup();
+		
+		JRadioButton rdbtnLoggingLOff = new JRadioButton("Aus");
+		add(rdbtnLoggingLOff);
+		btnGrpLogging.add(rdbtnLoggingLOff);
+		
+		JRadioButton rdbtnLoggingLInfo = new JRadioButton("Info");
+		add(rdbtnLoggingLInfo);
+		btnGrpLogging.add(rdbtnLoggingLInfo);
+		
+		JRadioButton rdbtnLoggingLSevere = new JRadioButton("Severe");
+		add(rdbtnLoggingLSevere);
+		btnGrpLogging.add(rdbtnLoggingLSevere);
+		
+		JButton btnOptionOK = new JButton("OK");
+		add(btnOptionOK);
+		MainPanel.add(btnOptionOK, BorderLayout.WEST);
+		
+	}
 
 	public void themenpanel() {
 		/**
@@ -97,9 +146,9 @@ public class Mainframe extends JFrame {
 		
 		JPanel ThemenPanel = new JPanel();
 		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
-		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Gr��e
+		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
 															// haben) horizontal anordnen
-		// Buttons anlegen und hinzuf�gen
+		// Buttons anlegen und hinzufï¿½gen
 		JButton btnGrdlIT = new JButton("Grundlagen IT");
 		ThemenPanel.add(btnGrdlIT);
 		btnGrdlIT.addActionListener(new ActionListener() {
@@ -129,12 +178,6 @@ public class Mainframe extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				removeCenter();
-				MainPanel.add(new UIStatistics(), BorderLayout.CENTER);	//Erstelle Panel f�r Statistik
-				MainPanel.revalidate();
-				MainPanel.repaint();
-//				for(StatistikEintrag eintrag : Statistiken.Eintraege) {
-//					System.out.println(eintrag.toString());
-//				}
 			}
 		});
 
@@ -146,11 +189,11 @@ public class Mainframe extends JFrame {
 		 */ 
 		JPanel ExPanel = new JPanel();
 		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
-		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Gr��e
+		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
 		ExPanel.setVisible(true);						// haben) horizontal anordnen
 		
 		if (Aufgabe == "GrdlIT") {
-			// Buttons f�r Kurs GrdlIT anlegen und hinzuf�gen
+			// Buttons für Kurs GrdlIT anlegen und hinzufügen
 			// IPAdressen Btn anlegen Aufgabe aufrufen
 			JButton btnIPAdressen = new JButton("IP Adressen");
 			btnIPAdressen.addActionListener(new ActionListener() { // IPAdressen Aufgabe aufrufen
@@ -164,30 +207,22 @@ public class Mainframe extends JFrame {
 			});
 			ExPanel.add(btnIPAdressen);
 			
-			JButton btnZahlensysteme = new JButton("Zahlensysteme");
-			btnZahlensysteme.addActionListener(new ActionListener () {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					removeCenter();
-					MainPanel.add(new UIZahlensysteme(), BorderLayout.CENTER);
-					MainPanel.revalidate();
-					MainPanel.repaint();					
-				}
-				
-			});
-			ExPanel.add(btnZahlensysteme);
+			JButton btnZahlensystme = new JButton("Zahlensysteme");
+			ExPanel.add(btnZahlensystme);
 		}
 		else if (Aufgabe == "Mathe") {
 			JButton btnLogik = new JButton("Logik");
 			ExPanel.add(btnLogik);
 		}
 		
-		//Schaltfl�che optisch mit JLabel absetzen
+		//Schaltflï¿½che optisch mit JLabel absetzen
 		JLabel lblPlatzhalter = new  JLabel();
 		ExPanel.add(lblPlatzhalter);
 		
-		//Zur�ck-Button um zu den Kursen zur�ckzukehren
-		JButton btnZurueck = new JButton("Zur�ck");
+    //Zurück-Button um zu den Kursen zurückzukehren
+		JButton btnZurueck = new JButton("Zur\u00fcck");
+
+		
 		ExPanel.add(btnZurueck);
 		btnZurueck.addActionListener(new ActionListener() {
 			@Override
@@ -197,6 +232,7 @@ public class Mainframe extends JFrame {
 					//removeCenter();
 			}
 		});
+
 	}
 	
 	public void removeCenter() {
@@ -209,28 +245,28 @@ public class Mainframe extends JFrame {
 		 * 
 		 */
 		if(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER) != null){
-		MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
-		MainPanel.revalidate();
-		MainPanel.repaint();
+			MainPanel.remove(mainPanelLayout.getLayoutComponent(BorderLayout.CENTER));
+			MainPanel.revalidate();
+			MainPanel.repaint();
 		}
 		
 	}
 	class MenueBar extends JMenuBar{
 		/**
-		 * Klasse f�r das Programmmen�, Untermen�s, MenuItem
+		 * Klasse für das Programmmenü, Untermenüs, MenuItem
 		 * 
 		 * @author Christian
 		 * @version 1.0
 		 */
 		//Klassenvariablen
-		//Eintr�ge in der MenuBar
+		//Eintrï¿½ge in der MenuBar
 		JMenu menuDatei, menuKurs, menuInfo;
 		
-		//Untermen�s --> ebenfalls JMenus: subM = SubMenu
+		//Untermenï¿½s --> ebenfalls JMenus: subM = SubMenu
 		JMenu subMGrdlIT, subMMathe;
 		
-		//Elemente der Eintr�ge
-		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo;
+		//Elemente der Eintrï¿½ge
+		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo, mItmOptions;
 		
 	
 		//quasi Methode initialize() im originalcode
@@ -238,16 +274,16 @@ public class Mainframe extends JFrame {
 			super();	//rufe den Konstrukter von JMenuBar auf
 			
 		//Steuerelemente anlegen und Funktionen implementieren
-			//Men�s / Reiter
+			//Menï¿½s / Reiter
 			menuDatei = new JMenu("Datei");
 			menuKurs = new JMenu("Kurs");
 			menuInfo = new JMenu("Info");
 			
-			//Men�-Eintr�ge --- mItm = menuItem
+			//Menï¿½-Eintrï¿½ge --- mItm = menuItem
 			mItmLoad = new JMenuItem("Laden");
 			mItmSave = new JMenuItem("Speichern");
 			
-			//der Men�-Punkt Kurse enth�lt die Kurse als Untermenus "subM..."
+			//der Menï¿½-Punkt Kurse enthï¿½lt die Kurse als Untermenus "subM..."
 			subMGrdlIT = new JMenu("Grundlagen IT");
 				//Aufgaben zum Kurs Grundlagen IT anlegen:
 					mItmAufgIPAdress = new JMenuItem("IP v4 / Subnetting"); 
@@ -264,28 +300,40 @@ public class Mainframe extends JFrame {
 			
 			subMMathe = new JMenu("Mathematik");
 				//Aufgaben zum Kurs Mathe anlegen:
-					mItmLogik = new JMenuItem("Logik");
+			mItmLogik = new JMenuItem("Logik");
+		
+
+			mItmOptions = new JMenuItem("Optionen");
+			mItmOptions.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+//					JOptionPane Options = new JOptionPane();
+//					MainPanel.add(Options, BorderLayout.CENTER);
+//					Options.setVisible(true);
+					optionpanel();
 			
-				//Men�punkt zu den Credits
-			mItmInfo = new JMenuItem("�ber..."); 
+					MainPanel.revalidate();  //Methoden damit die Optionen
+					MainPanel.repaint();	 //auch angezeigt werden
+				}
+			});
+			mItmInfo = new JMenuItem("\u00dcber...");
+
 			mItmInfo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					InfoAbout info = new InfoAbout();
 					info.setVisible(true);
 				}
 			});
-			
 		//Menu aufbauen
-			//Men�s der Men�-Leiste hinzuf�gen
+			//Menï¿½s der Menï¿½-Leiste hinzufï¿½gen
 			add(menuDatei);
 			add(menuKurs);
 			add(menuInfo);
 			
-			//Eintr�ge zum Datei-Men� hinzuf�gen
+			//Eintrï¿½ge zum Datei-Menï¿½ hinzufï¿½gen
 			menuDatei.add(mItmLoad);
 			menuDatei.add(mItmSave);
 			
-			//Eintr�ge zum Kurs-Men� hinzuf�gen
+			//Eintrï¿½ge zum Kurs-Menï¿½ hinzufï¿½gen
 			menuKurs.add(subMGrdlIT);
 				subMGrdlIT.add(mItmAufgIPAdress);
 				subMGrdlIT.add(mItmScheduling);
@@ -293,7 +341,9 @@ public class Mainframe extends JFrame {
 			menuKurs.add(subMMathe);
 				subMMathe.add(mItmLogik);
 				mItmLogik.setEnabled(false); //nicht implementiert
+			menuInfo.add(mItmOptions);
 			menuInfo.add(mItmInfo);
+
 		}	
 	}
 }

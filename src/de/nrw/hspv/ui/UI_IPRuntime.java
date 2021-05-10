@@ -61,7 +61,7 @@ public class UI_IPRuntime extends JPanel {
 	flowLayout.setAlignment(FlowLayout.LEFT);
 	add(panel_3, BorderLayout.NORTH);
 	
-	JLabel labelFormatAdvice = new JLabel("Fülle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
+	JLabel labelFormatAdvice = new JLabel("F\u00FClle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
 	labelFormatAdvice.setHorizontalAlignment(SwingConstants.LEFT);
 	panel_3.add(labelFormatAdvice);
 	
@@ -72,27 +72,27 @@ public class UI_IPRuntime extends JPanel {
 //	});
 //	panel_2.add(btnNewButton_1);
 	
-	btnRightCorner = new JButton("Überprüfen");
+	btnRightCorner = new JButton("\u00DCberpr\u00FCfen");
 	btnRightCorner.setEnabled(false);
 	btnRightCorner.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			if(page == 1) {
 				showInputs();
-				btnRightCorner.setText("Zeige Lösung");
-				labelFormatAdvice.setText("Nun siehst du, ob deine Lösung richtig war!");
+				btnRightCorner.setText("Zeige L\u00F6sung");
+				labelFormatAdvice.setText("Nun siehst du, ob deine L\u00F6sung richtig war!");
 				page++;
 				
 			}
 			else if(page ==2) {
 				showResults();
-				btnRightCorner.setText("Nächste Aufgabe");
+				btnRightCorner.setText("N\u00E4chste Aufgabe");
 				labelFormatAdvice.setText("Hier siehts du die richtigen Ergebnisse!");
 				page++;
 			}
 			else if(page == 3) {
 				loadNewExercise();
-				btnRightCorner.setText("Überprüfen");
-				labelFormatAdvice.setText("Fülle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
+				btnRightCorner.setText("\u00DCberpr\u00FCfen");
+				labelFormatAdvice.setText("F\u00FClle die leeren Textfelder! Benutze dabei bitte folgendes Format: xxx.xxx.xxx.xxx");
 				page=1;
 			}
 		}
@@ -132,7 +132,7 @@ public class UI_IPRuntime extends JPanel {
 				addressPanels[0].setLayout(new GridLayout(0, 1, 0, 0));
 				
 				//Reihe Hostadresse
-				JLabel label2 = new JLabel("ausgewählte Hostadresse");
+				JLabel label2 = new JLabel("ausgew\u00E4hlte Hostadresse");
 				sl_layer2center.putConstraint(SpringLayout.NORTH, label2, 6, SpringLayout.SOUTH, label1);
 				sl_layer2center.putConstraint(SpringLayout.WEST, label2, 0, SpringLayout.WEST, label1);
 				sl_layer2center.putConstraint(SpringLayout.SOUTH, label2, 46, SpringLayout.NORTH, label1);
@@ -228,7 +228,7 @@ public class UI_IPRuntime extends JPanel {
 				addressPanels[6].setLayout(new GridLayout(1, 0, 0, 0));
 				
 				//CIDR-Klasse
-				JLabel label8 = new JLabel("CIDR-Binär");
+				JLabel label8 = new JLabel("CIDR-Bin\u00E4r");
 				sl_layer2center.putConstraint(SpringLayout.NORTH, label8, 6, SpringLayout.SOUTH, label7);
 				sl_layer2center.putConstraint(SpringLayout.WEST, label8, 0, SpringLayout.WEST, label7);
 				sl_layer2center.putConstraint(SpringLayout.SOUTH, label8, 46, SpringLayout.NORTH, label7);
@@ -272,7 +272,6 @@ public class UI_IPRuntime extends JPanel {
 						  }
 
 				});
-				this.currentExercise.testPrint();
 			}
 		}
 		
@@ -312,7 +311,7 @@ public class UI_IPRuntime extends JPanel {
 		}
 		
 		private int[] copyArray(int[] values) {
-			int[] copyArr = new int[values.length];	//erzeuge Temporäres array um nicht "auf dem Objekt" zu arbeiten
+			int[] copyArr = new int[values.length];	//erzeuge Temporï¿½res array um nicht "auf dem Objekt" zu arbeiten
 			for (int i = 0; i<values.length; i++) {
 				copyArr[i] = values[i];	//kopiere
 			}
@@ -338,11 +337,13 @@ public class UI_IPRuntime extends JPanel {
 			for(int i = 0; i< fieldArr.length; i++) {
 				if(!this.currentExercise.getExerciseType()[i]) {
 					if(i == 1 && fieldArr[i].getBackground() == lightRed) {
-						fieldArr[i].setText(fieldArr[i].getText() + " liegt außerhalb des Adressbereichs");
+						fieldArr[i].setText(fieldArr[i].getText() + " liegt au\u00DFerhalb des Hostbereichs");
 						fieldArr[i].setBackground(new Color(255,102,102)); //light red
 					}
 					else{
-						fieldArr[i].setText(currentExercise.getStringFormatByNumber(i));
+						if(i != 1) {
+							fieldArr[i].setText(currentExercise.getStringFormatByNumber(i));
+						}
 					}
 				}	 
 				
@@ -358,7 +359,7 @@ public class UI_IPRuntime extends JPanel {
 					}
 					try {
 						String tempString = inputArr[i].replaceAll("\\.", "");
-						System.out.println(tempString);
+						//System.out.println(tempString);
 						if(i ==7) {
 							for(int j = 0; j < tempString.length(); j++) {
 								Integer.valueOf(tempString.charAt(j));

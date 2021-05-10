@@ -1,49 +1,27 @@
 package de.nrw.hspv.ui;
-import de.nrw.hspv.exercises.*;
-import de.nrw.hspv.ui.StartAufgabenbearbeitung.Beschreibung;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.TextArea;
 import java.awt.Toolkit;
-
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class UI_IPExercise extends JPanel {
 	/**
-	 * Panel zeigt ein Beispiel für eine IP-Adressaufgabe an
+	 * Panel zeigt ein Beispiel fï¿½r eine IP-Adressaufgabe an
 	 * 
 	 * @param
 	 * @author Jannik
@@ -89,19 +67,6 @@ public class UI_IPExercise extends JPanel {
 	class Beschreibung extends JPanel{
 		
 		Beschreibung(){
-//			setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-//			
-//			JLabel lblNewLabel = new JLabel("In diesem Teil k\u00F6nnen Sie f\u00FCr ihre Pr\u00FCfung im Teilmodul Grld-IT \u00FCben.");
-//			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel);
-//			
-//			JLabel lblNewLabel_1 = new JLabel("Bitte nutzen Sie f\u00FCr die Eingabe der IP-Adressen folgendes Format: xxx.xxx.xxx.xxx");
-//			lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel_1);
-//			
-//			JLabel lblNewLabel_2 = new JLabel("Beispiel:");
-//			lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-//			add(lblNewLabel_2);
 			
 			GridBagLayout gridBagLayout = new GridBagLayout();
 			gridBagLayout.columnWidths = new int[]{409, 0};
