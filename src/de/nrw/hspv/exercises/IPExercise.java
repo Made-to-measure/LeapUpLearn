@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * Erstellt eine Aufgabe zur IP-Adressberechnung/Subnetting
+ * 
+ * @author Jannik
+ * @version 1.0
+ */
 public class IPExercise {
-	/**
-	 * Erstellt eine Aufgabe zur IP-Adressberechnung/Subnetting
-	 * 
-	 * @author Jannik
-	 * @version 1.0
-	 */
-	
+
 	private Random rand = new Random();
 	private IPNetworkAddress networkAddress;
 	private IPAddress hostAddress, broadcastAddress, subnetmask, firstAddress, lastAddress;
@@ -50,20 +50,23 @@ public class IPExercise {
 	}
 	
 	/**
-	 * generiert eine CIDR-Klasse zwischen 16 und 31
+	 * generiert rekursiv eine CIDR-Klasse zwischen 16 und 31
 	 * @return die CIDR-Klasse als Integer
 	 */
 	private int generateCidr() {
+		//generiert eine Nummer zwischen 0 und 46
 		int temp = rand.nextInt(24) + rand.nextInt(24);
 		if(16<temp && temp <31) {
+			//ist die Nummer innerhalb des gewollten Bereichs gebe sie zurück
 			return temp;
 		}
+		//ist die Nummer ausserhalb des gewollten Bereichs, dann rufe die Methode erneut auf
 		return generateCidr();
 	}
 	
 	
 	/**
-	 * überprüft ob die eingegebene Host-Adresse richtig ist
+	 * überprüft, ob die eingegebene Host-Adresse richtig ist
 	 * @param inputHostAddress
 	 * @return wahrheitswert ob richtig oder falsch
 	 */
@@ -74,11 +77,12 @@ public class IPExercise {
 				return false;
 			}
 		}
-		//bei CIDR >= 24 gehe in diese Abfrage, ansonsten:
+		//bei CIDR >= 24 gehe in diese Abfrage
 		if(networkAddress.getCidr() >= 24) {
-			if(networkAddress.getValue(2) != inputHostAddress[2]) {return false;}
-	
-			if(inputHostAddress[3] >= firstAddress.getValue(3) && inputHostAddress[3] <= lastAddress.getValue(3)){
+			if(networkAddress.getValue(2) != inputHostAddress[2]) {return false;} //Stelle 3 muss der Stelle der Hostadresse gelichen
+			
+			if(inputHostAddress[3] >= firstAddress.getValue(3) && inputHostAddress[3] <= lastAddress.getValue(3)){ 
+				//Stelle 4 muss zwischen der ersten und der letzen Adresse liegen
 				return true;
 			}
 			else {
@@ -87,7 +91,7 @@ public class IPExercise {
 		}
 		
 		else {
-			//stelle 3 ist bei der Hostadresse mit Stelle 3 der Netzwerkadresse gleich
+			//Stelle 3 ist bei der Hostadresse mit Stelle 3 der Netzwerkadresse gleich
 			if(inputHostAddress[2] == firstAddress.getValue(2)) {	//Stelle 3 der Hostadresse ist gleich der Stelle 3 der Netzwerkadresse
 				if(inputHostAddress[3] >= firstAddress.getValue(3) && inputHostAddress[3] <256) {	//Stelle 4 muss also größer oder gleich der 4. Stelle der ersten Adresse sein sein und kleiner als 256
 					return true;
@@ -109,29 +113,23 @@ public class IPExercise {
 	}
 	
 	/**
-	 * Formatiert einen String zu einem Integer-Array
+	 * Formatiert einen String zu einem Integer-Array der Länge 4
 	 * @param s der String der Formatiert werden soll
 	 * @param randix gibt an in welchem Zahlenformat der String vorliegt
-	 * @return Integer-Array 
+	 * @return Integer-Array
 	 */
-	public int[] toIntIpFormat (String s, int randix) {	
+	public int[] toIntIpFormat (String s, int randix) throws NumberFormatException {	
 		String[] stringArr =  s.split("\\.");					//Da "." ein spezieller Ausdruck ist muss man hier die Escape-Funktion nutzen
-		 if(stringArr.length >= 4){
-			 //hier eine Exception werfen
-			 }
 		 int[] intArr = new int[stringArr.length];				//Initialisiere Array 
 			 for(int i = 0; i < intArr.length; i++) {
 				 intArr[i] = Integer.parseInt(stringArr[i], randix);	//randix gibt an in welches Representation das Ausgangsformat ist
 				 /** Anmerkung: ParseInt gibt den primitiven Datentypen zurück
 				  * 			ValueOf ein Objekt von typ Integer()
-				  * 			An dieser Stelle können außerdem eine Vielzahl von Exceptions entstehen
+				  * 			An dieser Stelle koennen außerdem eine Vielzahl von Exceptions entstehen
 				  * 			die es abzufangen gilt
 				  */
-				 if(intArr[i] < 0 || intArr[i] > 255) {
-					//hier eine neue Exception werfen
-				 }	
 			 } 
-		 //System.out.println(stringArr.length + "\t" + Arrays.toString(stringArr)); debugprints
+		 //System.out.println(stringArr.length + "\t" + Arrays.toString(stringArr)); Debugprint
 		 return intArr;
 	}
 	
@@ -141,7 +139,7 @@ public class IPExercise {
 	 * @return CIDR-Klasse Binär in IP-Format
 	 */
 	private static String cidrToStringIpFormat(String s) {
-		int value = Integer.parseInt(s); // Hier k�nnen schon Exceptions entstehen
+		int value = Integer.parseInt(s); // Hier koennen schon Exceptions entstehen
 		StringBuilder tempSB = new StringBuilder();
 		
 		for(int i = 1; i<= 32; i++) {
@@ -159,6 +157,7 @@ public class IPExercise {
 //		System.out.println(tempSB.toString());	//debugprint
 		return tempSB.toString();
 	}
+	
 	
 	private boolean[] generateExerciseType() {
 		boolean[] boolArr = new boolean[8];
@@ -279,13 +278,27 @@ public class IPExercise {
 	 */
 	public boolean[] validateInputs(String[] inputs){
 		int[][] tempIntArr = new int[inputs.length][];
-		boolean[] results = new boolean[8]; 
+		boolean[] results = new boolean[8];
+		for(int i =0; i<results.length; i++) {
+			results[i] = true; //setze alle werte des Arrays auf true
+		}
+		
 		for(int i=0; i<tempIntArr.length; i++) {
-			tempIntArr[i] = toIntIpFormat(inputs[i], 10);
+			try {
+				//überführt das Stringarray in das gewohnte IP-Format
+				tempIntArr[i] = toIntIpFormat(inputs[i], 10);
+			}
+			catch(NumberFormatException e) {
+				//wenn in der Methode toIntIpFormat ein Fehler auftritt, kann das Ergebnis nicht richtig sein
+				results[i] = false;
+			}
+			
 		}
 		
 		for(int i = 0; i < results.length; i++) {
-			if(!exerciseType[i]) {
+			if(!exerciseType[i] && results[i]) {
+				//Es soll nur überprüft werden, wenn die Adressen nicht gegeben war
+				//UND nicht in der vorherigen Schleife ausgeschlossen wurde, dass das Ergebnis richtig sein kann
 				if(i==1) {
 					results[i] = validateHostAddress(tempIntArr[i]);
 				}

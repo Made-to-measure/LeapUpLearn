@@ -367,10 +367,12 @@ public class UI_IPRuntime extends JPanel {
 						}
 						else {
 							Long.parseLong(tempString);
+							//solange der String nicht parsable ist werfe eine Exception
 						}
 					}
 					catch (NumberFormatException e) {
-						e.printStackTrace();
+						//e.printStackTrace();
+						//ist der String nicht parsable soll der Button nicht aktiviert werden
 						return false;	
 					}
 				}

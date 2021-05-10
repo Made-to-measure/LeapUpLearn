@@ -35,7 +35,7 @@ public class OptionPanel extends JPanel {
 
 		
 		JPanel Options = new JPanel();
-		JLabel lblLoggingOptions = new JLabel("Logging Level auswählen");
+		JLabel lblLoggingOptions = new JLabel("Logging Level ausw\u00e4hlen");
 		add(lblLoggingOptions);
 		
 		ButtonGroup btnGrpLogging = new ButtonGroup();
