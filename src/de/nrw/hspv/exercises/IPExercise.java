@@ -10,7 +10,7 @@ import java.util.Random;
  * @author Jannik
  * @version 1.0
  */
-public class IPExercise {
+public class IPExercise extends Exercise{
 
 	private Random rand = new Random();
 	private IPNetworkAddress networkAddress;
@@ -27,6 +27,9 @@ public class IPExercise {
 		this.broadcastAddress = networkAddress.createBroadcastAddress();
 		this.subnetmask = networkAddress.createSubnetMask();
 		this.exerciseType = generateExerciseType();
+		id = System.currentTimeMillis();
+		aufgabentyp = Aufgabentyp.IPAddresse;
+		geloest = true;
 	}
 	
 	/**

@@ -21,6 +21,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import de.nrw.hspv.exercises.IPExercise;
+import de.nrw.hspv.login.Login;
 
 public class UI_IPRuntime extends JPanel {
 	/**
@@ -327,9 +328,11 @@ public class UI_IPRuntime extends JPanel {
 					}
 					else {
 						fieldArr[i].setBackground(lightRed);
+						currentExercise.geloest = false;
 					}
 				}
 			}
+			currentExercise.addEintrag(Login.aktiverUser, currentExercise);
 		}
 		
 		public void showResults() {

@@ -21,12 +21,18 @@ public class UIStatistics extends JPanel {
 	public UIStatistics() {
 		
 		//Anzahl geloester Aufgaben und gesamter Aufgaben je Aufgabentyp für aktiven User
-		int anzahlIT = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse) + Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme);
-		int anzahlITRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse, true) + Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme, true);
 		int anzahlIP = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse);
 		int anzahlIPRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse, true);
 		int anzahlZahlensys = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme);
 		int anzahlZahlensysRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme, true);
+		int anzahlIT = anzahlIP +anzahlZahlensys;
+		int anzahlITRichtig = anzahlIPRichtig + anzahlZahlensysRichtig;
+		int anzahlLogik = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Logik);
+		int anzahlLogikRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Logik, true);
+		int anzahlMathe = anzahlLogik;
+		int anzahlMatheRichtig = anzahlLogikRichtig;
+		
+
 		
 		
 		SpringLayout springLayout = new SpringLayout();
@@ -74,12 +80,12 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblZahlensystemeWerte, 0, SpringLayout.SOUTH, lblZahlensyteme);
 		add(lblZahlensystemeWerte);
 		
-		JLabel lblMatheWerte = new JLabel("");
+		JLabel lblMatheWerte = new JLabel(Integer.toString(anzahlMatheRichtig) + "/" + Integer.toString(anzahlMathe));
 		springLayout.putConstraint(SpringLayout.NORTH, lblMatheWerte, 0, SpringLayout.NORTH, lblMathe);
 		springLayout.putConstraint(SpringLayout.WEST, lblMatheWerte, 0, SpringLayout.WEST, lblITWerte);
 		add(lblMatheWerte);
 		
-		JLabel lblLogikWerte = new JLabel("");
+		JLabel lblLogikWerte = new JLabel(Integer.toString(anzahlLogikRichtig) + "/" + Integer.toString(anzahlLogik));
 		springLayout.putConstraint(SpringLayout.NORTH, lblLogikWerte, 0, SpringLayout.NORTH, lblLogik);
 		springLayout.putConstraint(SpringLayout.WEST, lblLogikWerte, 0, SpringLayout.WEST, lblITWerte);
 		add(lblLogikWerte);

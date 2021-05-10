@@ -15,18 +15,14 @@ public abstract class Exercise implements zuStatistik{
 	 * @version 1.0
 	 */
 
-	public boolean geloest;
-	public long id;
-	public Aufgabentyp aufgabentyp;
+	public boolean geloest;				//Zeigt an, ob eine Aufgabe geloest wurde
+	public long id;						//Die ID ist die System.currentTimeMillis() zum Zeitpunkt der Aufgabenerzeugung
+	public Aufgabentyp aufgabentyp;		//Der Aufgabentyp
 	
 	@Override
 	public void addEintrag(User user, Exercise aufgabe) {
 		Statistiken.addEintrag(user, aufgabe);
 	}
-	
-//	public abstract boolean ueberpruefe();
-	
-//	public abstract StatistikEintrag updateStats();
 		
 }
 
