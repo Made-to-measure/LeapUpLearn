@@ -1,5 +1,8 @@
 package de.nrw.hspv.exercises;
-import java.util.Random;
+
+import java.util.logging.Level;
+
+import de.nrw.hspv.ui.App;
 
 public class IPAddress {
 	/**
@@ -8,7 +11,6 @@ public class IPAddress {
 	 * @author Jannik
 	 * @version 1.0
 	 */
-	//Author: Jannik
 	protected int[] values = new int[4];
 	
 	
@@ -32,23 +34,24 @@ public class IPAddress {
 	}
 	
 	/**
-	 * 
+	 * Dient dazu eine IPAdress zu einem String zu formatieren
+	 * Wird genutz zur Ausgabe
 	 * @return gibt die IP-Adresse als String zurück
 	 */
 	public String toStringIpFormat() {
-		StringBuilder tempSB = new StringBuilder();
-		tempSB.append(values[0]);
+		StringBuilder tempSB = new StringBuilder(); //erstelle temporaeren StringBuilder
+		tempSB.append(values[0]);	//fuege die erste Position an
 		for(int i = 1; i<=3; i++) {
-			tempSB.append(".");
-			tempSB.append(values[i]);
+			tempSB.append(".");	//trenne durch Punkt
+			tempSB.append(values[i]);	//fuege naechste Position an
 		}
-		
+		App.logger.log(Level.INFO, "IP in String formatiert");
 		return tempSB.toString();
 	}
 
 	
 	/**
-	 * @param position des werts der IP
+	 * @param Position des Werts der IP
 	 * @return gibt den Integer der jeweiligen Position zurück
 	 */
 	public int getValue(int position) {
