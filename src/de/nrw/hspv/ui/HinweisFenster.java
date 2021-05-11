@@ -11,13 +11,15 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Hinweisfesnter fuer schnelle Information an Benutzer
+ * @author Janis
+ * @version 1.0
+ */
 public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen an Nutzer
 	/**
 	 * Erzeugt ein Fenster (JFrame) mit Hinweisen im LUL Design
 	 * @param Hinweistext String 
-	 * @author Janis
-	 * @version 1.0
-	 * 
 	 */
 	public HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung übergeben
 		super("Achtung");

@@ -81,8 +81,8 @@ public class Statistiken {
 	/**
 	 * Fuegt der ArrayList Eintraege einen neuen Statistikeintrag hinzu
 	 * 
-	 * @param user
-	 * @param aufgabe
+	 * @param user der die Aufgabe bearbeitet hat
+	 * @param aufgabe die bearbeitet wurde
 	 */
 	public static void addEintrag(User user, Exercise aufgabe) {
 		Eintraege.add(new StatistikEintrag(user, aufgabe));
@@ -90,12 +90,12 @@ public class Statistiken {
 	}
 	
 	/**
-	 * Gibt die Anzahl an Aufgaben zurueck, bei denen User, Aufgabentyp und Loesungsstatus uebereinstimmen
+	 * Ermittelt Anzahl relevanter Statistikeintraege
 	 * 
-	 * @param username
-	 * @param typ
-	 * @param geloest
-	 * @return
+	 * @param username der in Eintraegen enthalten sein soll
+	 * @param typ der Aufgaben die in Eintraegen enthalten sein soll
+	 * @param geloest Loesungsstatus der Aufgaben die in Eintraegen enthalten sein soll
+	 * @return Anzahl der passenden Eintraege als Integer
 	 */
 	public static int getAnzahl(String username, Aufgabentyp typ, boolean geloest) {
 		int anzahl = 0;
@@ -108,11 +108,11 @@ public class Statistiken {
 	}
 	
 	/**
-	 * Gibt die Anzahl an Aufgaben zurueck, bei den User und Aufgabentyp uebereinstimmen
+	 * Ermittelt Anzahl relevanter Statistikeintraege
 	 * 
-	 * @param username
-	 * @param typ
-	 * @return
+	 * @param username der in Eintraegen enthalten sein soll
+	 * @param typ der Aufgaben die in Eintraegen enthalten sein soll
+	 * @return Anzahl der passenden Eintraege als Integer
 	 */
 	public static int getAnzahl(String username, Aufgabentyp typ) {
 		int anzahl = 0;
@@ -124,18 +124,4 @@ public class Statistiken {
 		return anzahl;
 	}
 	
-	/**
-	 * vielleicht kann man auch soetwas wie overallStats schon direkt als Attribut abspeichern, sobald ein Neuer Eintrag hinzukommt
-	 * Ist vielleicht sinnvoller bzw. ressourcenschonender als bei bestimmten Berechnungen jedesmal den gesamten Datensatz durch zugehen
-	 * Beispiel:
-	 * long geloesteAufgaben;
-	 * long gesamteAufgaben;
-	 * wieder optional: long bearbeitungszeit; (in Minuten so als Bonus um mittzuteilen wie viel man schon gelernt hat)
-	 *  -(Jannik)
-	 */
-	
-	
-	
-	
-
 }

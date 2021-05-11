@@ -21,17 +21,19 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
+/**
+ * UI Klasse zur Anmeldung und Registrierung von Nutzern
+ * @author Janis
+ * @version1.0
+ */
 public class LoginGUI extends JFrame{
-	/**
-	 * UI Klasse zur Anmeldung und Registrierung von Nutzern
-	 * 
-	 * @author Janis
-	 * @version 1.0
-	 */
 	
-	JTextField eingabeName;														//Felder f�r Benutzername und Passwort verwaltbar machen
+	JTextField eingabeName;														//Felder fuer Benutzername und Passwort verwaltbar machen
 	JPasswordField eingabePasswort;
 	
+	/**
+	 * Erzeugt neue LoginGUI
+	 */
 	public LoginGUI() {
 		super("Login");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -50,9 +52,9 @@ public class LoginGUI extends JFrame{
 		setIconImage(icon);
 		setLayout(new BorderLayout());
 		
-		JPanel panelOben = new JPanel();										//PanelOben f�r Eingabe
+		JPanel panelOben = new JPanel();										//PanelOben fuer Eingabe
 		panelOben.setBorder(new EmptyBorder(10,10,10,10));
-		panelOben.setLayout(new GridLayout(2,2,0,0));							//GridLayout f�r einzelne Elemente des Logins
+		panelOben.setLayout(new GridLayout(2,2,0,0));							//GridLayout fuer einzelne Elemente des Logins
 		
 		
 		JLabel labelName = new JLabel("Nutzername");
@@ -63,7 +65,7 @@ public class LoginGUI extends JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird �bergeben
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird uebergeben
 						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 					}	
 					
@@ -79,7 +81,7 @@ public class LoginGUI extends JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird �bergeben
+					if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird uebergeben
 						LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 					}	
 					
@@ -89,28 +91,27 @@ public class LoginGUI extends JFrame{
 		
 		add(panelOben, BorderLayout.CENTER);
 		
-		JPanel panelUnten = new JPanel();										//panelUnten f�r Buttons
+		JPanel panelUnten = new JPanel();										//panelUnten fuer Buttons
 		
-		JButton anmelden = new JButton("Login");								//Button f�r Login
+		JButton anmelden = new JButton("Login");								//Button fuer Login
 		anmelden.addActionListener(new ActionListener() {						
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub								//l�st Methode anmelden in Klasse Login aus
-				if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird �bergeben
+				// TODO Auto-generated method stub								//loest Methode anmelden in Klasse Login aus
+				if(Login.anmelden(eingabeName.getText(), eingabePasswort.getPassword())) {	//Text aus Namens- und Passwortfeld wird uebergeben
 					LoginGUI.super.dispose();									//Bei erfolgreichem Login wird LoginGUI geschlossen
 				}
 			}
 			
 		});
 		
-		JButton registrieren = new JButton("Registrieren");						//Button f�r Registrierung
+		JButton registrieren = new JButton("Registrieren");						//Button fuer Registrierung
 		registrieren.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub								//l�st Methode registrieren der Klasse Login aus
-				Login.registrieren(eingabeName.getText(), eingabePasswort.getPassword());	//Text aus Namens- und Passwortfeld wird �bergeben
+			public void actionPerformed(ActionEvent e) {								//loest Methode registrieren der Klasse Login aus
+				Login.registrieren(eingabeName.getText(), eingabePasswort.getPassword());	//Text aus Namens- und Passwortfeld wird uebergeben
 			}
 			
 		});

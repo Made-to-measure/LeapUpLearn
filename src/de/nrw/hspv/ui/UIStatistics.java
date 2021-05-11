@@ -12,13 +12,16 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 	/**
-	 * Erzeugt das Panel fuer die Darstellung der Statistik
+	 * Panel fuer die Darstellung der Statistik
 	 * 
 	 * @author Janis
 	 * @version 1.0
 	 */
 public class UIStatistics extends JPanel {
 
+	/**
+	 * Erzeugt das Panel fuer die Darstellung der Statistik
+	 */
 	public UIStatistics() {
 		
 		//Anzahl geloester Aufgaben und gesamter Aufgaben je Aufgabentyp für aktiven User

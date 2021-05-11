@@ -17,14 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 import javax.swing.JTextField;
 
+/**
+ * Panel fuer die Darstellung der Zahlensystemaufgabe
+ * @author Janis
+ * @version 1.0
+ */
 public class UIZahlensysteme extends JPanel {
 	
-	/**
-	 * Darstellung der Zahlensystemaufgabe
-	 * 
-	 * @author Janis
-	 * @version 1.0
-	 */
 	public JTextField tfEingabeDezi;
 	public JTextField tfEingabeBinaer;
 	public JTextField tfEingabeOktal;
@@ -33,6 +32,9 @@ public class UIZahlensysteme extends JPanel {
 	public boolean inBearbeitung = true;
 	ZahlensystemExercise aufgabe;
 	
+	/**
+	 * Erzeugt das Panel fuer die Darstellung der Zahlensystemaufgabe
+	 */
 	public UIZahlensysteme() {
 		setLayout(new BorderLayout(0, 0));
 		
@@ -161,6 +163,10 @@ public class UIZahlensysteme extends JPanel {
 		aktualisiereAufgabe();
 
 	}
+	
+	/**
+	 * laedt eine neue Aufgabe und aktualisiert die Darstellung
+	 */
 	public void aktualisiereAufgabe() {						//Methode um neue Aufgabe vom Typ AufgabeZahlensysteme zu erzeugen und darzustellen
 		lblInfo.setText("Die Aufgabe kann jetzt bearbeitet werden!");		//InfoLabel aktualisieren
 		

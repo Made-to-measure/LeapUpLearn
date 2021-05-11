@@ -5,7 +5,7 @@ import java.awt.Color;
 import de.nrw.hspv.login.Login;
 import de.nrw.hspv.ui.UIZahlensysteme;
 
-public class ZahlensystemExercise extends Exercise {
+public class ZahlensystemExercise extends Exercise {				//erbt von Exercise
 	
 	/**
 	 * Inhalt und Methoden der Zahlensystemaufgabe
@@ -21,6 +21,9 @@ public class ZahlensystemExercise extends Exercise {
 	public String oktZahl;
 	public String hexZahl;
 	
+	/**
+	 * Konstruiert neue Zahlensystemaufgabe
+	 */
 	public ZahlensystemExercise() {										//Standardkonstruktor wird überschrieben
 		geloest = true;												//geloest wird standardmäßig auf true gesetzt, bei Fehler in Überprüfung auf falsch
 		id = System.currentTimeMillis();							//ID der Aufgabe ist die aktuelle Zeit in ms
@@ -35,6 +38,14 @@ public class ZahlensystemExercise extends Exercise {
 		
 	}
 	
+	/**
+	 * Gleicht uebergebene Werte mit der Aufgabe ab
+	 * @param dezZahl die abzugleichende Dezimalzahl
+	 * @param binZahl die abzugleichende Binaerzahl
+	 * @param oktZahl die abzugleichende Oktalzahl
+	 * @param hexZahl die abzugleichende Hexadezimalzahl
+	 * @return die boolean geloest
+	 */
 	public boolean ueberpruefe(String dezZahl, String binZahl, String oktZahl, String hexZahl) {		//Methode zur Überprüfung von Eingaben
 		if(zahl != Integer.parseInt(dezZahl)) {	//Hier könnten Exceptions auftreten				//Prüfung dezimale Eingabe
 			geloest = false;

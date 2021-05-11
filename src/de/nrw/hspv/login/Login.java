@@ -14,17 +14,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Klasse mit Funktionen zur Anmeldung oder Registrierung
+ * @author Janis
+ * @version 1.0
+ */
 public class Login {
-	/**
-	 * Klasse mit Funktionen zum Anlegen einer Nutzerdatei/zum Anlegen von Nutzern
-	 * 
-	 * @author Janis
-	 * @version 1.0
-	 */
-
+	
 	private static HashMap<String, String> loginDaten = new HashMap<String, String>();		//HashMap soll Nutzernamen und Passwörter beinhalten
 	public static User aktiverUser = new User();
 	
+	/**
+	 * Laedt die Daten aus der Login-Datei in die HashMap loginDaten
+	 */
 	public static void ladeDaten() {														//Daten aus Datei werden geladen
 		try {
 			File loginFile = new File("LoginDaten.txt");									
@@ -48,6 +50,9 @@ public class Login {
 		}
 	}
 	
+	/**
+	 * speichert die Daten aus der Hashmap loginDaten in der Login-Datei
+	 */
 	public static void speichereDaten() {													//Daten sollen aus HashMap in Datei gespeichert werden
 		try {
 			FileOutputStream dateiAusgabeStrom = new FileOutputStream(new File("LoginDaten.txt"));
@@ -65,6 +70,12 @@ public class Login {
 		}
 	}
 	
+	/**
+	 * Fuehrt die Anmeldung durch
+	 * @param benutzer der angemeldet werden soll
+	 * @param passwort das der Nutzer zur Anmeldung angegeben hat
+	 * @return boolean, ob Anmeldung erfolgreich
+	 */
 	public static boolean anmelden(String benutzer, char[] passwort) {						//Mehtode um Anmeldung durchzuführen
 		ladeDaten();																		//Daten aus Datei laden
 		if(benutzer.isEmpty()) {															//Benutzername ist leer
@@ -88,6 +99,13 @@ public class Login {
 			return false;
 		}
 	}
+	
+	/**
+	 * Fuehrt die Registrierung durch
+	 * @param benutzer der registriert werden soll
+	 * @param passwort das der Nutzer zur Registrierung angegeben hat
+	 * @return boolean, ob Registrierung erfolgreich
+	 */
 	public static boolean registrieren(String benutzer, char[] passwort) {					//Methode um Registrierung durchzuführen
 		if(benutzer.isEmpty()) {															//Benutzername ist leer
 			new HinweisFenster("Kein Benutzername eingetragen");
