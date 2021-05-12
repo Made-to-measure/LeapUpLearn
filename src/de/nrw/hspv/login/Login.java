@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
  */
 public class Login {
 	
-	private static HashMap<String, String> loginDaten = new HashMap<String, String>();		//HashMap soll Nutzernamen und Passwörter beinhalten
+	private static HashMap<String, String> loginDaten = new HashMap<String, String>();		//HashMap soll Nutzernamen und Passwoerter beinhalten
 	public static User aktiverUser = new User();
 	
 	/**
@@ -113,7 +113,7 @@ public class Login {
 	 * @param passwort das der Nutzer zur Registrierung angegeben hat
 	 * @return boolean, ob Registrierung erfolgreich
 	 */
-	public static boolean registrieren(String benutzer, char[] passwort) {					//Methode um Registrierung durchzuführen
+	public static boolean registrieren(String benutzer, char[] passwort) {					//Methode um Registrierung durchzufuehren
 		if(benutzer.isEmpty()) {															//Benutzername ist leer
 			new HinweisFenster("Kein Benutzername eingetragen");
 			return false;

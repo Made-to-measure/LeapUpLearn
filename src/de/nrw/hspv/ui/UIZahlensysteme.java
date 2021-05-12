@@ -58,7 +58,7 @@ public class UIZahlensysteme extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(inBearbeitung) {
-					if(verifiedDezi && verifiedBinaer && verifiedOktal && verifiedHexa) {
+					if(verifiedDezi && verifiedBinaer && verifiedOktal && verifiedHexa) { //Format der Eingaben wird geprueft
 						String dez = UIZahlensysteme.this.tfEingabeDezi.getText();	//Abfrage der Textfelder
 						String bin = UIZahlensysteme.this.tfEingabeBinaer.getText();
 						String okt = UIZahlensysteme.this.tfEingabeOktal.getText();
@@ -138,18 +138,18 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeDezi, 88, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeDezi, -212, SpringLayout.EAST, panel_1);
 		tfEingabeDezi.setColumns(10);
-		tfEingabeDezi.setInputVerifier(new InputVerifier() {
+		tfEingabeDezi.setInputVerifier(new InputVerifier() {		//InputVerifier fuer Eingabe der Zahl
 
 			@Override
 			public boolean verify(JComponent input) {
 				try {
-					Integer.parseInt(((JTextField) input).getText());
+					Integer.parseInt(((JTextField) input).getText());		
 				}
 				catch (Exception e) {
-					verifiedDezi = false;
+					verifiedDezi = false;							//Wenn Eingabe zu Exception fuehren wuerde setze verified auf false
 					return false;
 				}
-				verifiedDezi = true;
+				verifiedDezi = true;								//Wenn Eingabe korrekt ist wird verified auf true
 				return true;
 			}
 			
@@ -274,10 +274,10 @@ public class UIZahlensysteme extends JPanel {
 															
 		//Textfelder werden entsprechend zugewiesen
 		switch (aufgabe.typ) {								//Je nach Typ der Ausgangszahl wird jeweiliges Textfeld auf nicht editierbar gesetzt
-		case 0:
+		case 0:												
 			tfEingabeDezi.setText(aufgabe.dezZahl);
 			tfEingabeDezi.setEnabled(false);
-			verifiedDezi = true;
+			verifiedDezi = true;							
 			break;
 		case 1:
 			tfEingabeBinaer.setText(aufgabe.binZahl);
