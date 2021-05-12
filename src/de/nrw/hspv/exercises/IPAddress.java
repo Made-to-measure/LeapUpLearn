@@ -45,7 +45,7 @@ public class IPAddress {
 			tempSB.append(".");	//trenne durch Punkt
 			tempSB.append(values[i]);	//fuege naechste Position an
 		}
-		App.logger.log(Level.INFO, "IP in String formatiert");
+		//App.logger.log(Level.INFO, "IP in String formatiert"); stört eher beim lesen des Loggs wen es jedesmal angezeigt wird
 		return tempSB.toString();
 	}
 

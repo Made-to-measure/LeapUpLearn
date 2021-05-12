@@ -107,6 +107,7 @@ public class UI_IPRuntime extends JPanel {
 		
 		add(new PanelIpZeilen(), BorderLayout.CENTER);
 		loadFirstExercise();	//lade erste Aufgabe in die Panel und Felder
+		App.logger.log(Level.INFO, "IP-Aufgabe Panel zur Aufgabenbearbeitung erzeugt");
 	}
 	
 	/**

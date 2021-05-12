@@ -63,7 +63,7 @@ public class UI_IPExercise extends JPanel {
 		
 		buttonPanel.add(fortButton,BorderLayout.SOUTH);
 		fortfahren.add(new Beschreibung(), BorderLayout.CENTER);
-		
+		App.logger.log(Level.INFO, "IP-Aufgabe Frame erzeugt");
 		setVisible(true);
 	}
 	
