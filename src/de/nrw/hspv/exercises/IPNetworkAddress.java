@@ -187,7 +187,4 @@ public class IPNetworkAddress extends IPAddress{
 			App.logger.log(Level.INFO, "Subnetzmaske erzeugt");
 			return new IPAddress(tempArr);
 		}
-		
-		
-
 }

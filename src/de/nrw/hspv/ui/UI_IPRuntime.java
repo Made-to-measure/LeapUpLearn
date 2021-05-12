@@ -192,19 +192,6 @@ public class UI_IPRuntime extends JPanel {
 	}
 	
 	/**
-	 * Hilfsmethode um Integer-Array zu kopieren
-	 * @param values Uebergebe Integer-Array
-	 * @return Integer-Array
-	 */
-	private int[] copyArray(int[] values) {
-		int[] copyArr = new int[values.length];	//erzeuge Temporaeres array um nicht "auf dem Objekt" zu arbeiten
-		for (int i = 0; i<values.length; i++) {
-			copyArr[i] = values[i];	//kopiere
-		}
-		return copyArr;
-	}
-	
-	/**
 	 * Methode welche die Eingaben anzeigt und die Textfelder nach Richtigkeit einfaerbt
 	 */
 	public void showInputs() {

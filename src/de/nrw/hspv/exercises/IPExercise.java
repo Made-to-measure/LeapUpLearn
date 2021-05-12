@@ -44,7 +44,7 @@ public class IPExercise extends Exercise{
 	/**
 	 * Test-Klasse um die einzelnen Werte in der Konsole auszugeben
 	 */
-	public void testPrint() {	//Klasse f�rs Debugging
+	public void testPrint() {	//Klasse fuers Debugging
 		System.out.println(	"\nNetwerkadresse: \t" + networkAddress.toStringIpFormat() + "/" + networkAddress.getCidr() +
 							"\nNetzwerkmaske: \t \t" + subnetmask.toStringIpFormat() +
 							"\nerste Adresse: \t \t" + firstAddress.toStringIpFormat() +
@@ -73,7 +73,7 @@ public class IPExercise extends Exercise{
 	/**
 	 * ueberprüft, ob die eingegebene Host-Adresse richtig ist
 	 * @param inputHostAddress
-	 * @return wahrheitswert ob richtig oder falsch
+	 * @return Wahrheitswert ob richtig oder falsch
 	 */
 	public boolean validateHostAddress(int[] inputHostAddress) {
 		//die ersten beiden Zahlen müssen in jedem Falle gleich sein

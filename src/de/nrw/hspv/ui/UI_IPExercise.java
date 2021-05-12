@@ -32,8 +32,7 @@ public class UI_IPExercise extends JPanel {
 	
 	//Erzeuge Frame
 	public UI_IPExercise() {
-		
-		
+
 		BorderLayout layout = new BorderLayout();
 		setLayout(layout);
 		
