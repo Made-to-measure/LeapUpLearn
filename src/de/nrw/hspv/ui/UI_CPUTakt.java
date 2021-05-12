@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import de.nrw.hspv.exercises.Exercise;
 import de.nrw.hspv.login.User;
@@ -60,77 +61,94 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		add(panelAufg, BorderLayout.CENTER);
 		panelAufg.setLayout(new GridLayout(6, 3, 0, 0));
 		
-		lblSpeicher = new JLabel("Speicher");
+		lblSpeicher = new JLabel("Speicher  ");
+		lblSpeicher.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblSpeicher);
 		
 		lblZugrZeit = new JLabel("Zugriffszeit (cycles)");
+		lblZugrZeit.setHorizontalAlignment(SwingConstants.CENTER);
 		panelAufg.add(lblZugrZeit);
 		
 		lblVergleichbareWerte = new JLabel("Vergleichbare Werte (ns)");
+		lblVergleichbareWerte.setHorizontalAlignment(SwingConstants.CENTER);
 		panelAufg.add(lblVergleichbareWerte);
 		
-		lblRegAccess = new JLabel("Register Access");
+		lblRegAccess = new JLabel("Register Access  ");
+		lblRegAccess.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblRegAccess);
 		
 		txtRegAccZeit = new JTextField();
+		txtRegAccZeit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtRegAccZeit.setText("1");
 		panelAufg.add(txtRegAccZeit);
 		txtRegAccZeit.setColumns(10);
 		
 		txtRegAccVerglW = new JTextField();
-		
+		txtRegAccVerglW.setHorizontalAlignment(SwingConstants.CENTER);
 		//txtRegAccVerglW.setText("0,5");
 		panelAufg.add(txtRegAccVerglW);
 		txtRegAccVerglW.setColumns(10);
 		
-		lblLocalDRAMAccess = new JLabel("Local DRAM Access");
+		lblLocalDRAMAccess = new JLabel("Local DRAM Access  ");
+		lblLocalDRAMAccess.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblLocalDRAMAccess);
 		
 		txtLocDRAMAccZeit = new JTextField();
+		txtLocDRAMAccZeit.setHorizontalAlignment(SwingConstants.CENTER);
 		//txtLocDRAMAccZeit.setText("25");
 		panelAufg.add(txtLocDRAMAccZeit);
 		txtLocDRAMAccZeit.setColumns(10);
 		
 		txtLocDRAMAccVerglW = new JTextField();
+		txtLocDRAMAccVerglW.setHorizontalAlignment(SwingConstants.CENTER);
 		txtLocDRAMAccVerglW.setText("50");
 		panelAufg.add(txtLocDRAMAccVerglW);
 		txtLocDRAMAccVerglW.setColumns(10);
 		
-		lblL3CacheHit = new JLabel("Level 3 Cache Hit");
+		lblL3CacheHit = new JLabel("Level 3 Cache Hit  ");
+		lblL3CacheHit.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblL3CacheHit);
 		
 		txtL3Zeit = new JTextField();
+		txtL3Zeit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtL3Zeit.setText("60");
 		panelAufg.add(txtL3Zeit);
 		txtL3Zeit.setColumns(10);
 		
 		txtL3VerglW = new JTextField();
+		txtL3VerglW.setHorizontalAlignment(SwingConstants.CENTER);
 		//txtL3VerglW.setText("30");
 		panelAufg.add(txtL3VerglW);
 		txtL3VerglW.setColumns(10);
 		
-		lblL2CacheHit = new JLabel("Level 2 Cache Hit");
+		lblL2CacheHit = new JLabel("Level 2 Cache Hit  ");
+		lblL2CacheHit.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblL2CacheHit);
 		
 		txtL2Zeit = new JTextField();
+		txtL2Zeit.setHorizontalAlignment(SwingConstants.CENTER);
 		txtL2Zeit.setText("12");
 		panelAufg.add(txtL2Zeit);
 		txtL2Zeit.setColumns(10);
 		
 		txtL2VerglW = new JTextField();
+		txtL2VerglW.setHorizontalAlignment(SwingConstants.CENTER);
 		//txtL2VerglW.setText("6");
 		panelAufg.add(txtL2VerglW);
 		txtL2VerglW.setColumns(10);
 		
-		lblL1CacheHit = new JLabel("Level 1 Cache Hit");
+		lblL1CacheHit = new JLabel("Level 1 Cache Hit  ");
+		lblL1CacheHit.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblL1CacheHit);
 		
 		txtL1Zeit = new JTextField();
+		txtL1Zeit.setHorizontalAlignment(SwingConstants.CENTER);
 		//txtL1Zeit.setText("3");
 		panelAufg.add(txtL1Zeit);
 		txtL1Zeit.setColumns(10);
 		
 		txtL1VerglW = new JTextField();
+		txtL1VerglW.setHorizontalAlignment(SwingConstants.CENTER);
 		txtL1VerglW.setText("1,5");
 		panelAufg.add(txtL1VerglW);
 		txtL1VerglW.setColumns(10);
