@@ -193,6 +193,21 @@ public class Mainframe extends JFrame {
 				
 			});
 			ExPanel.add(btnZahlensysteme);
+			
+			JButton btnCPUTakt = new JButton("Zugriffszeiten");
+			btnCPUTakt.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					removeCenter();
+					MainPanel.add(new UI_CPUTakt(), BorderLayout.CENTER);
+					MainPanel.revalidate();
+					MainPanel.repaint();
+					
+				}
+				
+			});
+			ExPanel.add(btnCPUTakt);
 		}
 		else if (Aufgabe == "Mathe") {
 			JButton btnLogik = new JButton("Logik");
