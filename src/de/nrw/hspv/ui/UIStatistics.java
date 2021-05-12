@@ -2,6 +2,8 @@ package de.nrw.hspv.ui;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.util.logging.Level;
+
 import javax.swing.SpringLayout;
 
 import de.nrw.hspv.exercises.Aufgabentyp;
@@ -35,7 +37,38 @@ public class UIStatistics extends JPanel {
 		int anzahlLogikRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Logik, true);
 		int anzahlMathe = anzahlLogik;
 		int anzahlMatheRichtig = anzahlLogikRichtig;
+		//Panellaengen fuer Visualisierung der Anzahl richtig geloester Aufgaben
+		int laengeIT;
+		int laengeIP;
+		int laengeZahlensys;
+		int laengeMathe;
+		int laengeLogik;
 		
+		
+		if(anzahlIT != 0) 									//hier wird die Laenge des gruenen Balkens in der Statistik berechnet
+			laengeIT = anzahlITRichtig * (100/anzahlIT);	//100 soll gesamte Laenge des Balkens sein
+		else
+			laengeIT = 0;
+		
+		if(anzahlIP != 0)
+			laengeIP = anzahlIPRichtig * (100/anzahlIP);
+		else
+			laengeIP = 0;
+		
+		if(anzahlZahlensys != 0)
+			laengeZahlensys = anzahlZahlensysRichtig * (100/anzahlZahlensys);
+		else
+			laengeZahlensys = 0;
+		
+		if(anzahlMathe != 0)
+			laengeMathe = anzahlMatheRichtig * (100/anzahlMathe);
+		else
+			laengeMathe = 0;
+		
+		if(anzahlLogik != 0)
+			laengeLogik = anzahlLogikRichtig + (100/anzahlLogik);
+		else
+			laengeLogik = 0;
 
 		
 		
@@ -94,19 +127,14 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblLogikWerte, 0, SpringLayout.WEST, lblITWerte);
 		add(lblLogikWerte);
 		
-		//Panellaengen fuer Visualisierung der Anzahl richtig geloester Aufgaben
-		int laengeIT = anzahlITRichtig * (100/anzahlIT);		//100 soll gesamte Laenge des Balkens sein
-		int laengeIP = anzahlIPRichtig * (100/anzahlIP);
-		int laengeZahlensys = anzahlZahlensysRichtig * (100/anzahlZahlensys);
-		int laengeMathe = 50;	//Standardwerte um Division durch 0 zu vermeiden solange Mathe nicht implementiert ist
-		int laengeLogik = 50;
+		
 		
 		//Panel fuer Visualisierung der Anzahl richtig geloester Aufgaben
 		JPanel panelIT = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panelIT, 0, SpringLayout.NORTH, lblITWerte );
 		springLayout.putConstraint(SpringLayout.WEST, panelIT, 60, SpringLayout.WEST, lblITWerte);
 		springLayout.putConstraint(SpringLayout.SOUTH, panelIT, 0, SpringLayout.SOUTH, lblITWerte);
-		springLayout.putConstraint(SpringLayout.EAST, panelIT, laengeIT, SpringLayout.WEST, panelIT);
+		springLayout.putConstraint(SpringLayout.EAST, panelIT, laengeIT, SpringLayout.WEST, panelIT); //Hier wird die Laenge uebergeben
 		panelIT.setBackground(Color.GREEN);
 		add(panelIT);
 		
@@ -143,6 +171,8 @@ public class UIStatistics extends JPanel {
 		add(panelLogik);
 		
 		//Panel zur Visualisierung der Anzahl falsch geloester Aufgaben
+		//WEST wird an EAST des gruenen Balkens gefuegt
+		//EAST geht immer bis 100 Pixel von WEST des gruenen Balkens = Gesamtlaenge
 		JPanel panelITFalsch = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panelITFalsch, 0, SpringLayout.NORTH, lblITWerte );
 		springLayout.putConstraint(SpringLayout.WEST, panelITFalsch, 0, SpringLayout.EAST, panelIT);
@@ -183,5 +213,6 @@ public class UIStatistics extends JPanel {
 		panelLogikFalsch.setBackground(Color.RED);
 		add(panelLogikFalsch);
 
+		App.logger.log(Level.INFO, "UIStatistics erzeugt");
 	}
 }

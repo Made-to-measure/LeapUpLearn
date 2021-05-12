@@ -1,8 +1,9 @@
 package de.nrw.hspv.exercises;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Random;
+import java.util.logging.Level;
+
+import de.nrw.hspv.ui.App;
 
 /**
  * Erstellt eine Aufgabe zur IP-Adressberechnung/Subnetting
@@ -30,6 +31,7 @@ public class IPExercise extends Exercise{
 		id = System.currentTimeMillis();
 		aufgabentyp = Aufgabentyp.IPAddresse;
 		geloest = true;
+		App.logger.log(Level.INFO, "IP-Adressen-Aufgabe erzeugt");
 	}
 	
 	/**
@@ -42,7 +44,7 @@ public class IPExercise extends Exercise{
 	/**
 	 * Test-Klasse um die einzelnen Werte in der Konsole auszugeben
 	 */
-	public void testPrint() {	//Klasse f�rs Debugging
+	public void testPrint() {	//Klasse fuers Debugging
 		System.out.println(	"\nNetwerkadresse: \t" + networkAddress.toStringIpFormat() + "/" + networkAddress.getCidr() +
 							"\nNetzwerkmaske: \t \t" + subnetmask.toStringIpFormat() +
 							"\nerste Adresse: \t \t" + firstAddress.toStringIpFormat() +
@@ -69,9 +71,9 @@ public class IPExercise extends Exercise{
 	
 	
 	/**
-	 * überprüft, ob die eingegebene Host-Adresse richtig ist
+	 * ueberprüft, ob die eingegebene Host-Adresse richtig ist
 	 * @param inputHostAddress
-	 * @return wahrheitswert ob richtig oder falsch
+	 * @return Wahrheitswert ob richtig oder falsch
 	 */
 	public boolean validateHostAddress(int[] inputHostAddress) {
 		//die ersten beiden Zahlen müssen in jedem Falle gleich sein
@@ -112,6 +114,7 @@ public class IPExercise extends Exercise{
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -142,16 +145,21 @@ public class IPExercise extends Exercise{
 	 * @return CIDR-Klasse Binär in IP-Format
 	 */
 	private static String cidrToStringIpFormat(String s) {
-		int value = Integer.parseInt(s); // Hier koennen schon Exceptions entstehen
 		StringBuilder tempSB = new StringBuilder();
-		
-		for(int i = 1; i<= 32; i++) {
-			if(i<= value) {
-				tempSB.append("1");
+		try {
+			int value = Integer.parseInt(s); // Hier entseht ggf. eine Exception
+			
+			for(int i = 1; i<= 32; i++) {
+				if(i<= value) {
+					tempSB.append("1");
+				}
+				else {
+					tempSB.append("0");
+				}
 			}
-			else {
-				tempSB.append("0");
-			}
+		}
+		catch (NumberFormatException e) {
+			App.logger.log(Level.SEVERE, "Fehler bei der Umwandlung der CIDR zu einem String");
 		}
 //		System.out.println(tempSB.toString()); //debugprint
 		for(int i = 1; i<= 3; i++) {
@@ -161,22 +169,25 @@ public class IPExercise extends Exercise{
 		return tempSB.toString();
 	}
 	
-	
+	/**
+	 * Methode wird genutzt um einen Aufgabentyp zu erstellen
+	 * @return Boolean-Array, welches Zeigt welche Felder auszufuellen sind
+	 */
 	private boolean[] generateExerciseType() {
 		boolean[] boolArr = new boolean[8];
-		for(int i = 0; i<8; i++) {
+		for(int i = 0; i<8; i++) { //setze alle Werte des Arrays auf false
 			boolArr[i] = false;
 		}
-		int[] addressComponent = new int[] {1,2,4,5,6}; //diese Array stellt die M�glichkeiten des ersten Sichtbaren Teils der Aufgabe dar
-		int[] cidrComponent = new int[] {3,7,8}; //diese Array stellt die M�glichkeiten des ersten Sichtbaren Teils der Aufgabe dar
+		int[] addressComponent = new int[] {1,2,4,5,6}; //diese sArray stellt die Moeglichkeiten des ersten Sichtbaren Teils der Aufgabe dar
+		int[] cidrComponent = new int[] {3,7,8}; //dieses Array stellt die Moeglichkeiten des ersten Sichtbaren Teils der Aufgabe dar
 
 		boolArr[addressComponent[rand.nextInt(5)]-1] = true;
 		boolArr[cidrComponent[rand.nextInt(3)]-1] = true;
-		return boolArr;
+		return boolArr; //gebe Array zurueck
 	}
 	
 	/**
-	 * Lässt die jeweiligen Werte als String abrufen
+	 * Laesst die jeweiligen Werte als String abrufen
 	 * @param value von 0-7
 	 * @return gibt den jeweiligen Wert in IP-Format als String zurück
 	 */
@@ -190,7 +201,9 @@ public class IPExercise extends Exercise{
 			case 5: return this.broadcastAddress.toStringIpFormat();
 			case 6: return String.valueOf(this.networkAddress.getCidr());
 			case 7: return cidrToStringIpFormat(String.valueOf(this.networkAddress.getCidr()));
-			default: return null;
+			default:
+				App.logger.log(Level.SEVERE, value + "Ist keine gültige Eingabe für die Methode");
+				return null;
 		}
 	}
 	
@@ -209,7 +222,9 @@ public class IPExercise extends Exercise{
 			case 5: return this.broadcastAddress.getValues();
 			case 6: return new int[] {this.networkAddress.getCidr()};
 			case 7: return toIntIpFormat(cidrToStringIpFormat(String.valueOf(this.networkAddress.getCidr())),10);
-			default: return null;
+			default: 
+				App.logger.log(Level.SEVERE, value + "Ist keine gültige Eingabe für die Funktion");
+				return null;
 		}
 	}
 	
@@ -221,13 +236,14 @@ public class IPExercise extends Exercise{
 	 */
 	private int generateRandomNumber(int uG, int oG) {	//berechnet eine ganze Zahl zwischen den Inklusiven Grenzen
 		return uG + ((int)rand.nextInt(oG-uG+1));
+		//sind og und ug gleich, dann gibt die Operation 0 und es wird uG zurueckgegeben
 	}
 	
 	/**
 	 * vergleicht zwei Integer-Arrays miteinander
 	 * @param original der originalparameter
 	 * @param input die Eingabe die Verglichen werden soll
-	 * @return den Wahrheitswert, ob die Arrays übereinstimmen
+	 * @return den Wahrheitswert, ob die Arrays uebereinstimmen
 	 */
 	private boolean compareValues(int[] original, int[] input) {
 		if(original.length == input.length) {
@@ -251,23 +267,24 @@ public class IPExercise extends Exercise{
 		tempArr[0] = this.networkAddress.getValue(0);
 		tempArr[1] = this.networkAddress.getValue(1);
 		
-		if(networkAddress.getCidr() >= 24) {
+		if(networkAddress.getCidr() >= 24) {	//CIDR-Klasse ist groesser gleich 24
 			tempArr[2] = this.networkAddress.getValue(2);
-			tempArr[3] = generateRandomNumber(this.firstAddress.getValue(3), this.lastAddress.getValue(3));
+			tempArr[3] = generateRandomNumber(this.firstAddress.getValue(3), this.lastAddress.getValue(3));	//nur die 4. Stelle muss berrechnet werden
 		}
-		else {
-			//Stelle 3 auf eine Zahl zwischen Stelle 3 der ersten Adress und Stelle 3 der letzen Addresse
+		else {	// CIDR-Klasse ist kleiner als 24
+			 //setze Stelle 3 auf eine Zahl zwischen Stelle 3 der ersten Adress und Stelle 3 der letzen Addresse
 			tempArr[2]	= generateRandomNumber(firstAddress.getValue(2), lastAddress.getValue(2));
 			
-			if(tempArr[2] == firstAddress.getValue(2)) {
+			if(tempArr[2] == firstAddress.getValue(2)) {	//dritte Stelle ist gleich der dritten Stelle der ersten Adresse
 				tempArr[3] = generateRandomNumber(firstAddress.getValue(3), 255);
 			
 			}
-			else if	(tempArr[2] == lastAddress.getValue(2)) {
+			else if	(tempArr[2] == lastAddress.getValue(2)) {	//dritte Stelle ist geleich der dritten Stelle der letzen Adresse
 				tempArr[3] = generateRandomNumber(0, lastAddress.getValue(3));
 					
 				}
-			else if(tempArr[2] > firstAddress.getValue(2) && tempArr[2] < lastAddress.getValue(2)) {
+			else if(tempArr[2] > firstAddress.getValue(2) && tempArr[2] < lastAddress.getValue(2)) {	
+				// dritte Stelle ist zwischen der dritten Stelle der ersten und der letzten Adresse
 				tempArr[3] = generateRandomNumber(0,255);
 				}
 		}
@@ -293,6 +310,7 @@ public class IPExercise extends Exercise{
 			}
 			catch(NumberFormatException e) {
 				//wenn in der Methode toIntIpFormat ein Fehler auftritt, kann das Ergebnis nicht richtig sein
+				App.logger.log(Level.INFO, "In der IntIpFormat-Methode ist eine Exception aufgetreten", e);
 				results[i] = false;
 			}
 			
@@ -304,12 +322,16 @@ public class IPExercise extends Exercise{
 				//UND nicht in der vorherigen Schleife ausgeschlossen wurde, dass das Ergebnis richtig sein kann
 				if(i==1) {
 					results[i] = validateHostAddress(tempIntArr[i]);
+					if(!results[i]) {
+						App.logger.log(Level.INFO, "Hostadresse fehlerhaft");
+					}
 				}
 				else {
 					results[i] = compareValues(getValuesByNumber(i), tempIntArr[i]);
 				}
 			}
 		}
+		App.logger.log(Level.INFO, "Eingaben wurden erfolgreich ueberprueft");
 		return results;
 	
 	}

@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 
 /**
@@ -21,7 +22,7 @@ public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen 
 	 * Erzeugt ein Fenster (JFrame) mit Hinweisen im LUL Design
 	 * @param Hinweistext String 
 	 */
-	public HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung übergeben
+	public HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung uebergeben
 		super("Achtung");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
@@ -40,13 +41,14 @@ public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen 
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				HinweisFenster.super.dispose();					//Button schließt Hinweisfenster
 			}
 			
 		});
 		panelUnten.add(ok);
 		add(panelUnten, BorderLayout.SOUTH);
+		
+		App.logger.log(Level.INFO, "HinweisFenster erzeugt");
 		
 		setVisible(true);
 		pack();
