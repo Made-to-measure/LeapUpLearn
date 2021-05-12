@@ -4,14 +4,19 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
 import de.nrw.hspv.exercises.ZahlensystemExercise;
+import de.nrw.hspv.ui.HinweisFenster;
 
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
@@ -30,6 +35,10 @@ public class UIZahlensysteme extends JPanel {
 	public JTextField tfEingabeHexa;
 	public JLabel lblInfo;
 	public boolean inBearbeitung = true;
+	public boolean verifiedDezi;
+	public boolean verifiedBinaer;
+	public boolean verifiedOktal;
+	public boolean verifiedHexa;
 	ZahlensystemExercise aufgabe;
 	
 	/**
@@ -49,38 +58,43 @@ public class UIZahlensysteme extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(inBearbeitung) {
-					String dez = UIZahlensysteme.this.tfEingabeDezi.getText();	//Abfrage der Textfelder
-					String bin = UIZahlensysteme.this.tfEingabeBinaer.getText();
-					String okt = UIZahlensysteme.this.tfEingabeOktal.getText();
-					String hex = UIZahlensysteme.this.tfEingabeHexa.getText();
-					if(aufgabe.ueberpruefe(dez, bin, okt, hex)) {							//Überprüfung der Eingaben
-						lblInfo.setText("Richtig!");
+					if(verifiedDezi && verifiedBinaer && verifiedOktal && verifiedHexa) {
+						String dez = UIZahlensysteme.this.tfEingabeDezi.getText();	//Abfrage der Textfelder
+						String bin = UIZahlensysteme.this.tfEingabeBinaer.getText();
+						String okt = UIZahlensysteme.this.tfEingabeOktal.getText();
+						String hex = UIZahlensysteme.this.tfEingabeHexa.getText();
+						if(aufgabe.ueberpruefe(dez, bin, okt, hex)) {							//Überprüfung der Eingaben
+							lblInfo.setText("Richtig!");
+						}
+						else {
+							lblInfo.setText("Leider nicht ganz richtig, hier siehst du die Lösung:");
+							if(aufgabe.zahl != Integer.parseInt(dez)) {
+								tfEingabeDezi.setBackground(Color.red);
+								tfEingabeDezi.setText(aufgabe.dezZahl);
+								tfEingabeDezi.setEnabled(false);
+							}
+							if(aufgabe.zahl != Integer.parseUnsignedInt(bin, 2)) {
+								tfEingabeBinaer.setBackground(Color.red);
+								tfEingabeBinaer.setText(aufgabe.binZahl);
+								tfEingabeBinaer.setEnabled(false);
+							}
+							if(aufgabe.zahl != Integer.parseUnsignedInt(okt, 8)) {
+								tfEingabeOktal.setBackground(Color.red);
+								tfEingabeOktal.setText(aufgabe.oktZahl);
+								tfEingabeOktal.setEnabled(false);
+							}
+							if(aufgabe.zahl != Integer.parseUnsignedInt(hex, 16)) {
+								tfEingabeHexa.setBackground(Color.red);
+								tfEingabeHexa.setText(aufgabe.hexZahl);
+								tfEingabeHexa.setEnabled(false);
+							}
+						}
+						btnPruefe.setText("Neue Aufgabe");
+						inBearbeitung = false;
 					}
 					else {
-						lblInfo.setText("Leider nicht ganz richtig, hier siehst du die Lösung:");
-						if(aufgabe.zahl != Integer.parseInt(dez)) {
-							tfEingabeDezi.setBackground(Color.red);
-							tfEingabeDezi.setText(aufgabe.dezZahl);
-							tfEingabeDezi.setEnabled(false);
-						}
-						if(aufgabe.zahl != Integer.parseUnsignedInt(bin, 2)) {
-							tfEingabeBinaer.setBackground(Color.red);
-							tfEingabeBinaer.setText(aufgabe.binZahl);
-							tfEingabeBinaer.setEnabled(false);
-						}
-						if(aufgabe.zahl != Integer.parseUnsignedInt(okt, 8)) {
-							tfEingabeOktal.setBackground(Color.red);
-							tfEingabeOktal.setText(aufgabe.oktZahl);
-							tfEingabeOktal.setEnabled(false);
-						}
-						if(aufgabe.zahl != Integer.parseUnsignedInt(hex, 16)) {
-							tfEingabeHexa.setBackground(Color.red);
-							tfEingabeHexa.setText(aufgabe.hexZahl);
-							tfEingabeHexa.setEnabled(false);
-						}
+						new HinweisFenster("Bitte \u00DCberpr\u00FCfe deine Eingaben!");
 					}
-					btnPruefe.setText("Neue Aufgabe");
-					inBearbeitung = false;
 				}
 				else {
 					aktualisiereAufgabe();						//neue Aufgabe wird erstellt und dargestellt
@@ -123,8 +137,25 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.NORTH, tfEingabeDezi, 48, SpringLayout.NORTH, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeDezi, 88, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeDezi, -212, SpringLayout.EAST, panel_1);
-		panel_1.add(tfEingabeDezi);
 		tfEingabeDezi.setColumns(10);
+		tfEingabeDezi.setInputVerifier(new InputVerifier() {
+
+			@Override
+			public boolean verify(JComponent input) {
+				try {
+					Integer.parseInt(((JTextField) input).getText());
+				}
+				catch (Exception e) {
+					verifiedDezi = false;
+					return false;
+				}
+				verifiedDezi = true;
+				return true;
+			}
+			
+		});
+		panel_1.add(tfEingabeDezi);
+		
 		
 		tfEingabeBinaer = new JTextField();
 		sl_panel_1.putConstraint(SpringLayout.NORTH, lblBinaer, 3, SpringLayout.NORTH, tfEingabeBinaer);
@@ -133,6 +164,22 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeBinaer, 88, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeBinaer, -212, SpringLayout.EAST, panel_1);
 		tfEingabeBinaer.setColumns(10);
+		tfEingabeBinaer.setInputVerifier(new InputVerifier() {
+
+			@Override
+			public boolean verify(JComponent input) {
+				try {
+					Integer.parseUnsignedInt(((JTextField) input).getText(), 2);
+				}
+				catch (Exception e) {
+					verifiedBinaer = false;
+					return false;
+				}
+				verifiedBinaer = true;
+				return true;
+			}
+			
+		});
 		panel_1.add(tfEingabeBinaer);
 		
 		tfEingabeOktal = new JTextField();
@@ -142,6 +189,22 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeOktal, 88, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeOktal, -212, SpringLayout.EAST, panel_1);
 		tfEingabeOktal.setColumns(10);
+		tfEingabeOktal.setInputVerifier(new InputVerifier() {
+
+			@Override
+			public boolean verify(JComponent input) {
+				try {
+					Integer.parseUnsignedInt(((JTextField) input).getText(), 8);
+				}
+				catch (Exception e) {
+					verifiedOktal = false;
+					return false;
+				}
+				verifiedOktal = true;
+				return true;
+			}
+			
+		});
 		panel_1.add(tfEingabeOktal);
 		
 		tfEingabeHexa = new JTextField();
@@ -151,6 +214,22 @@ public class UIZahlensysteme extends JPanel {
 		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeHexa, 88, SpringLayout.WEST, panel_1);
 		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeHexa, -212, SpringLayout.EAST, panel_1);
 		tfEingabeHexa.setColumns(10);
+		tfEingabeHexa.setInputVerifier(new InputVerifier() {
+
+			@Override
+			public boolean verify(JComponent input) {
+				try {
+					Integer.parseUnsignedInt(((JTextField) input).getText(), 16);
+				}
+				catch (Exception e) {
+					verifiedHexa = false;
+					return false;
+				}
+				verifiedHexa = true;
+				return true;
+			}
+			
+		});
 		panel_1.add(tfEingabeHexa);
 		
 		//Label für Infos
@@ -162,6 +241,7 @@ public class UIZahlensysteme extends JPanel {
 		//Erzeuge Aufgabe Zahlensysteme
 		aktualisiereAufgabe();
 
+		App.logger.log(Level.INFO, "UIZahlensysteme erstellt");
 	}
 	
 	/**
@@ -185,6 +265,11 @@ public class UIZahlensysteme extends JPanel {
 		tfEingabeOktal.setText("");
 		tfEingabeHexa.setText("");
 		
+		verifiedDezi = false;							//Ueberpruefung der Eingaben auf false setzen
+		verifiedBinaer = false;
+		verifiedOktal = false;
+		verifiedHexa = false;
+		
 		aufgabe = new ZahlensystemExercise();				//neue Aufgabe wird zugewiesen
 															
 		//Textfelder werden entsprechend zugewiesen
@@ -192,19 +277,24 @@ public class UIZahlensysteme extends JPanel {
 		case 0:
 			tfEingabeDezi.setText(aufgabe.dezZahl);
 			tfEingabeDezi.setEnabled(false);
+			verifiedDezi = true;
 			break;
 		case 1:
 			tfEingabeBinaer.setText(aufgabe.binZahl);
 			tfEingabeBinaer.setEnabled(false);
+			verifiedBinaer = true;
 			break;
 		case 2:
 			tfEingabeOktal.setText(aufgabe.oktZahl);
 			tfEingabeOktal.setEnabled(false);
+			verifiedOktal = true;
 			break;
 		case 3:
 			tfEingabeHexa.setText(aufgabe.hexZahl);
 			tfEingabeHexa.setEnabled(false);
+			verifiedHexa = true;
 			break;
 		}
+		
 	}
 }

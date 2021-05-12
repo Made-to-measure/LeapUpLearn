@@ -2,6 +2,8 @@ package de.nrw.hspv.ui;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.util.logging.Level;
+
 import javax.swing.SpringLayout;
 
 import de.nrw.hspv.exercises.Aufgabentyp;
@@ -183,5 +185,6 @@ public class UIStatistics extends JPanel {
 		panelLogikFalsch.setBackground(Color.RED);
 		add(panelLogikFalsch);
 
+		App.logger.log(Level.INFO, "UIStatistics erzeugt");
 	}
 }

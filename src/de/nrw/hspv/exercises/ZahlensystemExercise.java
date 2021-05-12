@@ -1,8 +1,10 @@
 package de.nrw.hspv.exercises;
 
 import java.awt.Color;
+import java.util.logging.Level;
 
 import de.nrw.hspv.login.Login;
+import de.nrw.hspv.ui.App;
 import de.nrw.hspv.ui.UIZahlensysteme;
 
 public class ZahlensystemExercise extends Exercise {				//erbt von Exercise
@@ -35,6 +37,7 @@ public class ZahlensystemExercise extends Exercise {				//erbt von Exercise
 		binZahl = Integer.toBinaryString(zahl);
 		oktZahl = Integer.toOctalString(zahl);
 		hexZahl = Integer.toHexString(zahl);
+		App.logger.log(Level.INFO, "Neue Zahlensystemaufgabe generiert");
 		
 	}
 	

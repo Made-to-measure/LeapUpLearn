@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 
 /**
@@ -118,6 +119,8 @@ public class LoginGUI extends JFrame{
 		panelUnten.add(anmelden);
 		panelUnten.add(registrieren);
 		add(panelUnten, BorderLayout.SOUTH);
+		
+		App.logger.log(Level.INFO, "LoginGUI erzeugt");
 		
 		setVisible(true);
 		pack();

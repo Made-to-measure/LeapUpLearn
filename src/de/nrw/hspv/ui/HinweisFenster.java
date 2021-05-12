@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 
 /**
@@ -47,6 +48,8 @@ public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen 
 		});
 		panelUnten.add(ok);
 		add(panelUnten, BorderLayout.SOUTH);
+		
+		App.logger.log(Level.INFO, "HinweisFenster erzeugt");
 		
 		setVisible(true);
 		pack();
