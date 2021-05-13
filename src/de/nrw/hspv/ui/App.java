@@ -22,6 +22,7 @@ public class App {
 	private static String os = System.getProperty("os.name") + "Version " + System.getProperty("os.version");
 	private static String screenResulution = Toolkit.getDefaultToolkit().getScreenSize().getWidth() + "x" + Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		generateLogFile();
 		setLogLevel(Level.INFO);
@@ -47,12 +48,12 @@ public class App {
 			e.printStackTrace();
 		}
 		logger.info("Start");
-		logger.log(Level.INFO, "Betriebssystem: " + os + "\nBildschirmauflösung: " + screenResulution);
+		logger.log(Level.INFO, "Betriebssystem: " + os + "\nBildschirmaufloesung: " + screenResulution);
 		
 	}
 	
 	/**
-	 * setLogLevel setzt das Level des Logs indem der Parameter Level übergeben wird
+	 * setLogLevel setzt das Level des Logs indem der Parameter Level uebergeben wird
 	 * @param level
 	 */
 	public static void setLogLevel(Level level) {

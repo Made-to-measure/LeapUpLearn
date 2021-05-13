@@ -26,12 +26,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-
-
-//import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
-
 /**
- * Klasse fï¿½r die grafische Benutzeroberflï¿½che 
+ * Klasse fuer die grafische Benutzeroberflaeche 
  * 
  * 
  * @author Christian
@@ -39,15 +35,11 @@ import javax.swing.JRadioButton;
  * 
  */
 public class Mainframe extends JFrame {
-
-	
 	//lege Objekte an um sie verwaltbar zu machen
 	MenueBar menueBar = new MenueBar();
 	MainPanel MainPanel;
 	BorderLayout mainPanelLayout;
 
-	
-	
 	public Mainframe(){
 		//Rufe den Konstruktor von JFrame auf
 		super("LeapUpLearn - Made-to-Measure LernApp f\u00FCr Verwaltungsinformatik - HSPV NRW");
@@ -63,7 +55,6 @@ public class Mainframe extends JFrame {
         } catch (final SecurityException e) {
 //            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
         }
-		
 		setIconImage(icon);	//wirft anscheinend keine Fehler trotz MacOS
 
 		setLayout(new BorderLayout());
@@ -75,7 +66,7 @@ public class Mainframe extends JFrame {
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((int) d.getWidth()/2 - this.getWidth()/2, (int) d.getHeight()/2 - this.getHeight()/2);
 		
-		themenpanel(); //Menï¿½ mit Aufgaben und Statistik anzeigen
+		themenpanel(); //Menue mit Aufgaben und Statistik anzeigen
 		//pack();
 		App.logger.log(Level.INFO, "Mainframe erzeugt");
 		setVisible(true);
@@ -115,9 +106,9 @@ public class Mainframe extends JFrame {
 		
 		JPanel ThemenPanel = new JPanel();
 		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
-		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
+		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Grueuee
 															// haben) horizontal anordnen
-		// Buttons anlegen und hinzufï¿½gen
+		// Buttons anlegen und hinzufuegen
 		JButton btnGrdlIT = new JButton("Grundlagen IT");
 		ThemenPanel.add(btnGrdlIT);
 		btnGrdlIT.addActionListener(new ActionListener() {
@@ -161,11 +152,11 @@ public class Mainframe extends JFrame {
 		 */ 
 		JPanel ExPanel = new JPanel();
 		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
-		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Grï¿½ï¿½e
+		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Grueuee
 		ExPanel.setVisible(true);						// haben) horizontal anordnen
 		
 		if (Aufgabe == "GrdlIT") {
-			// Buttons für Kurs GrdlIT anlegen und hinzufügen
+			// Buttons fuer Kurs GrdlIT anlegen und hinzufuegen
 			// IPAdressen Btn anlegen Aufgabe aufrufen
 			JButton btnIPAdressen = new JButton("IP Adressen");
 			btnIPAdressen.addActionListener(new ActionListener() { // IPAdressen Aufgabe aufrufen
@@ -214,11 +205,11 @@ public class Mainframe extends JFrame {
 			ExPanel.add(btnLogik);
 		}
 		
-		//Schaltflï¿½che optisch mit JLabel absetzen
+		//Schaltflaeche optisch mit JLabel absetzen
 		JLabel lblPlatzhalter = new  JLabel();
 		ExPanel.add(lblPlatzhalter);
 		
-    //Zurück-Button um zu den Kursen zurückzukehren
+    //Zurueck-Button um zu den Kursen zurueckzukehren
 		JButton btnZurueck = new JButton("Zur\u00fcck");
 
 		
@@ -252,39 +243,39 @@ public class Mainframe extends JFrame {
 	}
 	class MenueBar extends JMenuBar{
 		/**
-		 * Klasse für das Programmmenü, Untermenüs, MenuItem
+		 * Klasse fuer das Programmmenue, Untermenues, MenuItem
 		 * 
 		 * @author Christian
 		 * @version 1.0
 		 */
 		//Klassenvariablen
-		//Eintrï¿½ge in der MenuBar
+		//Eintraege in der MenuBar
 		JMenu menuDatei, menuKurs, menuInfo;
 		
-		//Untermenï¿½s --> ebenfalls JMenus: subM = SubMenu
+		//Untermenues --> ebenfalls JMenus: subM = SubMenu
 		JMenu subMGrdlIT, subMMathe;
 		
-		//Elemente der Eintrï¿½ge
-		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmLogik, mItmInfo, mItmOptions;
+		//Elemente der Eintraege
+		JMenuItem mItmLoad, mItmSave, mItmAufgIPAdress, mItmScheduling, mItmZahlensysteme, mItmCPUTakt,
+		mItmLogik, mItmInfo, mItmOptions;
 		
 	
-		//quasi Methode initialize() im originalcode
 		MenueBar(){
 			super();	//rufe den Konstrukter von JMenuBar auf
 			
 		//Steuerelemente anlegen und Funktionen implementieren
-			//Menï¿½s / Reiter
-			menuDatei = new JMenu("Datei");
+			//Menues / Reiter
+			//menuDatei = new JMenu("Datei");
 			menuKurs = new JMenu("Kurs");
 			menuInfo = new JMenu("Info");
 			
-			//Menï¿½-Eintrï¿½ge --- mItm = menuItem
-			mItmLoad = new JMenuItem("Laden");
-			mItmSave = new JMenuItem("Speichern");
+			//Menue-Eintraege --- mItm = menuItem
+			//mItmLoad = new JMenuItem("Laden");
+			//mItmSave = new JMenuItem("Speichern");
 			
-			//der Menï¿½-Punkt Kurse enthï¿½lt die Kurse als Untermenus "subM..."
+			//der Menue-Punkt Kurse enthaelt die Kurse als Untermenus "subM..."
 			subMGrdlIT = new JMenu("Grundlagen IT");
-				//Aufgaben zum Kurs Grundlagen IT anlegen:
+				//Aufgaben zum Kurs Grundlagen IT anlegen und Funktion zum Aufruf implementieren:
 					mItmAufgIPAdress = new JMenuItem("IP v4 / Subnetting"); 
 					mItmAufgIPAdress.addActionListener(new ActionListener() {
 						@Override
@@ -295,7 +286,27 @@ public class Mainframe extends JFrame {
 							MainPanel.repaint();	 //auch angezeigt wird
 						}
 					});
-					mItmScheduling = new JMenuItem("Scheduling");
+					mItmZahlensysteme = new JMenuItem("Zahlensysteme"); 
+					mItmZahlensysteme.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							removeCenter(); 		//
+							MainPanel.add(new UIZahlensysteme(),BorderLayout.CENTER);
+							MainPanel.revalidate();  //Methoden damit die Aufgabe nach dem Laden
+							MainPanel.repaint();	 //auch angezeigt wird
+						}
+					});
+					mItmCPUTakt = new JMenuItem("Zugriffszeiten"); 
+					mItmCPUTakt.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							removeCenter(); 		//
+							MainPanel.add(new UI_CPUTakt(),BorderLayout.CENTER);
+							MainPanel.revalidate();  //Methoden damit die Aufgabe nach dem Laden
+							MainPanel.repaint();	 //auch angezeigt wird
+						}
+					});
+					//mItmScheduling = new JMenuItem("Scheduling");
 			
 			subMMathe = new JMenu("Mathematik");
 				//Aufgaben zum Kurs Mathe anlegen:
@@ -324,20 +335,22 @@ public class Mainframe extends JFrame {
 				}
 			});
 		//Menu aufbauen
-			//Menï¿½s der Menï¿½-Leiste hinzufï¿½gen
-			add(menuDatei);
+			//Menues der Menue-Leiste hinzufuegen
+			//add(menuDatei);
 			add(menuKurs);
 			add(menuInfo);
 			
-			//Eintrï¿½ge zum Datei-Menï¿½ hinzufï¿½gen
-			menuDatei.add(mItmLoad);
-			menuDatei.add(mItmSave);
+			//Eintruege zum Datei-Menue hinzufuegen
+			//menuDatei.add(mItmLoad);
+			//menuDatei.add(mItmSave);
 			
-			//Eintrï¿½ge zum Kurs-Menï¿½ hinzufï¿½gen
+			//Eintruege zum Kurs-Menue hinzufuegen
 			menuKurs.add(subMGrdlIT);
 				subMGrdlIT.add(mItmAufgIPAdress);
-				subMGrdlIT.add(mItmScheduling);
-				mItmScheduling.setEnabled(false); //nicht implementiert
+				subMGrdlIT.add(mItmZahlensysteme);
+				subMGrdlIT.add(mItmCPUTakt);
+				//subMGrdlIT.add(mItmScheduling);
+				//mItmScheduling.setEnabled(false); //nicht implementiert
 			menuKurs.add(subMMathe);
 				subMMathe.add(mItmLogik);
 				mItmLogik.setEnabled(false); //nicht implementiert
