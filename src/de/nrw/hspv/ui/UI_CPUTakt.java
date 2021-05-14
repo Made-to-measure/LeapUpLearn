@@ -29,7 +29,7 @@ import de.nrw.hspv.statistics.zuStatistik;
 public class UI_CPUTakt extends JPanel implements zuStatistik{
 	//Steuerelemente erstellen
 	private final JLabel lblAufgabe= new JLabel("Machen Sie die folgenden Werte vergleichbar, wenn die CPU mit 2GHz getaktet ist");
-	private JButton btnPruefen = new JButton("Pr�fen");
+	private JButton btnPruefen = new JButton("Pr\u00fcfen");
 	private JTextField txtL1Zeit;
 	private JTextField txtL3Zeit;
 	private JTextField txtL3VerglW;
@@ -240,7 +240,7 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		else {
 			txtL1Zeit.setBackground(Color.RED);	
 		}	
-		App.logger.log(Level.INFO, "CPU-Takt / Zugriffszeitaufgabe gepr�ft");
+		App.logger.log(Level.INFO, "CPU-Takt / Zugriffszeitaufgabe gepr\u00fcft");
 		
 		return true;
 		

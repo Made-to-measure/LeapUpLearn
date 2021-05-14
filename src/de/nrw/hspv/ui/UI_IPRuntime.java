@@ -156,7 +156,7 @@ public class UI_IPRuntime extends JPanel {
 	 */
 	public void loadNewExercise() {
 		this.currentExercise = new IPExercise();	//ändere die momentane Aufgabe
-		boolean[] boolArr = this.currentExercise.getExerciseType();	//hole den neuen Aufgabentyp
+		boolean[] boolArr = this.currentExercise.getExerciseType();	//generiere den neuen Aufgabentyp
 		for(int i=0; i<8; i++) {
 			//formatiere alle Felder auf Standard
 			fieldArr[i].setBackground(Color.WHITE);
@@ -273,10 +273,9 @@ public class UI_IPRuntime extends JPanel {
 	
 	class PanelIpZeilen extends JPanel{
 	/**
-	 * Panel welches Die jeweiligen Felder in einem Springlayout anlegt
+	 * Panel welches die jeweiligen Felder in einem Springlayout anlegt
 	 */
 		int panelLenght = 400;
-		
 		
 		PanelIpZeilen(){
 			super();
