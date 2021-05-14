@@ -29,7 +29,8 @@ public class IPNetworkAddress extends IPAddress{
 		}
 		
 		/**
-		 * Erzeugt eine Netzwerkadresse unter Vorgabe der Adresswerte und der CIDR-Klasse
+		 * Erzeugt eine Netzwerkadresse unter Vorgabe der Adresswerte und der CIDR-Klasse wurde 
+		 * Der Haupzweck ist das Testen der Klasse und der einzenen create Methoden
 		 * @param cidr CIDR-Klasse
 		 * @param values Integer-Array mit den Werten der IP
 		 */

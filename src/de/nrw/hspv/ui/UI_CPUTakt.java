@@ -29,7 +29,7 @@ import de.nrw.hspv.statistics.zuStatistik;
 public class UI_CPUTakt extends JPanel implements zuStatistik{
 	//Steuerelemente erstellen
 	private final JLabel lblAufgabe= new JLabel("Machen Sie die folgenden Werte vergleichbar, wenn die CPU mit 2GHz getaktet ist");
-	private JButton btnPrüfen = new JButton("Prüfen");
+	private JButton btnPruefen = new JButton("Prï¿½fen");
 	private JTextField txtL1Zeit;
 	private JTextField txtL3Zeit;
 	private JTextField txtL3VerglW;
@@ -65,10 +65,10 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		//Zusaetzliches Panel um Btn zur Ueberpruefung der eingegebenen Werte
 		JPanel panelS = new JPanel();
 		add(panelS, BorderLayout.SOUTH); //Btn unter der Aufgabe platzieren
-		panelS.add(btnPrüfen);
+		panelS.add(btnPruefen);
 		
 		//Funktion des Ueberpruefen-Btn:
-		btnPrüfen.addActionListener(new ActionListener() {
+		btnPruefen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CheckErgebnis();
@@ -80,14 +80,14 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		JPanel panelAufg = new JPanel();
 		add(panelAufg, BorderLayout.CENTER); //Anzeige in der Mitte des UI_CPUTaktPanels
 		
-		//rechts etwas Platz lassen für die Optik
+		//rechts etwas Platz lassen fï¿½r die Optik
 		Component horizontalStrut = Box.createHorizontalStrut(50);
 		add(horizontalStrut, BorderLayout.EAST);
 		
 		//Layout setzen
 		panelAufg.setLayout(new GridLayout(6, 3, 0, 0)); //6 Zeilen, 3 Spalten
 		
-		//Spalten-Überschriften
+		//Spalten-ï¿½berschriften
 		lblSpeicher = new JLabel("Speicher  ");
 		lblSpeicher.setHorizontalAlignment(SwingConstants.RIGHT);
 		panelAufg.add(lblSpeicher);
@@ -204,7 +204,7 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 	/**
 	 * Methode gleicht die eingegebenen Werte mit den erwarteten ab.
 	 * <br><br>
-	 *  txt-Felder werden grün eingefärbt, wenn der Wert richtig ist
+	 *  txt-Felder werden grï¿½n eingefï¿½rbt, wenn der Wert richtig ist
 	 *  und rot wenn der Wert nicht der erwartete ist.
 	 *
 	 * @return
@@ -240,7 +240,7 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		else {
 			txtL1Zeit.setBackground(Color.RED);	
 		}	
-		App.logger.log(Level.INFO, "CPU-Takt / Zugriffszeitaufgabe geprüft");
+		App.logger.log(Level.INFO, "CPU-Takt / Zugriffszeitaufgabe geprï¿½ft");
 		
 		return true;
 		
