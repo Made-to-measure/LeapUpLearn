@@ -143,6 +143,39 @@ public class Mainframe extends JFrame {
 				MainPanel.repaint();
 			}
 		});
+		
+		/*
+		 * Möchtest du einen weiteren Kurs mit Aufgabe hinzufügen muss du diesen Kurs im Themenpanel erstellen
+		 */
+		JButton btnBeispielKurs = new JButton("BeispielButton");
+		//ThemenPanel.add(btnBeispielKurs);
+		btnBeispielKurs.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//Alternative 1:
+				//Hier wird die UI deiner Aufgabe direkt hinzugefuegthinzugefuegt
+//				removeCenter();
+//				MainPanel.add(new UI_ExampleClassExercise(), BorderLayout.CENTER);
+//				
+//				//Methoden sorgen für die ordnungsgemaeße Anzeige im Panel
+//				MainPanel.revalidate();
+//				MainPanel.repaint();
+				
+				//Alternative 2:
+				/*
+				 * moechtest du, dass dein Kurs ein erweitertes Menue oeffnet
+				 * musst du folgende Methoden Implementieren 
+				 */
+			
+				showEx("BeispielKurs"); //Hier musst du deine Aufgabe benennen
+				ThemenPanel.setVisible(false); //Themenpanel wird auf False gesetzt
+				
+				//Jetze muss noch die Methode showEx erweitert werden um deine Aufgabe schaue dafür in die showEx() methode
+			}
+			
+		});
 
 	}
 	public void showEx(String Aufgabe){ 
@@ -205,11 +238,38 @@ public class Mainframe extends JFrame {
 			ExPanel.add(btnLogik);
 		}
 		
+		/*
+		 * Hier ist der 2. Teil von Alternative 2 
+		 * Hier implementierst du die 2. Schicht des Menüs
+		 */
+		else if(Aufgabe == "BeispielKurs") {	//Der String muss dem Eintrag in Themenpanel() gleichen WICHITG!
+			JButton btnBeispielAufgabe = new JButton("BeispielAufgabe");	//Erzeuge neuen Menüeintrag
+			btnBeispielAufgabe.addActionListener(new ActionListener() {		//Füge ActionListener ein welcher die Aufgabe anzeigt
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//Cleart das Center
+					removeCenter();
+					
+					//Hier musst du deine UI-Klasse zur Aufgabenbearbeitung hinzufügen
+					MainPanel.add(new UI_ExampleClassExercise(), BorderLayout.CENTER);
+					
+					//Methoden dienen zur ordnungsgemaessen Anzeige der GUI
+					MainPanel.revalidate();
+					MainPanel.repaint();
+				}
+				
+			});
+			
+			ExPanel.add(btnBeispielAufgabe);
+		}
+		
 		//Schaltflaeche optisch mit JLabel absetzen
 		JLabel lblPlatzhalter = new  JLabel();
 		ExPanel.add(lblPlatzhalter);
 		
-    //Zurueck-Button um zu den Kursen zurueckzukehren
+		
+		//Zurueck-Button um zu den Kursen zurueckzukehren
 		JButton btnZurueck = new JButton("Zur\u00fcck");
 
 		

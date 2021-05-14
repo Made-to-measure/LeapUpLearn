@@ -26,7 +26,7 @@ public class UIStatistics extends JPanel {
 	 */
 	public UIStatistics() {
 		
-		//Anzahl geloester Aufgaben und gesamter Aufgaben je Aufgabentyp f�r aktiven User
+		//Anzahl geloester Aufgaben und gesamter Aufgaben je Aufgabentyp f�r aktiven User
 		int anzahlIP = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse);
 		int anzahlIPRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.IPAddresse, true);
 		int anzahlZahlensys = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Zahlensysteme);
@@ -37,12 +37,20 @@ public class UIStatistics extends JPanel {
 		int anzahlLogikRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Logik, true);
 		int anzahlMathe = anzahlLogik;
 		int anzahlMatheRichtig = anzahlLogikRichtig;
+		
+		//Hier die Beispielstatistik
+		//Hier wird die Anzahl der richtigen und der Gesamtaufgaben abgefragt
+//		int anzahlBeispielAufgabe = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Beispielaufgabe);
+//		int anzahlBeispielAufgabeRichtig = Statistiken.getAnzahl(Login.aktiverUser.name, Aufgabentyp.Beispielaufgabe, true);
 		//Panellaengen fuer Visualisierung der Anzahl richtig geloester Aufgaben
 		int laengeIT;
 		int laengeIP;
 		int laengeZahlensys;
 		int laengeMathe;
 		int laengeLogik;
+		
+		//Füge die Längen für die Graphische Animation hinzu
+//		int laengeBeispielAufgabe;
 		
 		
 		if(anzahlIT != 0) 									//hier wird die Laenge des gruenen Balkens in der Statistik berechnet
@@ -69,7 +77,13 @@ public class UIStatistics extends JPanel {
 			laengeLogik = anzahlLogikRichtig + (100/anzahlLogik);
 		else
 			laengeLogik = 0;
+		
+		//Möchtest du die Statistik Anlegen musst du hier die aktuellen Werte berrechnen
 
+//		if(anzahlBeispielAufgabe != 0) //hier wird die division durch null vermieden
+//			laengeBeispielAufgabe = anzahlBeispielAufgabeRichtig + (100/anzahlBeispielAufgabe);
+//		else
+//			laengeBeispielAufgabe = 0;
 		
 		
 		SpringLayout springLayout = new SpringLayout();
@@ -126,6 +140,8 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, lblLogikWerte, 0, SpringLayout.NORTH, lblLogik);
 		springLayout.putConstraint(SpringLayout.WEST, lblLogikWerte, 0, SpringLayout.WEST, lblITWerte);
 		add(lblLogikWerte);
+		
+		//Hier musst du das Label für die Bennenung der Aufgaben Erzeugen
 		
 		
 		
@@ -212,6 +228,8 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.EAST, panelLogikFalsch, 100, SpringLayout.WEST, panelLogik);
 		panelLogikFalsch.setBackground(Color.RED);
 		add(panelLogikFalsch);
+		
+		//Hier musst du das Panel für die Anzeige richtig zu falsch implementieren
 
 		App.logger.log(Level.INFO, "UIStatistics erzeugt");
 	}
