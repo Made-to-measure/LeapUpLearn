@@ -116,29 +116,39 @@ public class UIZahlensysteme extends JPanel {
 		panelOben.setLayout(layoutAufgabe);
 		
 		//Label, die die Textfelder bezeichnen
-		JLabel lblBinaer = new JLabel("Bin\u00E4r");	//Erzeugung des Labels fuer Benennung
-		lblBinaer.setHorizontalAlignment(SwingConstants.TRAILING);	//Text soll rechtsbuendig sein
-		panelOben.add(lblBinaer);		//Label wird panelOben hinzugefuegt
 		
-		JLabel lblDezimal = new JLabel("Dezimal");
-		layoutAufgabe.putConstraint(SpringLayout.EAST, lblDezimal, 0, SpringLayout.EAST, lblBinaer);
-		lblDezimal.setHorizontalAlignment(SwingConstants.TRAILING);
-		panelOben.add(lblDezimal);
+		
+		JLabel lblDezimal = new JLabel("Dezimal"); //Erzeugung des Labels fuer Benennung
+		//Positionierung des Labels im SpringLayout
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblDezimal, 40, SpringLayout.NORTH, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblDezimal, 80, SpringLayout.WEST, panelOben);
+		lblDezimal.setHorizontalAlignment(SwingConstants.TRAILING); //Text soll rechtsbuendig sein
+		panelOben.add(lblDezimal); //Label wird panelOben hinzugefuegt
+		
+		JLabel lblBinaer = new JLabel("Bin\u00E4r");
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblBinaer, 20, SpringLayout.SOUTH, lblDezimal);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblBinaer, 0, SpringLayout.EAST, lblDezimal);
+		lblBinaer.setHorizontalAlignment(SwingConstants.TRAILING);	
+		panelOben.add(lblBinaer);		
 		
 		JLabel lblOktal = new JLabel("Oktal");
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblOktal, 20, SpringLayout.SOUTH, lblBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblOktal, 0, SpringLayout.EAST, lblDezimal);
 		lblOktal.setHorizontalAlignment(SwingConstants.TRAILING);
 		panelOben.add(lblOktal);
 		
 		JLabel lblHexa = new JLabel("Hexadezimal");
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblHexa, 20, SpringLayout.SOUTH, lblOktal);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblHexa, 0, SpringLayout.EAST, lblDezimal);
 		lblHexa.setHorizontalAlignment(SwingConstants.TRAILING);
 		panelOben.add(lblHexa);
 		
 		//Textfelder für die Eingabe
 		tfEingabeDezi = new JTextField();
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblDezimal, 3, SpringLayout.NORTH, tfEingabeDezi);
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeDezi, 48, SpringLayout.NORTH, panelOben);
-		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeDezi, 88, SpringLayout.WEST, panelOben);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeDezi, -212, SpringLayout.EAST, panelOben);
+		//Positionierung des Textfields im SpringLayout
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeDezi, 0, SpringLayout.NORTH, lblDezimal);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeDezi, 20, SpringLayout.EAST, lblDezimal);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeDezi, -200, SpringLayout.EAST, panelOben);
 		tfEingabeDezi.setColumns(10);
 		tfEingabeDezi.setInputVerifier(new InputVerifier() {		//InputVerifier fuer Eingabe der Zahl
 
@@ -160,11 +170,9 @@ public class UIZahlensysteme extends JPanel {
 		
 		
 		tfEingabeBinaer = new JTextField();
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblBinaer, 3, SpringLayout.NORTH, tfEingabeBinaer);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, lblBinaer, -6, SpringLayout.WEST, tfEingabeBinaer);
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeBinaer, 6, SpringLayout.SOUTH, tfEingabeDezi);
-		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeBinaer, 88, SpringLayout.WEST, panelOben);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeBinaer, -212, SpringLayout.EAST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeBinaer, 0, SpringLayout.NORTH, lblBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeBinaer, 20, SpringLayout.EAST, lblBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeBinaer, -200, SpringLayout.EAST, panelOben);
 		tfEingabeBinaer.setColumns(10);
 		tfEingabeBinaer.setInputVerifier(new InputVerifier() {
 
@@ -185,11 +193,9 @@ public class UIZahlensysteme extends JPanel {
 		panelOben.add(tfEingabeBinaer);
 		
 		tfEingabeOktal = new JTextField();
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblOktal, 3, SpringLayout.NORTH, tfEingabeOktal);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, lblOktal, -6, SpringLayout.WEST, tfEingabeOktal);
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeOktal, 6, SpringLayout.SOUTH, tfEingabeBinaer);
-		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeOktal, 88, SpringLayout.WEST, panelOben);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeOktal, -212, SpringLayout.EAST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeOktal, 0, SpringLayout.NORTH, lblOktal);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeOktal, 20, SpringLayout.EAST, lblOktal);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeOktal, -200, SpringLayout.EAST, panelOben);
 		tfEingabeOktal.setColumns(10);
 		tfEingabeOktal.setInputVerifier(new InputVerifier() {
 
@@ -210,11 +216,10 @@ public class UIZahlensysteme extends JPanel {
 		panelOben.add(tfEingabeOktal);
 		
 		tfEingabeHexa = new JTextField();
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblHexa, 3, SpringLayout.NORTH, tfEingabeHexa);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, lblHexa, -6, SpringLayout.WEST, tfEingabeHexa);
-		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeHexa, 9, SpringLayout.SOUTH, tfEingabeOktal);
-		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeHexa, 88, SpringLayout.WEST, panelOben);
-		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeHexa, -212, SpringLayout.EAST, panelOben);
+		
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeHexa, 0, SpringLayout.NORTH, lblHexa);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeHexa, 20, SpringLayout.EAST, lblHexa);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeHexa, -200, SpringLayout.EAST, panelOben);
 		tfEingabeHexa.setColumns(10);
 		tfEingabeHexa.setInputVerifier(new InputVerifier() {
 
@@ -236,8 +241,9 @@ public class UIZahlensysteme extends JPanel {
 		
 		//Label für Infos
 		lblInfo = new JLabel("Die Aufgabe kann jetzt bearbeitet werden!"); //Inhalt des InfoLabels
+		//Positioniere Label im SpringLayout
 		layoutAufgabe.putConstraint(SpringLayout.WEST, lblInfo, 0, SpringLayout.WEST, lblDezimal);
-		layoutAufgabe.putConstraint(SpringLayout.SOUTH, lblInfo, -13, SpringLayout.NORTH, tfEingabeDezi);
+		layoutAufgabe.putConstraint(SpringLayout.SOUTH, lblInfo, -13, SpringLayout.NORTH, lblDezimal);
 		panelOben.add(lblInfo);	//Info wird zu panelOben hinzugefuegt
 		
 		//Erzeuge Aufgabe Zahlensysteme

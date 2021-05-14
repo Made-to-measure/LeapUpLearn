@@ -12,7 +12,7 @@ import de.nrw.hspv.ui.App;
 
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Taskbar;
+//import java.awt.Taskbar;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
@@ -40,15 +40,15 @@ public class LoginGUI extends JFrame{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));	//Icon fuer LoginGUI wird gesetzt
-		final Taskbar taskbar = Taskbar.getTaskbar();
-		try {
-            //set icon for mac os (and other systems which do support this method)
-            taskbar.setIconImage(icon);
-        } catch (final UnsupportedOperationException e) {
-//            System.out.println("The os does not support: 'taskbar.setIconImage'");
-        } catch (final SecurityException e) {
-//            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
-        }
+//		final Taskbar taskbar = Taskbar.getTaskbar();
+//		try {
+//            //set icon for mac os (and other systems which do support this method)
+//            taskbar.setIconImage(icon);
+//        } catch (final UnsupportedOperationException e) {
+////            System.out.println("The os does not support: 'taskbar.setIconImage'");
+//        } catch (final SecurityException e) {
+////            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+//        }
 		
 		setIconImage(icon);
 		setLayout(new BorderLayout());

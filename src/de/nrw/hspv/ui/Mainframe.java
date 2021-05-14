@@ -6,7 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Taskbar;
+//import java.awt.Taskbar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,16 +45,16 @@ public class Mainframe extends JFrame {
 		super("LeapUpLearn - Made-to-Measure LernApp f\u00FCr Verwaltungsinformatik - HSPV NRW");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));
-		final Taskbar taskbar = Taskbar.getTaskbar();
-	
-		try {
-            //set icon for mac os (and other systems which do support this method)
-            taskbar.setIconImage(icon);
-        } catch (final UnsupportedOperationException e) {
-//            System.out.println("The os does not support: 'taskbar.setIconImage'");
-        } catch (final SecurityException e) {
-//            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
-        }
+//		final Taskbar taskbar = Taskbar.getTaskbar();
+//	
+//		try {
+//            //set icon for mac os (and other systems which do support this method)
+//            taskbar.setIconImage(icon);
+//        } catch (final UnsupportedOperationException e) {
+////            System.out.println("The os does not support: 'taskbar.setIconImage'");
+//        } catch (final SecurityException e) {
+////            System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+//        }
 		setIconImage(icon);	//wirft anscheinend keine Fehler trotz MacOS
 
 		setLayout(new BorderLayout());

@@ -91,9 +91,10 @@ public class UIStatistics extends JPanel {
 		
 		//JLabel fuer Kategorien der Aufgaben
 		JLabel lblIT = new JLabel("Grundlagen IT");
+		//Postionierung des Labels im SpringLayout
 		springLayout.putConstraint(SpringLayout.NORTH, lblIT, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblIT, 10, SpringLayout.WEST, this);
-		add(lblIT);
+		add(lblIT);	//Label wird dem Panel hinzugefuegt
 		
 		JLabel lblIP = new JLabel("IP Adressen");
 		springLayout.putConstraint(SpringLayout.NORTH, lblIP, 6, SpringLayout.SOUTH, lblIT);
@@ -107,13 +108,17 @@ public class UIStatistics extends JPanel {
 		
 		JLabel lblMathe = new JLabel("Mathe");
 		springLayout.putConstraint(SpringLayout.NORTH, lblMathe, 6, SpringLayout.SOUTH, lblZahlensyteme);
-		springLayout.putConstraint(SpringLayout.WEST, lblMathe, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, lblMathe, 0, SpringLayout.WEST, lblIT);
 		add(lblMathe);
 		
 		JLabel lblLogik = new JLabel("Logik");
 		springLayout.putConstraint(SpringLayout.NORTH, lblLogik, 6, SpringLayout.SOUTH, lblMathe);
 		springLayout.putConstraint(SpringLayout.WEST, lblLogik, 0, SpringLayout.WEST, lblIP);
 		add(lblLogik);
+		
+		//Hier musst du das Label fuer die Bennenung der Aufgaben Erzeugen und entsprechend positionieren
+		
+		
 		
 		//JLabel fuer Anzahl geloester Aufgaben im Verhaeltnis zu bearbeiteten Aufgaben
 		JLabel lblITWerte = new JLabel(Integer.toString(anzahlITRichtig) + "/" + Integer.toString(anzahlIT)); //Hier wird Anzahl richtiger zu gesamter Aufgaben als Text festgelegt
@@ -127,8 +132,8 @@ public class UIStatistics extends JPanel {
 		add(lblIPWerte);
 		
 		JLabel lblZahlensystemeWerte = new JLabel(Integer.toString(anzahlZahlensysRichtig) + "/" + Integer.toString(anzahlZahlensys));
+		springLayout.putConstraint(SpringLayout.NORTH, lblZahlensystemeWerte, 0, SpringLayout.NORTH, lblZahlensyteme);
 		springLayout.putConstraint(SpringLayout.WEST, lblZahlensystemeWerte, 0, SpringLayout.WEST, lblITWerte);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblZahlensystemeWerte, 0, SpringLayout.SOUTH, lblZahlensyteme);
 		add(lblZahlensystemeWerte);
 		
 		JLabel lblMatheWerte = new JLabel(Integer.toString(anzahlMatheRichtig) + "/" + Integer.toString(anzahlMathe));
@@ -141,7 +146,7 @@ public class UIStatistics extends JPanel {
 		springLayout.putConstraint(SpringLayout.WEST, lblLogikWerte, 0, SpringLayout.WEST, lblITWerte);
 		add(lblLogikWerte);
 		
-		//Hier musst du das Label fuer die Bennenung der Aufgaben Erzeugen und entsprechend positionieren
+		//Hier musst du das Panel fuer die Anzeige richtiger Aufgaben zu gesamter Aufgaben erzeugen und entsprechend positionieren
 		
 		
 		
