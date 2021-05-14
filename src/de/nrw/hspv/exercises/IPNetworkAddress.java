@@ -13,7 +13,7 @@ import de.nrw.hspv.ui.App;
 public class IPNetworkAddress extends IPAddress{
 	private int hostbereich;
 	private int cidr;
-	private int diff;
+	private int diff;	//Differenz zum Bezugspunkt 24
 	private Random rand = new Random();
 	
 		/**
@@ -23,7 +23,7 @@ public class IPNetworkAddress extends IPAddress{
 		IPNetworkAddress(int cidr) {
 			this.cidr = cidr;
 			this.hostbereich = 32-this.cidr;
-			this.diff = Math.abs(24-this.cidr);
+			this.diff = Math.abs(24-this.cidr);	//Betrag der Differenz von CIDR und 24
 			this.values = generateNetworkAddress(cidr);
 			App.logger.log(Level.INFO, "IPNetworAddress mit vorgegebener CIDR erzeugt");
 		}
@@ -51,13 +51,13 @@ public class IPNetworkAddress extends IPAddress{
 		 * @return Integer-Array mit den Werten einer zufälligen Netzwerkadresse
 		 */
 		public int[] generateNetworkAddress(int cidr) {
-			//diff steht fuer differenz
+			//temporäres Array, welches nachher zurueckgegeben wird
 			int[] tempArr  = new int[4];
 			
 			//Pruefung ob 3. oder 4. Byte betroffen
 			if(this.cidr < 24){
 				int moegl = (int) Math.pow(2, 8-this.diff);										// Berrechnung der Anzahl an moeglichen Zahlen in Abhaengigkeit der CIDR-Klasse 
-				tempArr[2] = ((int) Math.pow(2, this.diff))* rand.nextInt(moegl);		// Auswahl einer moeglichen Zahl
+				tempArr[2] = ((int) Math.pow(2, this.diff))* rand.nextInt(moegl);		// Berechnung der kleinstmoeglichen Schrittweite und Auswahl einer moeglichen Zahl
 				if(rand.nextBoolean()) {tempArr[0] = 10; tempArr[1] = 10; tempArr[3] = 0;}	// zu 50% kommt diese Art der Formatierung vor
 				else {
 					for (int i = 0; i<2; i++) {
@@ -72,7 +72,7 @@ public class IPNetworkAddress extends IPAddress{
 					tempArr[3] = 0;
 				}
 				else {
-					int moegl = (int) Math.pow(2, this.diff);		// Berrechnung der Anzahl an moeglichen Zahlen in Abhaengigkeit der CIDR-Klasse 
+					int moegl = (int) Math.pow(2, this.diff);	// Berrechnung der Anzahl an moeglichen Zahlen in Abhaengigkeit der CIDR-Klasse 
 					tempArr[3] = ((int) Math.pow(2, (8-this.diff)))*rand.nextInt(moegl);		// Auswahl einer moeglichen Zahl
 				}
 				
