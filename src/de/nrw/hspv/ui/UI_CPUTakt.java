@@ -127,13 +127,13 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		
 		txtLocDRAMAccZeit = new JTextField();
 		txtLocDRAMAccZeit.setHorizontalAlignment(SwingConstants.CENTER);
-		//txtLocDRAMAccZeit.setText("25");
+		//txtLocDRAMAccZeit.setText("50");
 		panelAufg.add(txtLocDRAMAccZeit);
 		txtLocDRAMAccZeit.setColumns(10);
 		
 		txtLocDRAMAccVerglW = new JTextField();
 		txtLocDRAMAccVerglW.setHorizontalAlignment(SwingConstants.CENTER);
-		txtLocDRAMAccVerglW.setText("50");
+		txtLocDRAMAccVerglW.setText("25");
 		//Vorgabewert: Steuerelement deaktivieren
 		txtLocDRAMAccVerglW.setEditable(false);
 		txtLocDRAMAccVerglW.setFocusable(false);
@@ -216,7 +216,7 @@ public class UI_CPUTakt extends JPanel implements zuStatistik{
 		else {
 			txtRegAccVerglW.setBackground(Color.RED);
 		}
-		if (txtLocDRAMAccZeit.getText().matches("25")) {
+		if (txtLocDRAMAccZeit.getText().matches("50")) {
 			txtLocDRAMAccZeit.setBackground(Color.green);
 		}
 		else {
