@@ -18,8 +18,8 @@ public class App {
 	//initialisiere logger
 	public static final Logger logger = Logger.getLogger(App.class.getName());
 	
-	//Systemspezifikationen (inspieriert von Marco Wilhems)
-	private static String os = System.getProperty("os.name") + "Version " + System.getProperty("os.version");
+	//Systemspezifikationen (inspiriert von Marco Wilhems)
+	private static String os = System.getProperty("os.name") + " Version " + System.getProperty("os.version");
 	private static String screenResulution = Toolkit.getDefaultToolkit().getScreenSize().getWidth() + "x" + Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	
 	@SuppressWarnings("unused")
