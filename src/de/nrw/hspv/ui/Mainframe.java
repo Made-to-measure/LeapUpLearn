@@ -78,12 +78,12 @@ public class Mainframe extends JFrame {
 		 * werden <br><br>
 		 * 
 
-		 * - Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz für
+		 * - Oben (NORTH) rechts die Aktuelle Bearbeitungszeit Mitte (CENTER) Platz fuer
 		 * die Panels der Aufgaben<br>
 		 * 
 		 * - Links (WEST) Menu mit grundlegenden Programmfunktionen <br>
 		 * - Unten (SOUTH) die
-		 * Schaltflächen "Abbrechen" und "Überprüfen"<br>
+		 * Schaltflaechen "Abbrechen" und "ueberpruefen"<br>
 		 * 
 		 * @author Christian
 		 * @version 1.0
@@ -99,14 +99,14 @@ public class Mainframe extends JFrame {
 
 	public void themenpanel() {
 		/**
-		 * Methode legt ein Panel mit grundlegenden Programmfunktionen (Menu) 
+		 * Methode legt ein Panel mit grundlegenden Programmfunktionen (Kurse, Menu, Statistik) 
 		 * auf der linken Seite:
 		 * 
 		 */
 		
 		JPanel ThemenPanel = new JPanel();
 		MainPanel.add(ThemenPanel, BorderLayout.WEST); // Ausrichtung nach links
-		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Grueuee
+		ThemenPanel.setLayout(new GridLayout(0, 1, 0, 0)); // Alle Btn mit GridLayout(damit alle die selbe Groesse
 															// haben) horizontal anordnen
 		// Buttons anlegen und hinzufuegen
 		JButton btnGrdlIT = new JButton("Grundlagen IT");
@@ -185,7 +185,7 @@ public class Mainframe extends JFrame {
 		 */ 
 		JPanel ExPanel = new JPanel();
 		MainPanel.add(ExPanel, BorderLayout.WEST); 		// Ausrichtung nach links
-		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Grueuee
+		ExPanel.setLayout(new GridLayout(0, 1, 0, 0));  // Alle Btn mit GridLayout(damit alle die selbe Groesse
 		ExPanel.setVisible(true);						// haben) horizontal anordnen
 		
 		if (Aufgabe == "GrdlIT") {
