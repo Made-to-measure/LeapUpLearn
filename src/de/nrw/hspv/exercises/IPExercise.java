@@ -15,7 +15,7 @@ public class IPExercise extends Exercise{
 
 	private Random rand = new Random();
 	private IPNetworkAddress networkAddress;
-	private IPAddress hostAddress, broadcastAddress, subnetmask, firstAddress, lastAddress;
+	private IPAddress broadcastAddress, subnetmask, firstAddress, lastAddress;
 	private boolean[] exerciseType;
 	
 	/**
@@ -68,7 +68,6 @@ public class IPExercise extends Exercise{
 		//ist die Nummer ausserhalb des gewollten Bereichs, dann rufe die Methode erneut auf
 		return generateCidr();
 	}
-	
 	
 	/**
 	 * ueberprüft, ob die eingegebene Host-Adresse richtig ist
@@ -333,7 +332,6 @@ public class IPExercise extends Exercise{
 		}
 		App.logger.log(Level.INFO, "Eingaben wurden erfolgreich ueberprueft");
 		return results;
-	
 	}
 	
 	/**

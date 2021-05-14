@@ -1,4 +1,4 @@
-package de.nrw.hspv.exercises;
+	package de.nrw.hspv.exercises;
 
 import java.util.logging.Level;
 
@@ -12,10 +12,7 @@ public class IPAddress {
 	 * @version 1.0
 	 */
 	protected int[] values = new int[4];
-	
-	
 
-	
 	/**
 	 * default Konstruktor
 	 */
@@ -49,7 +46,6 @@ public class IPAddress {
 		return tempSB.toString();
 	}
 
-	
 	/**
 	 * @param Position des Werts der IP
 	 * @return gibt den Integer der jeweiligen Position zurück
