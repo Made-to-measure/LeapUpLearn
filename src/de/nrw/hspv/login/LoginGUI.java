@@ -39,7 +39,7 @@ public class LoginGUI extends JFrame{
 		super("Login");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));
+		final Image icon = Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg"));	//Icon fuer LoginGUI wird gesetzt
 		final Taskbar taskbar = Taskbar.getTaskbar();
 		try {
             //set icon for mac os (and other systems which do support this method)
@@ -53,16 +53,16 @@ public class LoginGUI extends JFrame{
 		setIconImage(icon);
 		setLayout(new BorderLayout());
 		
-		JPanel panelOben = new JPanel();										//PanelOben fuer Eingabe
+		JPanel panelOben = new JPanel();										//PanelOben fuer Eingabe der Daten
 		panelOben.setBorder(new EmptyBorder(10,10,10,10));
 		panelOben.setLayout(new GridLayout(2,2,0,0));							//GridLayout fuer einzelne Elemente des Logins
 		
 		
-		JLabel labelName = new JLabel("Nutzername");
+		JLabel labelName = new JLabel("Nutzername");							//Label Nutzername erzeugen und hinzufuegen
 		panelOben.add(labelName);
-		eingabeName = new JTextField();
+		eingabeName = new JTextField();											//Textfeld fuer Nutzername erzeugen und hinzufuegen
 		panelOben.add(eingabeName);
-		eingabeName.addKeyListener(new KeyAdapter() {
+		eingabeName.addKeyListener(new KeyAdapter() {							//KeyListener fuer Bestaetigung mit Enter
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -74,11 +74,11 @@ public class LoginGUI extends JFrame{
 			}
 		});
 				
-		JLabel labelPasswort = new JLabel("Passwort");
+		JLabel labelPasswort = new JLabel("Passwort");							//Label Passwort wird erzeugt und hinzugefuegt
 		panelOben.add(labelPasswort);
-		eingabePasswort = new JPasswordField();
+		eingabePasswort = new JPasswordField();									//Textfeld fuer Passwort wird erzeugt und hinzugefuegt
 		panelOben.add(eingabePasswort);	
-		eingabePasswort.addKeyListener(new KeyAdapter() {
+		eingabePasswort.addKeyListener(new KeyAdapter() {						//KeyListener fuer Bestaetigung mit Enter
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -90,7 +90,7 @@ public class LoginGUI extends JFrame{
 			}
 		});
 		
-		add(panelOben, BorderLayout.CENTER);
+		add(panelOben, BorderLayout.CENTER);									//Panel fuer Eingaben der Nutzerdaten im Center des BorderLayouts
 		
 		JPanel panelUnten = new JPanel();										//panelUnten fuer Buttons
 		
@@ -116,10 +116,10 @@ public class LoginGUI extends JFrame{
 			}
 			
 		});
-		panelUnten.add(anmelden);
+		panelUnten.add(anmelden);								//Buttons werden Panel hinzugefuegt
 		panelUnten.add(registrieren);
-		add(panelUnten, BorderLayout.SOUTH);
-		
+		add(panelUnten, BorderLayout.SOUTH);					//Panel fuer Buttons im unteren Bereich des BorderLayouts
+			
 		App.logger.log(Level.INFO, "LoginGUI erzeugt");
 		
 		setVisible(true);

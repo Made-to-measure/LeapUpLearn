@@ -10,5 +10,5 @@ import de.nrw.hspv.login.User;
  */
 public interface zuStatistik {
 
-	public void addEintrag(User user, Exercise aufgabe);
+	public void addEintrag(User user, Exercise aufgabe);	//Methode zum hinzufuegen eines Eintrags mit User und Aufgabe muss implementiert werden
 }

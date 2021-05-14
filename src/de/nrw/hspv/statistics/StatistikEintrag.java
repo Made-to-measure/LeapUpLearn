@@ -15,7 +15,8 @@ import de.nrw.hspv.login.User;
  */
 public class StatistikEintrag implements Serializable{			//Serializable fuer Eintrag in Statistik
 		
-	User aktiverUser;				//Attribute eines Statistikeintrags
+	//Attribute eines Statistikeintrags
+	User aktiverUser;				
 	boolean geloest;
 	long id;
 	Aufgabentyp aufgabentyp;
@@ -25,7 +26,7 @@ public class StatistikEintrag implements Serializable{			//Serializable fuer Ein
 	 * @param user der Aufgabe bearbeitet hat
 	 * @param aufgabe die bearbeitet wurde
 	 */
-	StatistikEintrag(User user, Exercise aufgabe) {		
+	StatistikEintrag(User user, Exercise aufgabe) {		//Konstruktor fuer Statistikeintrag
 		this.aktiverUser = user;
 		this.geloest = aufgabe.geloest;
 		this.id = aufgabe.id;

@@ -6,7 +6,7 @@ import de.nrw.hspv.statistics.Statistiken;
 import de.nrw.hspv.statistics.zuStatistik;
 
 /**
- * 
+ * Allgemeine Klasse Aufgabe, die Grundlage fuer verschiedene Aufgabentypen ist
  * @author Janis
  * @version 1.0
  */

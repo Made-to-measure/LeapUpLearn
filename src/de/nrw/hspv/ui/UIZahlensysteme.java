@@ -29,49 +29,49 @@ import javax.swing.JTextField;
  */
 public class UIZahlensysteme extends JPanel {
 	
-	public JTextField tfEingabeDezi;
+	public JTextField tfEingabeDezi;		//Die GUI benoetigt Eingabefelder fuer Dezimal, Binaer, Oktal und Hexadezimal
 	public JTextField tfEingabeBinaer;
 	public JTextField tfEingabeOktal;
 	public JTextField tfEingabeHexa;
-	public JLabel lblInfo;
-	public boolean inBearbeitung = true;
-	public boolean verifiedDezi;
+	public JLabel lblInfo;					//JLabel fuer Informationen
+	public boolean inBearbeitung = true;	//boolean fuer Zustand ob in Bearbeitung oder ob Loesung angezeigt wird
+	public boolean verifiedDezi;			//Verifier fuer einzelne Textfelder
 	public boolean verifiedBinaer;
 	public boolean verifiedOktal;
 	public boolean verifiedHexa;
-	ZahlensystemExercise aufgabe;
+	ZahlensystemExercise aufgabe;			//Zahlensystemaufgabe, die dargestellt werden soll
 	
 	/**
 	 * Erzeugt das Panel fuer die Darstellung der Zahlensystemaufgabe
 	 */
 	public UIZahlensysteme() {
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout(0, 0));		//BorderLayout fuer Aufteilung
 		
-		JPanel panel = new JPanel();
-		add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		JPanel panelUnten = new JPanel();		//panelUnten fuer Button
+		add(panelUnten, BorderLayout.SOUTH);	//panelUnten soll untem im BorderLayout liegen
+		panelUnten.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));	//Button soll rechts liegen
 		
 		//Button zur Überprüfung der Aufgabe
 		JButton btnPruefe = new JButton("\u00DCberpr\u00FCfe");
-		btnPruefe.addActionListener(new ActionListener() {
+		btnPruefe.addActionListener(new ActionListener() {		//ActionListener fuer Button
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(inBearbeitung) {
+				if(inBearbeitung) {		//wenn Aufgabe bearbeitet wird soll mit Button ueberpruefung ausgeloest werden
 					if(verifiedDezi && verifiedBinaer && verifiedOktal && verifiedHexa) { //Format der Eingaben wird geprueft
 						String dez = UIZahlensysteme.this.tfEingabeDezi.getText();	//Abfrage der Textfelder
 						String bin = UIZahlensysteme.this.tfEingabeBinaer.getText();
 						String okt = UIZahlensysteme.this.tfEingabeOktal.getText();
 						String hex = UIZahlensysteme.this.tfEingabeHexa.getText();
-						if(aufgabe.ueberpruefe(dez, bin, okt, hex)) {							//Überprüfung der Eingaben
-							lblInfo.setText("Richtig!");
+						if(aufgabe.ueberpruefe(dez, bin, okt, hex)) {							//Überprüfung der Eingaben auf Richtigkeit
+							lblInfo.setText("Richtig!");										//wenn richtig wird das im InfoLabel angezeigt
 						}
-						else {
-							lblInfo.setText("Leider nicht ganz richtig, hier siehst du die Lösung:");
-							if(aufgabe.zahl != Integer.parseInt(dez)) {
-								tfEingabeDezi.setBackground(Color.red);
-								tfEingabeDezi.setText(aufgabe.dezZahl);
-								tfEingabeDezi.setEnabled(false);
+						else {																	//wenn falsch
+							lblInfo.setText("Leider nicht ganz richtig, hier siehst du die Lösung:");	//Infolabel soll diesen Text anzeigen
+							if(aufgabe.zahl != Integer.parseInt(dez)) {									//Uerpruefung der Einzelnen Eingaben
+								tfEingabeDezi.setBackground(Color.red);									//wenn falsche Eingabe soll TextFeld rot sein
+								tfEingabeDezi.setText(aufgabe.dezZahl);									//richtige Loesung soll angezeigt werden
+								tfEingabeDezi.setEnabled(false);										//Feld soll nicht bearbeitbar sein
 							}
 							if(aufgabe.zahl != Integer.parseUnsignedInt(bin, 2)) {
 								tfEingabeBinaer.setBackground(Color.red);
@@ -89,80 +89,82 @@ public class UIZahlensysteme extends JPanel {
 								tfEingabeHexa.setEnabled(false);
 							}
 						}
-						btnPruefe.setText("Neue Aufgabe");
-						inBearbeitung = false;
+						btnPruefe.setText("Neue Aufgabe");	//Button soll nach Ueberpruefung den Text "neue Aufgabe" anzeigen
+						inBearbeitung = false;	//Zustand von 'in Bearbeitung' auf 'Loesung wird angezeigt' setzen
 					}
 					else {
-						new HinweisFenster("Bitte \u00DCberpr\u00FCfe deine Eingaben!");
+						//Wenn die Eingaben nicht dem richtigen Format entsprechen soll HinweisFenster angezeigt werden
+						new HinweisFenster("Bitte \u00DCberpr\u00FCfe deine Eingaben!");	
 					}
 				}
-				else {
+				else {		//Zustand ist nicht 'in Bearbeitung'
 					aktualisiereAufgabe();						//neue Aufgabe wird erstellt und dargestellt
-					btnPruefe.setText("\u00DCberpr\u00FCfe");
-					inBearbeitung = true;
+					btnPruefe.setText("\u00DCberpr\u00FCfe");	//Button-Text wird auf Ueberpruefen gesetzt
+					inBearbeitung = true;						//Zustand wird auf 'in Bearbeitung' gesetzt
 				}
 															
 			}
 			
 			
 		});
-		panel.add(btnPruefe);
+		panelUnten.add(btnPruefe);			//Button wird panelUnten hinzugefuegt
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.CENTER);
-		SpringLayout sl_panel_1 = new SpringLayout();
-		panel_1.setLayout(sl_panel_1);
+		JPanel panelOben = new JPanel();	//panelOben fuer Darstellung der Aufgabe
+		add(panelOben, BorderLayout.CENTER);	//panelOben soll im Center des BorderLayouts liegen
+		//Aufgabenpanel soll SpringLayout fuer Darstellung der einzelnen Komponenten haben
+		SpringLayout layoutAufgabe = new SpringLayout();	
+		panelOben.setLayout(layoutAufgabe);
 		
 		//Label, die die Textfelder bezeichnen
-		JLabel lblBinaer = new JLabel("Bin\u00E4r");
-		lblBinaer.setHorizontalAlignment(SwingConstants.TRAILING);
-		panel_1.add(lblBinaer);
+		JLabel lblBinaer = new JLabel("Bin\u00E4r");	//Erzeugung des Labels fuer Benennung
+		lblBinaer.setHorizontalAlignment(SwingConstants.TRAILING);	//Text soll rechtsbuendig sein
+		panelOben.add(lblBinaer);		//Label wird panelOben hinzugefuegt
 		
-		JLabel lblDezimal_1_1 = new JLabel("Dezimal");
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblDezimal_1_1, 0, SpringLayout.EAST, lblBinaer);
-		lblDezimal_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		panel_1.add(lblDezimal_1_1);
+		JLabel lblDezimal = new JLabel("Dezimal");
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblDezimal, 0, SpringLayout.EAST, lblBinaer);
+		lblDezimal.setHorizontalAlignment(SwingConstants.TRAILING);
+		panelOben.add(lblDezimal);
 		
 		JLabel lblOktal = new JLabel("Oktal");
 		lblOktal.setHorizontalAlignment(SwingConstants.TRAILING);
-		panel_1.add(lblOktal);
+		panelOben.add(lblOktal);
 		
 		JLabel lblHexa = new JLabel("Hexadezimal");
 		lblHexa.setHorizontalAlignment(SwingConstants.TRAILING);
-		panel_1.add(lblHexa);
+		panelOben.add(lblHexa);
 		
 		//Textfelder für die Eingabe
 		tfEingabeDezi = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblDezimal_1_1, 3, SpringLayout.NORTH, tfEingabeDezi);
-		sl_panel_1.putConstraint(SpringLayout.NORTH, tfEingabeDezi, 48, SpringLayout.NORTH, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeDezi, 88, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeDezi, -212, SpringLayout.EAST, panel_1);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblDezimal, 3, SpringLayout.NORTH, tfEingabeDezi);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeDezi, 48, SpringLayout.NORTH, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeDezi, 88, SpringLayout.WEST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeDezi, -212, SpringLayout.EAST, panelOben);
 		tfEingabeDezi.setColumns(10);
 		tfEingabeDezi.setInputVerifier(new InputVerifier() {		//InputVerifier fuer Eingabe der Zahl
 
 			@Override
 			public boolean verify(JComponent input) {
 				try {
-					Integer.parseInt(((JTextField) input).getText());		
+					Integer.parseInt(((JTextField) input).getText());	//parseInt muss auf Eingabe anwendbar sein	
 				}
-				catch (Exception e) {
-					verifiedDezi = false;							//Wenn Eingabe zu Exception fuehren wuerde setze verified auf false
+				catch (Exception e) {								
+					verifiedDezi = false;	//Wenn Eingabe zu Exception fuehren wuerde setze verified auf false
 					return false;
 				}
-				verifiedDezi = true;								//Wenn Eingabe korrekt ist wird verified auf true
+				verifiedDezi = true;				//Wenn Eingabe korrekt ist wird verified auf true
 				return true;
 			}
 			
 		});
-		panel_1.add(tfEingabeDezi);
+		panelOben.add(tfEingabeDezi);		//fuege Textfeld fuer Dezimaleingabe dem panelOben hinzu
 		
 		
 		tfEingabeBinaer = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblBinaer, 3, SpringLayout.NORTH, tfEingabeBinaer);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblBinaer, -6, SpringLayout.WEST, tfEingabeBinaer);
-		sl_panel_1.putConstraint(SpringLayout.NORTH, tfEingabeBinaer, 6, SpringLayout.SOUTH, tfEingabeDezi);
-		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeBinaer, 88, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeBinaer, -212, SpringLayout.EAST, panel_1);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblBinaer, 3, SpringLayout.NORTH, tfEingabeBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblBinaer, -6, SpringLayout.WEST, tfEingabeBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeBinaer, 6, SpringLayout.SOUTH, tfEingabeDezi);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeBinaer, 88, SpringLayout.WEST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeBinaer, -212, SpringLayout.EAST, panelOben);
 		tfEingabeBinaer.setColumns(10);
 		tfEingabeBinaer.setInputVerifier(new InputVerifier() {
 
@@ -180,14 +182,14 @@ public class UIZahlensysteme extends JPanel {
 			}
 			
 		});
-		panel_1.add(tfEingabeBinaer);
+		panelOben.add(tfEingabeBinaer);
 		
 		tfEingabeOktal = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblOktal, 3, SpringLayout.NORTH, tfEingabeOktal);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblOktal, -6, SpringLayout.WEST, tfEingabeOktal);
-		sl_panel_1.putConstraint(SpringLayout.NORTH, tfEingabeOktal, 6, SpringLayout.SOUTH, tfEingabeBinaer);
-		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeOktal, 88, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeOktal, -212, SpringLayout.EAST, panel_1);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblOktal, 3, SpringLayout.NORTH, tfEingabeOktal);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblOktal, -6, SpringLayout.WEST, tfEingabeOktal);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeOktal, 6, SpringLayout.SOUTH, tfEingabeBinaer);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeOktal, 88, SpringLayout.WEST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeOktal, -212, SpringLayout.EAST, panelOben);
 		tfEingabeOktal.setColumns(10);
 		tfEingabeOktal.setInputVerifier(new InputVerifier() {
 
@@ -205,14 +207,14 @@ public class UIZahlensysteme extends JPanel {
 			}
 			
 		});
-		panel_1.add(tfEingabeOktal);
+		panelOben.add(tfEingabeOktal);
 		
 		tfEingabeHexa = new JTextField();
-		sl_panel_1.putConstraint(SpringLayout.NORTH, lblHexa, 3, SpringLayout.NORTH, tfEingabeHexa);
-		sl_panel_1.putConstraint(SpringLayout.EAST, lblHexa, -6, SpringLayout.WEST, tfEingabeHexa);
-		sl_panel_1.putConstraint(SpringLayout.NORTH, tfEingabeHexa, 9, SpringLayout.SOUTH, tfEingabeOktal);
-		sl_panel_1.putConstraint(SpringLayout.WEST, tfEingabeHexa, 88, SpringLayout.WEST, panel_1);
-		sl_panel_1.putConstraint(SpringLayout.EAST, tfEingabeHexa, -212, SpringLayout.EAST, panel_1);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, lblHexa, 3, SpringLayout.NORTH, tfEingabeHexa);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, lblHexa, -6, SpringLayout.WEST, tfEingabeHexa);
+		layoutAufgabe.putConstraint(SpringLayout.NORTH, tfEingabeHexa, 9, SpringLayout.SOUTH, tfEingabeOktal);
+		layoutAufgabe.putConstraint(SpringLayout.WEST, tfEingabeHexa, 88, SpringLayout.WEST, panelOben);
+		layoutAufgabe.putConstraint(SpringLayout.EAST, tfEingabeHexa, -212, SpringLayout.EAST, panelOben);
 		tfEingabeHexa.setColumns(10);
 		tfEingabeHexa.setInputVerifier(new InputVerifier() {
 
@@ -230,13 +232,13 @@ public class UIZahlensysteme extends JPanel {
 			}
 			
 		});
-		panel_1.add(tfEingabeHexa);
+		panelOben.add(tfEingabeHexa);
 		
 		//Label für Infos
-		lblInfo = new JLabel("Die Aufgabe kann jetzt bearbeitet werden!");
-		sl_panel_1.putConstraint(SpringLayout.WEST, lblInfo, 0, SpringLayout.WEST, lblDezimal_1_1);
-		sl_panel_1.putConstraint(SpringLayout.SOUTH, lblInfo, -13, SpringLayout.NORTH, tfEingabeDezi);
-		panel_1.add(lblInfo);
+		lblInfo = new JLabel("Die Aufgabe kann jetzt bearbeitet werden!"); //Inhalt des InfoLabels
+		layoutAufgabe.putConstraint(SpringLayout.WEST, lblInfo, 0, SpringLayout.WEST, lblDezimal);
+		layoutAufgabe.putConstraint(SpringLayout.SOUTH, lblInfo, -13, SpringLayout.NORTH, tfEingabeDezi);
+		panelOben.add(lblInfo);	//Info wird zu panelOben hinzugefuegt
 		
 		//Erzeuge Aufgabe Zahlensysteme
 		aktualisiereAufgabe();
@@ -247,7 +249,7 @@ public class UIZahlensysteme extends JPanel {
 	/**
 	 * laedt eine neue Aufgabe und aktualisiert die Darstellung
 	 */
-	public void aktualisiereAufgabe() {						//Methode um neue Aufgabe vom Typ AufgabeZahlensysteme zu erzeugen und darzustellen
+	public void aktualisiereAufgabe() {	//Methode um neue Zahlensystemaufgabe zu erzeugen und darzustellen
 		lblInfo.setText("Die Aufgabe kann jetzt bearbeitet werden!");		//InfoLabel aktualisieren
 		
 		tfEingabeDezi.setEnabled(true);					//Alle Textfelder edititierbar setzen
@@ -273,7 +275,7 @@ public class UIZahlensysteme extends JPanel {
 		aufgabe = new ZahlensystemExercise();				//neue Aufgabe wird zugewiesen
 															
 		//Textfelder werden entsprechend zugewiesen
-		switch (aufgabe.typ) {								//Je nach Typ der Ausgangszahl wird jeweiliges Textfeld auf nicht editierbar gesetzt
+		switch (aufgabe.typ) {	//Je nach Typ der Ausgangszahl wird jeweiliges Textfeld auf nicht editierbar gesetzt
 		case 0:												
 			tfEingabeDezi.setText(aufgabe.dezZahl);
 			tfEingabeDezi.setEnabled(false);

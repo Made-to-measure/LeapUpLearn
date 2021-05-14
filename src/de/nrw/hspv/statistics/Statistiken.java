@@ -27,7 +27,7 @@ import de.nrw.hspv.ui.App;
 
 public class Statistiken {
 	
-	
+	//ArrayList soll alle einzelnen Statistikeintraege enthalten
 	public static ArrayList<StatistikEintrag> Eintraege = new ArrayList<StatistikEintrag>();
 	
 	/**
@@ -35,13 +35,13 @@ public class Statistiken {
 	 */
 	public static void ladeStatistik() {
 		try {
-			File statistikFile = new File("Statistiken.txt");									
+			File statistikFile = new File("Statistiken.txt");									//Statistiken.txt als Datei fuer Statistik
 			if (statistikFile.length() != 0) {													//wenn Datei leer ist, soll nicht ausgelesen werden
 				FileInputStream dateiEingabeStrom = new FileInputStream(statistikFile);			
 				ObjectInputStream objektEingabeStrom = new ObjectInputStream(dateiEingabeStrom);
 				Eintraege = (ArrayList<StatistikEintrag>)objektEingabeStrom.readObject();		//Daten aus Datei werden ArrayList Eintraege zugewiesen
 				
-				objektEingabeStrom.close();
+				objektEingabeStrom.close();														//schliessen der Inputstreams
 				dateiEingabeStrom.close();
 				
 				App.logger.log(Level.INFO, "Statistiken geladen");
@@ -64,11 +64,11 @@ public class Statistiken {
 	 */
 	public static void speicherStatistik() {
 		try {
-			FileOutputStream dateiAusgabeStrom = new FileOutputStream(new File("Statistiken.txt"));
+			FileOutputStream dateiAusgabeStrom = new FileOutputStream(new File("Statistiken.txt"));	//Statistiken.txt als Zieldatei
 			ObjectOutputStream objektAusgabeStrom = new ObjectOutputStream(dateiAusgabeStrom);
 			
 			objektAusgabeStrom.writeObject(Eintraege);										//ArrayList Eintraege wird in Datei geschrieben
-			objektAusgabeStrom.close();
+			objektAusgabeStrom.close();														//schliessen der Outputstreams
 			dateiAusgabeStrom.close();
 			App.logger.log(Level.INFO, "Statistiken gespeichert");
 		}
@@ -90,9 +90,9 @@ public class Statistiken {
 	 * @param aufgabe die bearbeitet wurde
 	 */
 	public static void addEintrag(User user, Exercise aufgabe) {
-		Eintraege.add(new StatistikEintrag(user, aufgabe));
+		Eintraege.add(new StatistikEintrag(user, aufgabe));					//Neuer Eintrag wird erzeugt und der ArrayList hinzugefuegt
 		App.logger.log(Level.INFO, "Eintrag zur Statistik hinzugefuegt");
-		speicherStatistik();
+		speicherStatistik();												//Statistik wird anschliessend gespeichert
 	}
 	
 	/**
@@ -104,10 +104,10 @@ public class Statistiken {
 	 * @return Anzahl der passenden Eintraege als Integer
 	 */
 	public static int getAnzahl(String username, Aufgabentyp typ, boolean geloest) {
-		int anzahl = 0;
+		int anzahl = 0;													//Zaehlvariable fuer Anzahl
 		for(StatistikEintrag eintrag : Eintraege) {						//Durchlaufe ArrayList Eintraege
 			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ && eintrag.geloest == geloest) {	//Ueberpruefe einzelne Statistikeintraege
-				anzahl++;
+				anzahl++;		//Bei Uebereinstimmung wird Zaehlvariable um 1 erhoeht
 			}
 		}
 		return anzahl;
@@ -121,10 +121,10 @@ public class Statistiken {
 	 * @return Anzahl der passenden Eintraege als Integer
 	 */
 	public static int getAnzahl(String username, Aufgabentyp typ) {
-		int anzahl = 0;
+		int anzahl = 0;													//Zaehlvariable fuer Anzahl
 		for(StatistikEintrag eintrag : Eintraege) {						//Durchlaufe ArrayList Eintraege
 			if(eintrag.aktiverUser.name.equals(username) && eintrag.aufgabentyp == typ) {		//Ueberpruefe einzelne Statistikeintraege
-				anzahl++;
+				anzahl++;		//Bei Uebereinstimmung wird Zaehlvariable um 1 erhoeht
 			}
 		}
 		return anzahl;

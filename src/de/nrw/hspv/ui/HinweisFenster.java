@@ -25,19 +25,19 @@ public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen 
 	public HinweisFenster(String text) {								//im Konstruktor wird Inhalt der Meldung uebergeben
 		super("Achtung");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));
-		setLayout(new BorderLayout());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(App.class.getResource("/de/nrw/hspv/LUL.jpg")));	//Icon fuer HinweisFenster wird gesetzt
+		setLayout(new BorderLayout());							//BorderLayout zur Aufteilung
 		
 		JPanel panelOben = new JPanel();						//panelOben für Inhalt der Meldung
 		panelOben.setBorder(new EmptyBorder(10,10,10,10));
 		
 		JLabel hinweis = new JLabel(text);						//Label enthält Inhalt der Meldung
 		panelOben.add(hinweis);
-		add(panelOben, BorderLayout.CENTER);
+		add(panelOben, BorderLayout.CENTER);					//Panel mit Meldung soll im Center des BorderLayouts liegen
 		
 		JPanel panelUnten = new JPanel();						//panelUnten für Button
-		JButton ok = new JButton("OK");
-		ok.addActionListener(new ActionListener() {
+		JButton ok = new JButton("OK");							//OKButton wird erzeugt
+		ok.addActionListener(new ActionListener() {				//Action Listener um Fenster mit Button zu schliessen
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,8 +45,8 @@ public class HinweisFenster extends JFrame {					//Hinweisfenster für Meldungen 
 			}
 			
 		});
-		panelUnten.add(ok);
-		add(panelUnten, BorderLayout.SOUTH);
+		panelUnten.add(ok);										//OKButton wird panelUnten hinzugefuegt
+		add(panelUnten, BorderLayout.SOUTH);					//Panel fuer Buttons soll im BorderLayout unten erscheinen
 		
 		App.logger.log(Level.INFO, "HinweisFenster erzeugt");
 		
