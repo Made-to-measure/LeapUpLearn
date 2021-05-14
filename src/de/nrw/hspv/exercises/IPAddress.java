@@ -1,4 +1,4 @@
-	package de.nrw.hspv.exercises;
+package de.nrw.hspv.exercises;
 
 import java.util.logging.Level;
 
