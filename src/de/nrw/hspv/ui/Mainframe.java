@@ -235,6 +235,7 @@ public class Mainframe extends JFrame {
 		}
 		else if (Aufgabe == "Mathe") {
 			JButton btnLogik = new JButton("Logik");
+			btnLogik.setEnabled(false); //Da noch keine Aufgabe implementiert zurzeit deaktiviert
 			ExPanel.add(btnLogik);
 		}
 		
