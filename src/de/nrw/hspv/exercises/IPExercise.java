@@ -13,7 +13,7 @@ import de.nrw.hspv.ui.App;
  */
 public class IPExercise extends Exercise{
 
-	private Random rand = new Random();
+	private Random rand = new Random();	//da haeufiger Zufallszehalen benutzt werden erzeuge hier eine Instanz der Klasse Random
 	private IPNetworkAddress networkAddress;
 	private IPAddress broadcastAddress, subnetmask, firstAddress, lastAddress;
 	private boolean[] exerciseType;
@@ -22,14 +22,14 @@ public class IPExercise extends Exercise{
 	 * Konstruiert eine Neue Aufgabe
 	 */
 	public IPExercise(){
-		this.networkAddress =  new IPNetworkAddress(generateCidr());
-		this.firstAddress = networkAddress.createFirstAddress();
+		this.networkAddress =  new IPNetworkAddress(generateCidr());	//setze eine zufaellig generierte Netzwerkaddress
+		this.firstAddress = networkAddress.createFirstAddress();		
 		this.lastAddress = networkAddress.createLastAddress();
 		this.broadcastAddress = networkAddress.createBroadcastAddress();
 		this.subnetmask = networkAddress.createSubnetMask();
-		this.exerciseType = generateExerciseType();
+		this.exerciseType = generateExerciseType();						//generiere einen Aufgabentyp d.h. welche Adressen von Beginn an angezeigt werden
 		id = System.currentTimeMillis();
-		aufgabentyp = Aufgabentyp.IPAddresse;
+		aufgabentyp = Aufgabentyp.IPAddresse;							//setze den Aufgabentyp für die Statistiken
 		geloest = true;
 		App.logger.log(Level.INFO, "IP-Adressen-Aufgabe erzeugt");
 	}
@@ -146,7 +146,7 @@ public class IPExercise extends Exercise{
 	private static String cidrToStringIpFormat(String s) {
 		StringBuilder tempSB = new StringBuilder();
 		try {
-			int value = Integer.parseInt(s); // Hier entseht ggf. eine Exception
+			int value = Integer.parseInt(s); // Hier entseht ggf. eine NumberFormat Exception
 			
 			for(int i = 1; i<= 32; i++) {
 				if(i<= value) {
@@ -158,10 +158,12 @@ public class IPExercise extends Exercise{
 			}
 		}
 		catch (NumberFormatException e) {
-			App.logger.log(Level.SEVERE, "Fehler bei der Umwandlung der CIDR zu einem String");
+			//Fange die Exception ab und logge sie
+			App.logger.log(Level.SEVERE, "Fehler bei der Umwandlung der CIDR zu einem String", e);
 		}
 //		System.out.println(tempSB.toString()); //debugprint
 		for(int i = 1; i<= 3; i++) {
+			//setze Punkte alle 8 Stellen
 			tempSB.insert(i*8+(i-1), ".");
 		}
 //		System.out.println(tempSB.toString());	//debugprint
@@ -214,7 +216,7 @@ public class IPExercise extends Exercise{
 	public int[] getValuesByNumber(int value) {
 		switch(value) {
 			case 0: return this.networkAddress.getValues();
-			//case 1: return this.generateRandomHostAddress().getValues(); //Hier Hostadresse
+			//case 1: return this.generateRandomHostAddress().getValues(); //Hier wird die Hostadresse nicht benoetigt
 			case 2: return this.subnetmask.getValues();
 			case 3: return this.firstAddress.getValues();
 			case 4: return this.lastAddress.getValues();
@@ -222,6 +224,7 @@ public class IPExercise extends Exercise{
 			case 6: return new int[] {this.networkAddress.getCidr()};
 			case 7: return toIntIpFormat(cidrToStringIpFormat(String.valueOf(this.networkAddress.getCidr())),10);
 			default: 
+				//gebe null zurück wenn die Abfrage nicht gültig ist
 				App.logger.log(Level.SEVERE, value + "Ist keine gültige Eingabe für die Funktion");
 				return null;
 		}
@@ -245,9 +248,9 @@ public class IPExercise extends Exercise{
 	 * @return den Wahrheitswert, ob die Arrays uebereinstimmen
 	 */
 	private boolean compareValues(int[] original, int[] input) {
-		if(original.length == input.length) {
-			for(int i=0; i < input.length; i++) {
-				if(original[i] != input[i]) {
+		if(original.length == input.length) {		//uerberpruefe ob die Arrays die selbe laenge haben
+			for(int i=0; i < input.length; i++) {	//gehen die einzelnen Stellen 
+				if(original[i] != input[i]) {		//ueberpruefe auf Gleichheit
 					return false;
 				}
 			}
@@ -257,17 +260,17 @@ public class IPExercise extends Exercise{
 	}
 	
 	/**
-	 * generiert eine Zufällige HostAdresse innerhalb des jeweiligen Hostbereichs
+	 * generiert eine Zufaellige HostAdresse innerhalb des jeweiligen Hostbereichs
 	 * @return IPAddress
 	 */
 	public IPAddress generateRandomHostAddress() {
-		int[] tempArr = new int[4];
+		int[] tempArr = new int[4];	//erstelle ein temporaeres Array
 		
 		tempArr[0] = this.networkAddress.getValue(0);
 		tempArr[1] = this.networkAddress.getValue(1);
 		
 		if(networkAddress.getCidr() >= 24) {	//CIDR-Klasse ist groesser gleich 24
-			tempArr[2] = this.networkAddress.getValue(2);
+			tempArr[2] = networkAddress.getValue(2);
 			tempArr[3] = generateRandomNumber(this.firstAddress.getValue(3), this.lastAddress.getValue(3));	//nur die 4. Stelle muss berrechnet werden
 		}
 		else {	// CIDR-Klasse ist kleiner als 24
@@ -287,7 +290,7 @@ public class IPExercise extends Exercise{
 				tempArr[3] = generateRandomNumber(0,255);
 				}
 		}
-		return new IPAddress(tempArr);
+		return new IPAddress(tempArr);	//erstelle aus dem temporaeren Array einen neue IP-Adresse und gebe diese zurueck
 	}
 	
 	/**
@@ -321,17 +324,17 @@ public class IPExercise extends Exercise{
 				//UND nicht in der vorherigen Schleife ausgeschlossen wurde, dass das Ergebnis richtig sein kann
 				if(i==1) {
 					results[i] = validateHostAddress(tempIntArr[i]);
-					if(!results[i]) {
+					if(!results[i]) {		//wenn die Hostadresse falsch ist gehe hier herein
 						App.logger.log(Level.INFO, "Hostadresse fehlerhaft");
 					}
 				}
 				else {
-					results[i] = compareValues(getValuesByNumber(i), tempIntArr[i]);
+					results[i] = compareValues(getValuesByNumber(i), tempIntArr[i]);	//setzt den Wahrheitswert je nach Eingabe
 				}
 			}
 		}
-		App.logger.log(Level.INFO, "Eingaben wurden erfolgreich ueberprueft");
-		return results;
+		App.logger.log(Level.INFO, "Eingaben wurden erfolgreich ueberprueft");		//logge, das die Eingaben ueberprueft wurden
+		return results;	//gebe zurueck, welche Aufgaben richtig sind
 	}
 	
 	/**

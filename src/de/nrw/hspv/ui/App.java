@@ -38,17 +38,16 @@ public class App {
 	 * 
 	 */
 	public static void generateLogFile() {
-		// TODO Auto-generated method stub
 		
 		try {
-			logger.addHandler(new FileHandler("log.txt"));
+			logger.addHandler(new FileHandler("log.txt")); //erstellt die Log-Datei
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		logger.info("Start");
-		logger.log(Level.INFO, "Betriebssystem: " + os + "\nBildschirmaufloesung: " + screenResulution);
+		logger.log(Level.INFO, "Betriebssystem: " + os + "\nBildschirmaufloesung: " + screenResulution); //Als erster Log-Eintrag gebe Details zum System aus
 		
 	}
 	
@@ -57,8 +56,8 @@ public class App {
 	 * @param level
 	 */
 	public static void setLogLevel(Level level) {
-		logger.setLevel(level);
-		logger.log(Level.SEVERE, "Loglevel gesetzt auf: " + level);
+		logger.setLevel(level);	//setze den Logger auf das geforderte Level
+		logger.log(Level.SEVERE, "Loglevel gesetzt auf: " + level);	//logge die Loglevelaenderung
 //		System.out.println(level); debug
 	}
 	
