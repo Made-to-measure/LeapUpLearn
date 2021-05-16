@@ -142,6 +142,7 @@ public class UI_IPRuntime extends JPanel {
 					  }
 			});
 		}
+		this.currentExercise.testPrint();
 		App.logger.log(Level.INFO, "Erste IPAufgabe geladen");
 	}
 	
@@ -177,6 +178,7 @@ public class UI_IPRuntime extends JPanel {
 				fieldArr[i].setText("");
 			}
 		}
+		this.currentExercise.testPrint();
 		App.logger.log(Level.INFO, "Neue IPAufgabe geladen");
 	}
 	
