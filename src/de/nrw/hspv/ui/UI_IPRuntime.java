@@ -25,7 +25,7 @@ import de.nrw.hspv.exercises.IPExercise;
 import de.nrw.hspv.login.Login;
 
 /**
- * Panel zur Anzeige von IP-Adressaufgaben an
+ * Panel zur Anzeige von IP-Adressaufgaben
  * 
  * @param
  * @author Jannik
