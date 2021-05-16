@@ -7,13 +7,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.nrw.hspv.login.LoginGUI;
 
+/**
+ * Einstiegspunkt um die App zu starten
+ * 
+ * @author Janis, Jannik
+ * @version 1.0
+ */
 public class App {
-	/**
-	 * Einstiegspunkt um die App zu starten
-	 * 
-	 * @author Janis, Jannik
-	 * @version 1.0
-	 */
+	
 	
 	//initialisiere logger
 	public static final Logger logger = Logger.getLogger(App.class.getName());

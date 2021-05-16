@@ -5,10 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Klasse zur Anzeige der benötigten Zeit
+ */
 public class TimePanel extends JPanel {
-	/**
-	 * Klasse zur Anzeige der benötigten Zeit
-	 */
+	
 	static JLabel lblZeit;
 
 	TimePanel(){

@@ -15,12 +15,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * JDialog: Zeigt die Credits des Projekts an im LUL Design
+ * 
+ * @author Christian
+ */
 public class InfoAbout extends JDialog {
-	/**
-	 * JDialog: Zeigt die Credits des Projekts an im LUL Design
-	 * 
-	 * @author Christian
-	 */
+	
 
 	private final JPanel contentPanel = new JPanel();
 
