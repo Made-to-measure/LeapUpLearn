@@ -12,7 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.nrw.hspv.exercises.ExampleClassExercise;
-
+/**
+ * Beispielklasse zur erweiterung des Programms in der GUI
+ * @author Jannik, Janis, Christian
+ *
+ */
 public class UI_ExampleClassExercise extends JPanel { //UI-Klasse muss JPanel erweitern
 	/*
 	 * Diese Klasse dient als Beispiel zur Erweiterung des Programms um eine weiter Aufgabe

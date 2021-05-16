@@ -20,14 +20,15 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 
+/**
+ * Panel zeigt ein Beispiel fuer eine IP-Adressaufgabe an
+ * 
+ * @param
+ * @author Jannik
+ * @version 1.0
+ */
 public class UI_IPExercise extends JPanel {
-	/**
-	 * Panel zeigt ein Beispiel fuer eine IP-Adressaufgabe an
-	 * 
-	 * @param
-	 * @author Jannik
-	 * @version 1.0
-	 */
+
 	
 	
 	//Erzeuge Frame

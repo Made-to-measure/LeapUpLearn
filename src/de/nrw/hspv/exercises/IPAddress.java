@@ -4,13 +4,14 @@ import java.util.logging.Level;
 
 import de.nrw.hspv.ui.App;
 
+/**
+ *Klasse zur Erzeugung und Bearbeitung von IP Adressen
+ * 
+ * @author Jannik
+ * @version 1.0
+ */
 public class IPAddress {
-	/**
-	 *Klasse zur Erzeugung und Bearbeitung von IP Adressen
-	 * 
-	 * @author Jannik
-	 * @version 1.0
-	 */
+	
 	protected int[] values = new int[4];
 
 	/**

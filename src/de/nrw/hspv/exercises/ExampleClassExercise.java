@@ -5,6 +5,11 @@ import java.util.logging.Level;
 import de.nrw.hspv.login.Login;
 import de.nrw.hspv.ui.App;
 
+/**
+ * Beispielklasse zur erweiterung des Programms
+ * @author Jannik, Janis, Christian
+ *
+ */
 public class ExampleClassExercise extends Exercise{
 	/*
 	 * Diese Klasse ist eine Beispielklasse um eine neue Aufgabe hinzuzufügen
